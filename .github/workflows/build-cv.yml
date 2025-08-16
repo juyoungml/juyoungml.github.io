@@ -1,0 +1,42 @@
+name: Build CV
+
+on:
+  push:
+    paths:
+      - 'cv/**'
+  workflow_dispatch:
+
+jobs:
+  build-cv:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Install Typst
+      run: |
+        wget https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz
+        tar -xf typst-x86_64-unknown-linux-musl.tar.xz
+        sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+        
+    - name: Build CV
+      run: |
+        cd cv
+        typst compile cv.typ cv.pdf
+        mkdir -p ../public
+        cp cv.pdf ../public/juyoung-suk-cv.pdf
+        
+    - name: Commit CV if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add public/juyoung-suk-cv.pdf
+        git diff --staged --quiet || git commit -m "🤖 Update CV PDF
+
+Generated from cv/cv.typ
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+        git push || echo "No changes to commit"

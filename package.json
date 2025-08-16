@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "export": "next build",
-    "deploy": "next build && touch out/.nojekyll"
+    "deploy": "next build && touch out/.nojekyll",
+    "cv:build": "cd cv && ./build.sh",
+    "cv:extract": "cd cv && python3 extract-data.py",
+    "cv:sync": "npm run cv:extract && npm run cv:build"
   },
   "dependencies": {
     "next": "^14.2.31",

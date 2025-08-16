@@ -85,6 +85,45 @@ await mcp__playwright__browser_take_screenshot({
 5. **Responsive Design**: Mobile-first approach with proper touch targets
 6. **Accessibility**: Semantic HTML, proper ARIA labels, and keyboard navigation
 
+## CV Management with Typst
+
+The CV is maintained in Typst format for better maintainability and web integration:
+
+### CV Workflow
+```bash
+# Local development
+cd cv
+chmod +x build.sh
+./build.sh                    # Builds CV and copies to public/
+
+# Extract data for website sync
+python3 extract-data.py       # Extracts structured data from CV
+```
+
+### CV Files Structure
+- `cv/cv.typ`: Main CV source in Typst format
+- `cv/build.sh`: Build script for local development
+- `cv/extract-data.py`: Data extraction for website sync
+- `public/juyoung-suk-cv.pdf`: Generated PDF for download
+
+### Typst Installation
+```bash
+# Using Cargo (Rust)
+cargo install --git https://github.com/typst/typst --locked typst-cli
+
+# Or download from: https://github.com/typst/typst
+```
+
+### GitHub Actions
+- `.github/workflows/build-cv.yml`: Automatically builds CV on changes
+- CV PDF is automatically updated and committed when `cv/` files change
+
+### Keeping CV and Website in Sync
+1. Update CV content in `cv/cv.typ`
+2. Run `cd cv && python3 extract-data.py` to extract data
+3. Update website components if needed to reflect CV changes
+4. GitHub Actions will automatically build and deploy both CV and website
+
 ### Development Notes
 - When adding new pages, ensure they work with static export
 - Test the build locally with `npm run build && npm run export` before pushing
@@ -92,3 +131,4 @@ await mcp__playwright__browser_take_screenshot({
 - The `/out` directory contains the static build output
 - GitHub Actions handle deployment automatically on push to main branch
 - Maintain the warm, comfortable design aesthetic when making changes
+- CV changes trigger automatic PDF generation and website updates
