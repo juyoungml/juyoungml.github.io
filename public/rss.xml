@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Juyoung Suk - Blog</title>
+    <description>Thoughts and insights on AI research, language models, and machine learning</description>
+    <link>https://juyoungml.github.io/blog</link>
+    <atom:link href="https://juyoungml.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <managingEditor>juyoung@kaist.ac.kr (Juyoung Suk)</managingEditor>
+    <webMaster>juyoung@kaist.ac.kr (Juyoung Suk)</webMaster>
+    <lastBuildDate>Fri, 16 Aug 2025 10:50:00 GMT</lastBuildDate>
+    <ttl>60</ttl>
+    
+    <item>
+      <title><![CDATA[Evaluating Language Models: Beyond Traditional Benchmarks]]></title>
+      <description><![CDATA[How BiGGen-Bench and Prometheus are reshaping how we evaluate LLMs with fine-grained, instance-specific criteria.]]></description>
+      <link>https://juyoungml.github.io/blog#evaluating-language-models-beyond-traditional-benchmarks</link>
+      <guid isPermaLink="false">https://juyoungml.github.io/blog#evaluating-language-models-beyond-traditional-benchmarks</guid>
+      <pubDate>Sun, 15 Dec 2024 00:00:00 GMT</pubDate>
+      <category>LLM Evaluation, Research, Benchmarks</category>
+    </item>
+    
+    <item>
+      <title><![CDATA[Building Multilingual AI: Lessons from Trillion-7B]]></title>
+      <description><![CDATA[Key insights from developing a compute-efficient multilingual frontier model and the challenges of cross-lingual knowledge transfer.]]></description>
+      <link>https://juyoungml.github.io/blog#building-multilingual-ai-lessons-from-trillion-7b</link>
+      <guid isPermaLink="false">https://juyoungml.github.io/blog#building-multilingual-ai-lessons-from-trillion-7b</guid>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 GMT</pubDate>
+      <category>Multilingual AI, LLM, Efficiency</category>
+    </item>
+    
+    <item>
+      <title><![CDATA[The Future of Dynamic LLM Evaluation]]></title>
+      <description><![CDATA[Introducing LLM-as-an-Interviewer: a novel paradigm for evaluating language models through interactive, multi-turn conversations.]]></description>
+      <link>https://juyoungml.github.io/blog#future-of-dynamic-llm-evaluation</link>
+      <guid isPermaLink="false">https://juyoungml.github.io/blog#future-of-dynamic-llm-evaluation</guid>
+      <pubDate>Thu, 10 Oct 2024 00:00:00 GMT</pubDate>
+      <category>Dynamic Evaluation, Research, LLM</category>
+    </item>
+  </channel>
+</rss>
