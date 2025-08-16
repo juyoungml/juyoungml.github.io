@@ -4,10 +4,10 @@ export const portfolioData = {
     name: "Juyoung Suk",
     title: "M.S. Student in Artificial Intelligence",
     email: "juyoung@kaist.ac.kr",
-    github: "https://github.com/scottsuk0306",
+    github: "https://github.com/juyoungml",
     linkedin: "https://www.linkedin.com/in/juyoung-suk-b5175a192/",
     googleScholar: "#",
-    profileImage: "/profile-placeholder.jpg", // Add your profile image to public folder
+    profileImage: "/profile.jpeg",
     bio: "I am a graduate student at KAIST researching machine learning and artificial intelligence, advised by Minjoon Seo. My work focuses on language model evaluation, multilingual AI systems, and developing novel approaches to deep learning architectures."
   },
 
@@ -26,10 +26,9 @@ export const portfolioData = {
       role: "Member of Technical Staff",
       company: "Trillion Labs",
       period: "Nov. 2024 - Present",
-      description: "Core developer of Trillion-7B, a 7.76B parameter compute-efficient multilingual frontier model.",
+      description: "Core developer of Trillion-7B multilingual LLM.",
       highlights: [
-        "Core developer of Trillion-7B (HuggingFace, NVIDIA GTC)",
-        "Working on pre-training and post-training stages for LLM"
+        "Trillion-7B development (HuggingFace, NVIDIA GTC)"
       ]
     },
     {
@@ -37,11 +36,9 @@ export const portfolioData = {
       role: "Machine Learning Engineer",
       company: "ThetaOne",
       period: "Feb. 2023 - July. 2023",
-      description: "Engineered end-to-end ML pipeline for Metabuddy, implementing RAG architecture with LangChain.",
+      description: "RAG pipeline development for Metabuddy.",
       highlights: [
-        "Engineered end-to-end ML pipeline for Metabuddy",
-        "Implemented RAG architecture with LangChain and custom language models",
-        "Developed grammar error detection and reranker models"
+        "End-to-end ML pipeline with LangChain"
       ]
     },
     {
@@ -49,24 +46,11 @@ export const portfolioData = {
       role: "Machine Learning Engineer Intern",
       company: "NAVER Corp.",
       period: "Aug. 2022 - Feb. 2023",
-      description: "Enhanced hate speech detection model for AI Clean Bot 2.0 serving 40+ million users.",
+      description: "Hate speech detection for AI Clean Bot 2.0.",
       highlights: [
-        "Enhanced hate speech detection model for AI Clean Bot 2.0 (40+ million users)",
-        "Used Active Learning techniques for model improvement"
+        "40+ million user production model"
       ]
     },
-    {
-      id: 3,
-      role: "Software Engineer Intern",
-      company: "Startup Name",
-      period: "Summer 2021",
-      description: "Built full-stack applications and integrated ML models into production systems.",
-      highlights: [
-        "Developed RESTful APIs using Python and FastAPI",
-        "Implemented real-time data processing pipeline",
-        "Contributed to open-source ML libraries"
-      ]
-    }
   ],
 
   // Projects
@@ -105,55 +89,59 @@ export const portfolioData = {
       id: 1,
       title: "Prometheus 2: An open source language model specialized in evaluating other language models",
       authors: "S Kim, J Suk, S Longpre, BY Lin, J Shin, S Welleck, G Neubig, M Lee, ...",
-      venue: "arXiv preprint arXiv:2405.01535",
+      venue: "Preprint",
       year: 2024,
       abstract: "Proprietary LMs such as GPT-4 are often employed to assess the quality of responses from various LMs. However, concerns including transparency, controllability, and affordability strongly motivate the development of open-source LMs specialized in evaluations. On the other hand, existing open evaluator LMs exhibit critical shortcomings: 1) they issue scores that significantly diverge from those assigned by humans, and 2) they lack the flexibility to perform both direct assessment and pairwise ran",
       links: {
         paper: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mENsLCkAAAAJ&citation_for_view=mENsLCkAAAAJ:u-x6o8ySG0sC",
-        arxiv: "https://arxiv.org/abs/2405.01535"
+        arxiv: "https://arxiv.org/abs/2405.01535",
+        code: "https://github.com/prometheus-eval/prometheus-eval"
       }
     },
     {
       id: 2,
       title: "CLIcK: A Benchmark Dataset of Cultural and Linguistic Intelligence in Korean",
       authors: "E Kim, J Suk, P Oh, H Yoo, J Thorne, A Oh",
-      venue: "arXiv preprint arXiv:2403.06412",
+      venue: "Preprint",
       year: 2024,
       abstract: "Despite the rapid development of large language models (LLMs) for the Korean language, there remains an obvious lack of benchmark datasets that test the requisite Korean cultural and linguistic knowledge. Because many existing Korean benchmark datasets are derived from the English counterparts through translation, they often overlook the different cultural contexts. For the few benchmark datasets that are sourced from Korean data capturing cultural knowledge, only narrow tasks such as bias and h",
       links: {
         paper: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mENsLCkAAAAJ&citation_for_view=mENsLCkAAAAJ:u5HHmVD_uO8C",
-        arxiv: "https://arxiv.org/abs/2403.06412"
+        arxiv: "https://arxiv.org/abs/2403.06412",
+        code: "https://github.com/rladmstn1714/CLIcK"
       }
     },
     {
       id: 3,
       title: "The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models",
       authors: "S Kim, J Suk, JY Cho, S Longpre, C Kim, D Yoon, G Son, Y Cho, ...",
-      venue: "arXiv preprint arXiv:2406.05761",
+      venue: "Preprint",
       year: 2024,
       abstract: "As language models (LMs) become capable of handling a wide range of tasks, their evaluation is becoming as challenging as their development. Most generation benchmarks currently assess LMs using abstract evaluation criteria like helpfulness and harmlessness, which often lack the flexibility and granularity of human assessment. Additionally, these benchmarks tend to focus disproportionately on specific capabilities such as instruction following, leading to coverage bias. To overcome these limitat",
       links: {
         paper: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mENsLCkAAAAJ&citation_for_view=mENsLCkAAAAJ:d1gkVwhDpl0C",
-        arxiv: "https://arxiv.org/abs/2406.05761"
+        arxiv: "https://arxiv.org/abs/2406.05761",
+        code: "https://github.com/prometheus-eval/prometheus-eval/tree/main/BiGGen-Bench"
       }
     },
     {
       id: 4,
       title: "Evaluating Language Models as Synthetic Data Generators",
       authors: "S Kim, J Suk, X Yue, V Viswanathan, S Lee, Y Wang, K Gashteovski, ...",
-      venue: "arXiv preprint arXiv:2412.03679",
+      venue: "Preprint",
       year: 2024,
       abstract: "Given the increasing use of synthetic data in language model (LM) post-training, an LM's ability to generate high-quality data has become nearly as crucial as its ability to solve problems directly. While prior works have focused on developing effective data generation methods, they lack systematic comparison of different LMs as data generators in a unified setting. To address this gap, we propose AgoraBench, a benchmark that provides standardized settings and metrics to evaluate LMs' data gener",
       links: {
         paper: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mENsLCkAAAAJ&citation_for_view=mENsLCkAAAAJ:2osOgNQ5qMEC",
-        arxiv: "https://arxiv.org/abs/2412.03679"
+        arxiv: "https://arxiv.org/abs/2412.03679",
+        code: "https://github.com/neulab/data-agora"
       }
     },
     {
       id: 5,
       title: "LLM-AS-AN-INTERVIEWER: Beyond Static Testing Through Dynamic LLM Evaluation",
       authors: "E Kim, J Suk, S Kim, N Muennighoff, D Kim, A Oh",
-      venue: "arXiv preprint arXiv:2412.10424",
+      venue: "Preprint",
       year: 2024,
       abstract: "We introduce LLM-as-an-Interviewer, a novel paradigm for evaluating large language models (LLMs). This approach leverages multi-turn interactions where the LLM interviewer actively provides feedback on responses and poses follow-up questions to the evaluated LLM. At the start of the interview, the LLM interviewer dynamically modifies datasets to generate initial questions, mitigating data contamination. We apply the LLM-as-an-Interviewer framework to evaluate six models on the MATH and DepthQA t",
       links: {
@@ -165,7 +153,7 @@ export const portfolioData = {
       id: 6,
       title: "MM-Eval: A Multilingual Meta-Evaluation Benchmark for LLM-as-a-Judge and Reward Models",
       authors: "G Son, D Yoon, J Suk, J Aula-Blasco, M Aslan, VT Kim, SB Islam, ...",
-      venue: "arXiv preprint arXiv:2410.17578",
+      venue: "Preprint",
       year: 2024,
       abstract: "As Large Language Models (LLMs) are now capable of producing fluent and coherent content in languages other than English, it is not imperative to precisely evaluate these non-English outputs. However, when assessing the outputs from mutlilingual LLMs, prior works often employed LLM based evaluators that excel at assessing English outputs, without a thorough examination of whether these evaluators could effectively assess non-English text as well. Moreover, existing benchmarks to test evaluator L",
       links: {
@@ -177,7 +165,7 @@ export const portfolioData = {
       id: 7,
       title: "Trillion 7B Technical Report",
       authors: "S Han, J Suk, S An, H Kim, K Kim, W Yang, S Choi, J Shin",
-      venue: "arXiv preprint arXiv:2504.15431",
+      venue: "Technical Whitepaper",
       year: 2025,
       abstract: "We introduce Trillion-7B, the most token-efficient Korean-centric multilingual LLM available. Our novel Cross-lingual Document Attention (XLDA) mechanism enables highly efficient and effective knowledge transfer from English to target languages like Korean and Japanese. Combined with optimized data mixtures, language-specific filtering, and tailored tokenizer construction, Trillion-7B achieves competitive performance while dedicating only 10\% of its 2T training tokens to multilingual data and r",
       links: {
@@ -220,30 +208,35 @@ export const portfolioData = {
     {
       id: 1,
       date: "2025-01",
-      content: "Our paper \"Trillion 7B Technical Report\" has been released on arXiv.",
+      content: "🚀 Released Trillion-7B Technical Whitepaper detailing our compute-efficient multilingual frontier model.",
       link: "https://arxiv.org/abs/2504.15431"
     },
     {
       id: 2,
       date: "2024-12",
-      content: "Two papers accepted: \"LLM-AS-AN-INTERVIEWER\" and \"Evaluating Language Models as Synthetic Data Generators\"."
+      content: "📝 Two new papers released: \"LLM-AS-AN-INTERVIEWER\" introducing dynamic evaluation paradigm and \"Evaluating Language Models as Synthetic Data Generators\" with AgoraBench."
     },
     {
       id: 3,
-      date: "2024-10",
-      content: "\"MM-Eval\" paper released - a multilingual meta-evaluation benchmark for LLM-as-a-Judge.",
-      link: "https://arxiv.org/abs/2410.17578"
+      date: "2024-11",
+      content: "🎉 Started position as Member of Technical Staff at Trillion Labs, working on next-generation multilingual language models."
     },
     {
       id: 4,
-      date: "2024-06",
-      content: "\"BiGGen Bench\" published - principled benchmark for fine-grained LLM evaluation.",
-      link: "https://arxiv.org/abs/2406.05761"
+      date: "2024-10",
+      content: "🌐 Released MM-Eval: A comprehensive multilingual meta-evaluation benchmark for LLM-as-a-Judge and reward models.",
+      link: "https://arxiv.org/abs/2410.17578"
     },
     {
       id: 5,
+      date: "2024-06",
+      content: "🏆 BiGGen Bench receives recognition as Best Paper - our principled benchmark for fine-grained LLM evaluation.",
+      link: "https://arxiv.org/abs/2406.05761"
+    },
+    {
+      id: 6,
       date: "2024-05",
-      content: "\"Prometheus 2\" released - open source language model for evaluating other LLMs.",
+      content: "⭐ Prometheus 2 open-sourced with 900+ GitHub stars - specialized language model for evaluating other LLMs.",
       link: "https://arxiv.org/abs/2405.01535"
     }
   ],

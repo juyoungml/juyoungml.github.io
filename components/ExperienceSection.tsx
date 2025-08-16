@@ -22,31 +22,31 @@ export default function ExperienceSection({ experiences }: ExperienceProps) {
         <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-border" />
         
         {experiences.map((exp, index) => (
-          <div key={exp.id} className={`relative flex items-center mb-12 ${
+          <div key={exp.id} className={`relative flex items-center mb-8 ${
             index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
           }`}>
             {/* Timeline dot */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-background" />
+            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 bg-accent rounded-full border-2 border-background" />
             
             {/* Content card */}
-            <div className={`ml-8 md:ml-0 flex-1 ${
-              index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'
+            <div className={`ml-6 md:ml-0 flex-1 ${
+              index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'
             }`}>
-              <div className="bg-secondary p-6 rounded-lg">
+              <div className="bg-secondary p-4 rounded-lg">
                 <div className={`${index % 2 === 0 ? 'md:flex md:flex-col md:items-end' : ''}`}>
-                  <h3 className="font-semibold text-lg mb-1">{exp.role}</h3>
-                  <p className="text-accent font-medium mb-1">{exp.company}</p>
-                  <p className="text-sm text-muted-foreground mb-3">{exp.period}</p>
-                  <p className="text-sm leading-relaxed mb-3">{exp.description}</p>
+                  <h3 className="font-semibold text-base mb-1">{exp.role}</h3>
+                  <p className="text-accent font-medium text-sm mb-1">{exp.company}</p>
+                  <p className="text-xs text-muted-foreground mb-2">{exp.period}</p>
+                  <p className="text-xs leading-relaxed mb-2">{exp.description}</p>
                   
                   {exp.highlights.length > 0 && (
-                    <ul className={`text-sm space-y-1 ${
+                    <ul className={`text-xs space-y-0.5 ${
                       index % 2 === 0 ? 'md:text-right' : ''
                     }`}>
-                      {exp.highlights.map((highlight, i) => (
+                      {exp.highlights.slice(0, 2).map((highlight, i) => (
                         <li key={i} className="flex items-start">
-                          <span className={`text-accent mr-2 ${
-                            index % 2 === 0 ? 'md:order-2 md:ml-2 md:mr-0' : ''
+                          <span className={`text-accent mr-1 ${
+                            index % 2 === 0 ? 'md:order-2 md:ml-1 md:mr-0' : ''
                           }`}>•</span>
                           <span className="text-muted-foreground">{highlight}</span>
                         </li>

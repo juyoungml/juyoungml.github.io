@@ -23,6 +23,50 @@ function highlightAuthorName(authorString: string, targetName: string): JSX.Elem
   // Split the author string by commas and highlight target name
   const authors = authorString.split(',').map(author => author.trim())
   
+  // Find the index of the target author (Juyoung Suk)
+  const targetIndex = authors.findIndex(author => 
+    author.toLowerCase().includes('juyoung suk') || 
+    author.toLowerCase().includes('j suk') || 
+    author.toLowerCase().includes('juyoung')
+  )
+  
+  // If author list is too long (>6 authors), show first few, target author, and "..."
+  if (authors.length > 6) {
+    let displayAuthors = []
+    
+    if (targetIndex <= 3) {
+      // Target is in first few, show first 4 + "..."
+      displayAuthors = authors.slice(0, 4)
+      displayAuthors.push('...')
+    } else {
+      // Target is later, show first 2, target, "..."
+      displayAuthors = authors.slice(0, 2)
+      if (targetIndex > 2) {
+        displayAuthors.push(authors[targetIndex])
+      }
+      displayAuthors.push('...')
+    }
+    
+    return (
+      <span>
+        {displayAuthors.map((author, index) => {
+          const isTarget = author !== '...' && (
+            author.toLowerCase().includes('juyoung suk') || 
+            author.toLowerCase().includes('j suk') || 
+            author.toLowerCase().includes('juyoung')
+          )
+          return (
+            <span key={index}>
+              {isTarget ? <strong>{author}</strong> : author}
+              {index < displayAuthors.length - 1 && ', '}
+            </span>
+          )
+        })}
+      </span>
+    )
+  }
+  
+  // Normal case: show all authors
   return (
     <span>
       {authors.map((author, index) => {

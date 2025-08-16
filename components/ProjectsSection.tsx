@@ -17,7 +17,6 @@ interface ProjectsProps {
 
 export default function ProjectsSection({ projects }: ProjectsProps) {
   const featuredProjects = projects.filter(p => p.featured)
-  const otherProjects = projects.filter(p => !p.featured)
 
   return (
     <section id="projects" className="mb-20">
@@ -82,36 +81,6 @@ export default function ProjectsSection({ projects }: ProjectsProps) {
         ))}
       </div>
 
-      {/* Other Projects */}
-      {otherProjects.length > 0 && (
-        <>
-          <h3 className="font-semibold mb-4">Other Projects</h3>
-          <div className="grid gap-4">
-            {otherProjects.map((project) => (
-              <div key={project.id} className="border-l-2 border-border pl-4 hover:border-accent transition-colors">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h4 className="font-medium mb-1">{project.title}</h4>
-                    <p className="text-sm text-muted-foreground mb-2">{project.description}</p>
-                    <div className="flex space-x-4">
-                      {project.github && (
-                        <Link href={project.github} className="text-sm text-accent link-hover">
-                          GitHub
-                        </Link>
-                      )}
-                      {project.demo && (
-                        <Link href={project.demo} className="text-sm text-accent link-hover">
-                          Demo
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
     </section>
   )
 }
