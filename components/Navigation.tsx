@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import ThemeToggle from './ThemeToggle'
 
 function ScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -29,11 +30,9 @@ function ScrollProgress() {
 }
 
 const navItems = [
-  { href: '#news', label: 'News' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#publications', label: 'Publications' },
-  { href: '#research', label: 'Research' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/about', label: 'About', isPage: true },
+  { href: '/blog', label: 'Blog', isPage: true },
+  { href: '#contact', label: 'Contact', isPage: false },
 ]
 
 export default function Navigation({ name }: { name: string }) {
@@ -96,63 +95,80 @@ export default function Navigation({ name }: { name: string }) {
             
             {/* Desktop Navigation - Simplified */}
             <div className="hidden md:flex items-center space-x-1">
-              {navItems.slice(0, 3).map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => smoothScrollTo(item.href)}
-                  className={`px-3 py-2 text-sm transition-colors duration-200 rounded-md ${
-                    activeSection === item.href.substring(1)
-                      ? 'text-accent bg-accent/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                  }`}
-                >
-                  {item.label}
-                </button>
+              {navItems.map((item) => (
+                item.isPage ? (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="px-3 py-2 text-sm transition-colors duration-200 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.href}
+                    onClick={() => smoothScrollTo(item.href)}
+                    className={`px-3 py-2 text-sm transition-colors duration-200 rounded-md ${
+                      activeSection === item.href.substring(1)
+                        ? 'text-accent bg-accent/10'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
-              
-              {/* Contact button with emphasis */}
-              <button
-                onClick={() => smoothScrollTo('#contact')}
-                className="ml-2 px-4 py-2 text-sm bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors duration-200"
-              >
-                Contact
-              </button>
+              <ThemeToggle />
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 rounded-md hover:bg-muted/50 transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            {/* Mobile Navigation Controls */}
+            <div className="md:hidden flex items-center space-x-1">
+              <ThemeToggle />
+              <button
+                className="p-2 rounded-md hover:bg-muted/50 transition-colors"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {mobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 space-y-1 border-t border-border/20 pt-4">
               {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => {
-                    smoothScrollTo(item.href)
-                    setMobileMenuOpen(false)
-                  }}
-                  className={`block w-full text-left py-2 px-3 text-sm rounded-md transition-colors ${
-                    activeSection === item.href.substring(1)
-                      ? 'text-accent bg-accent/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                  }`}
-                >
-                  {item.label}
-                </button>
+                item.isPage ? (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block w-full text-left py-2 px-3 text-sm rounded-md transition-colors text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.href}
+                    onClick={() => {
+                      smoothScrollTo(item.href)
+                      setMobileMenuOpen(false)
+                    }}
+                    className={`block w-full text-left py-2 px-3 text-sm rounded-md transition-colors ${
+                      activeSection === item.href.substring(1)
+                        ? 'text-accent bg-accent/10'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
             </div>
           )}
