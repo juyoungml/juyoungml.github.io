@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 254 252 248;
+    --foreground: 41 37 36;
+    --muted: 250 249 246;
+    --muted-foreground: 120 113 108;
+    --border: 231 229 228;
+    --card: 255 253 250;
+    --card-foreground: 41 37 36;
+    --primary: 120 53 15;
+    --primary-foreground: 255 253 250;
+    --secondary: 246 243 238;
+    --secondary-foreground: 41 37 36;
+    --accent: 194 65 12;
+    --accent-foreground: 255 253 250;
+    --success: 34 197 94;
+    --warning: 251 191 36;
+    --error: 239 68 68;
+  }
+
+  .dark {
+    --background: 15 15 15;
+    --foreground: 245 245 245;
+    --muted: 38 38 38;
+    --muted-foreground: 163 163 163;
+    --border: 38 38 38;
+    --card: 38 38 38;
+    --card-foreground: 245 245 245;
+    --primary: 245 245 245;
+    --primary-foreground: 15 15 15;
+    --secondary: 38 38 38;
+    --secondary-foreground: 245 245 245;
+    --accent: 59 130 246;
+    --accent-foreground: 255 255 255;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .max-width-container {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .link-hover {
+    @apply hover:text-accent transition-colors duration-200;
+  }
+
+  .publication-item {
+    @apply py-4 border-b border-border last:border-b-0;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-muted-foreground hover:text-foreground transition-colors;
+  }
+
+  .section-heading {
+    @apply text-2xl md:text-3xl font-serif font-semibold mb-6 text-foreground;
+  }
+
+  .section-subheading {
+    @apply text-lg md:text-xl font-serif font-medium mb-4 text-foreground;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Georgia', 'Times New Roman', serif;
+  }
+
+  .font-sans {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .bg-card {
+    background-color: rgb(var(--card));
+    color: rgb(var(--card-foreground));
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-md;
+  }
+
+  .button-primary {
+    @apply px-6 py-3 bg-accent text-accent-foreground rounded-md font-medium hover:bg-accent/90 transition-colors duration-200;
+  }
+
+  .button-secondary {
+    @apply px-6 py-3 border border-border text-foreground rounded-md font-medium hover:bg-muted transition-colors duration-200;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

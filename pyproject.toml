@@ -1,0 +1,21 @@
+[project]
+name = "juyoungml-portfolio"
+version = "0.1.0"
+description = "Personal portfolio website with automated Google Scholar integration"
+authors = [
+    {name = "Juyoung Suk", email = "juyoung@university.edu"},
+]
+dependencies = [
+    "requests>=2.32.2",
+    "beautifulsoup4==4.12.2",
+    "lxml==4.9.3",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []

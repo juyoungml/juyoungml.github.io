@@ -1,0 +1,96 @@
+name: Update Publications from Google Scholar
+
+on:
+  # Run weekly on Sundays at 2 AM UTC
+  schedule:
+    - cron: '0 2 * * 0'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+  
+  # Run when the script is updated
+  push:
+    paths:
+      - 'scripts/fetch_publications.py'
+      - 'pyproject.toml'
+
+jobs:
+  update-publications:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+    
+    - name: Set up Python
+      run: uv python install 3.11
+    
+    - name: Install dependencies
+      run: uv sync
+    
+    - name: Fetch publications from Google Scholar
+      run: |
+        cd scripts
+        uv run fetch_publications.py
+    
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if git diff --quiet; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create Pull Request
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: |
+          Update publications from Google Scholar
+          
+          🤖 Generated with [Claude Code](https://claude.ai/code)
+          
+          Co-Authored-By: Claude <noreply@anthropic.com>
+        title: 'Auto-update: Publications from Google Scholar'
+        body: |
+          ## 📚 Publications Update
+          
+          This PR automatically updates the publications data fetched from Google Scholar.
+          
+          ### Changes:
+          - Updated `data/portfolio.ts` with latest publications
+          - Created JSON backup in `data/publications.json`
+          
+          ### What's Updated:
+          - Publication titles and metadata
+          - Author information
+          - Venue and year information  
+          - Abstract text
+          - arXiv links where available
+          
+          **Note:** Please review the changes before merging to ensure accuracy.
+          
+          🤖 Generated with [Claude Code](https://claude.ai/code)
+        branch: auto-update/publications
+        delete-branch: true
+        labels: |
+          automated
+          publications
+          data-update
+    
+    - name: Log results
+      run: |
+        if [ "${{ steps.verify-changed-files.outputs.changed }}" = "true" ]; then
+          echo "✅ Publications updated and PR created"
+        else
+          echo "ℹ️  No changes detected in publications"
+        fi
