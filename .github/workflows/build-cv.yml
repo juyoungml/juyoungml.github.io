@@ -23,15 +23,15 @@ jobs:
     - name: Build CV
       run: |
         cd cv
-        typst compile cv.typ cv.pdf
+        typst compile cv.typ juyoung-cv.pdf
         mkdir -p ../public
-        cp cv.pdf ../public/juyoung-suk-cv.pdf
+        cp juyoung-cv.pdf ../public/juyoung-cv.pdf
         
     - name: Commit CV if changed
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add public/juyoung-suk-cv.pdf
+        git add public/juyoung-cv.pdf
         git diff --staged --quiet || git commit -m "🤖 Update CV PDF
 
 Generated from cv/cv.typ

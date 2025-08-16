@@ -28,9 +28,11 @@ jobs:
       - name: Build
         run: |
           npm run build
+          touch out/.nojekyll
           ls -la out/
         env:
           CI: true
+          NODE_ENV: production
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

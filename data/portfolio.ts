@@ -2,13 +2,13 @@ export const portfolioData = {
   // Personal Information
   personal: {
     name: "Juyoung Suk",
-    title: "M.S. Student in Computer Science",
-    email: "juyoung@university.edu",
-    github: "https://github.com/juyoungml",
-    linkedin: "#",
+    title: "M.S. Student in Artificial Intelligence",
+    email: "juyoung@kaist.ac.kr",
+    github: "https://github.com/scottsuk0306",
+    linkedin: "https://www.linkedin.com/in/juyoung-suk-b5175a192/",
     googleScholar: "#",
     profileImage: "/profile-placeholder.jpg", // Add your profile image to public folder
-    bio: "I am a graduate student researching machine learning and artificial intelligence. My work focuses on developing novel approaches to deep learning architectures and their applications in computer vision and natural language processing."
+    bio: "I am a graduate student at KAIST researching machine learning and artificial intelligence, advised by Minjoon Seo. My work focuses on language model evaluation, multilingual AI systems, and developing novel approaches to deep learning architectures."
   },
 
   // About Section
@@ -23,26 +23,36 @@ export const portfolioData = {
   experience: [
     {
       id: 1,
-      role: "Research Assistant",
-      company: "AI Lab, University Name",
-      period: "2023 - Present",
-      description: "Working on neural architecture search and efficient deep learning models. Leading a project on interpretable AI for medical imaging.",
+      role: "Member of Technical Staff",
+      company: "Trillion Labs",
+      period: "Nov. 2024 - Present",
+      description: "Core developer of Trillion-7B, a 7.76B parameter compute-efficient multilingual frontier model.",
       highlights: [
-        "Developed novel NAS algorithm reducing search time by 60%",
-        "Published 2 papers in top-tier conferences",
-        "Mentored 3 undergraduate students"
+        "Core developer of Trillion-7B (HuggingFace, NVIDIA GTC)",
+        "Working on pre-training and post-training stages for LLM"
       ]
     },
     {
       id: 2,
-      role: "Machine Learning Engineer Intern",
-      company: "Tech Company",
-      period: "Summer 2022",
-      description: "Developed and deployed ML models for recommendation systems serving millions of users.",
+      role: "Machine Learning Engineer",
+      company: "ThetaOne",
+      period: "Feb. 2023 - July. 2023",
+      description: "Engineered end-to-end ML pipeline for Metabuddy, implementing RAG architecture with LangChain.",
       highlights: [
-        "Improved recommendation accuracy by 15%",
-        "Implemented A/B testing framework",
-        "Optimized model inference latency by 40%"
+        "Engineered end-to-end ML pipeline for Metabuddy",
+        "Implemented RAG architecture with LangChain and custom language models",
+        "Developed grammar error detection and reranker models"
+      ]
+    },
+    {
+      id: 3,
+      role: "Machine Learning Engineer Intern",
+      company: "NAVER Corp.",
+      period: "Aug. 2022 - Feb. 2023",
+      description: "Enhanced hate speech detection model for AI Clean Bot 2.0 serving 40+ million users.",
+      highlights: [
+        "Enhanced hate speech detection model for AI Clean Bot 2.0 (40+ million users)",
+        "Used Active Learning techniques for model improvement"
       ]
     },
     {
@@ -63,20 +73,11 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
-      title: "AutoML Framework",
-      description: "Open-source framework for automated machine learning with focus on neural architecture search",
-      technologies: ["Python", "PyTorch", "Ray", "Docker"],
-      github: "https://github.com/username/automl-framework",
+      title: "Prometheus-Eval",
+      description: "Led development of a 900+ stars open-source repository for evaluating language models using specialized LMs",
+      technologies: ["Python", "PyTorch", "HuggingFace", "OpenAI API"],
+      github: "https://github.com/prometheus-eval/prometheus-eval",
       demo: "#",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Vision Transformer Library",
-      description: "Efficient implementation of various vision transformer architectures with pre-trained models",
-      technologies: ["Python", "PyTorch", "CUDA", "HuggingFace"],
-      github: "https://github.com/username/vit-library",
-      paper: "#",
       featured: true
     },
     {

@@ -59,7 +59,7 @@ export default function HeroSection({ name, title, bio, profileImage }: HeroProp
               View Publications
             </button>
             <a 
-              href="/juyoung-suk-cv.pdf"
+              href="/juyoung-cv.pdf"
               download
               className="px-6 py-2.5 border border-accent text-accent rounded-md font-medium hover:bg-accent/10 transition-colors duration-200 text-center inline-flex items-center gap-2"
             >

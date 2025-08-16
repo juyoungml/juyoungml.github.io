@@ -20,12 +20,12 @@ fi
 
 # Compile CV to PDF
 echo "📄 Compiling CV to PDF..."
-typst compile cv.typ cv.pdf
+typst compile cv.typ juyoung-cv.pdf
 
 # Move to public directory for website access
 echo "📂 Moving CV to public directory..."
 mkdir -p ../public
-cp cv.pdf ../public/juyoung-suk-cv.pdf
+cp juyoung-cv.pdf ../public/juyoung-cv.pdf
 
 echo "✅ CV built successfully!"
-echo "📁 PDF available at: public/juyoung-suk-cv.pdf"
+echo "📁 PDF available at: public/juyoung-cv.pdf"

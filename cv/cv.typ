@@ -1,5 +1,5 @@
 // Juyoung Suk's CV in Typst
-// Modern, clean, and easy to maintain
+// Professional layout matching overleaf style
 
 // Document setup
 #set document(
@@ -11,6 +11,7 @@
 #set page(
   paper: "us-letter",
   margin: (x: 2cm, y: 2cm),
+  footer-ascent: 1cm,
 )
 
 #set text(
@@ -19,18 +20,20 @@
   lang: "en",
 )
 
-#set par(justify: true, leading: 0.6em)
+#set par(justify: true, leading: 0.52em)
 
 // Colors
 #let primary-color = rgb("#000000")
 #let accent-color = rgb("#c2410c")
 #let text-color = rgb("#2b2b2b")
+#let gray-color = rgb("#666666")
 
 // Helper functions
 #let section-header(title) = {
-  line(length: 100%, stroke: 0.5pt + primary-color)
   v(0.3cm)
-  text(size: 12pt, weight: "bold")[#title]
+  text(size: 14pt, weight: "bold")[#title]
+  v(1pt)
+  line(length: 100%, stroke: 1pt + primary-color)
   v(0.2cm)
 }
 
@@ -40,12 +43,14 @@
     column-gutter: 1em,
     align: (left, right),
     [#content],
-    [#text(size: 9pt, style: "italic")[#right]]
+    [#text(size: 10pt, style: "italic", fill: gray-color)[#right]]
   )
+  v(0.1cm)
 }
 
 #let one-col-entry(content) = {
   content
+  v(0.1cm)
 }
 
 #let highlight-list(items) = {
@@ -75,10 +80,14 @@
 // Education
 #section-header("Education")
 
-#two-col-entry(
-  "Mar. 2024 - Present",
-  [*Korea Advanced Institute of Science and Technology, KAIST*]
-)[
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*Korea Advanced Institute of Science and Technology, KAIST*],
+  [Mar. 2024 - Present]
+)
+#v(0.1cm)
+#one-col-entry[
   #highlight-list((
     "M.S. in Artificial Intelligence",
     "Advised by Minjoon Seo"
@@ -87,10 +96,14 @@
 
 #v(0.2cm)
 
-#two-col-entry(
-  "Mar. 2019 - Feb. 2024",
-  [*Korea Advanced Institute of Science and Technology, KAIST*]
-)[
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*Korea Advanced Institute of Science and Technology, KAIST*],
+  [Mar. 2019 - Feb. 2024]
+)
+#v(0.1cm)
+#one-col-entry[
   #highlight-list((
     "B.S. in Computer Science",
   ))
@@ -99,10 +112,14 @@
 // Work Experience
 #section-header("Work Experience")
 
-#two-col-entry(
-  "Nov. 2024 - Present",
-  [*Member of Technical Staff*, Trillion Labs -- Seoul, South Korea]
-)[
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*Member of Technical Staff*, Trillion Labs -- Seoul, South Korea],
+  [Nov. 2024 - Present]
+)
+#v(0.1cm)
+#one-col-entry[
   #highlight-list((
     [Core developer of Trillion-7B (#link("https://huggingface.co/trillionlabs/Trillion-7B-preview")[HuggingFace], #link("https://www.nvidia.com/en-us/on-demand/session/gtc25-S73857/")[NVIDIA GTC]), a 7.76B parameter compute-efficient multilingual frontier model],
     "Working on pre-training and post-training stages for LLM"
@@ -111,10 +128,14 @@
 
 #v(0.2cm)
 
-#two-col-entry(
-  "Feb. 2023 - July. 2023",
-  [*Machine Learning Engineer*, #link("https://thetaone.co")[ThetaOne] -- Seoul, South Korea]
-)[
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*Machine Learning Engineer*, #link("https://thetaone.co")[ThetaOne] -- Seoul, South Korea],
+  [Feb. 2023 - July. 2023]
+)
+#v(0.1cm)
+#one-col-entry[
   #highlight-list((
     [Engineered end-to-end ML pipeline for #link("https://thetaone.co/metabuddy")[Metabuddy], implementing RAG architecture with LangChain and custom language models (Grammar error detection, Reranker) for enhanced user interactions],
   ))
@@ -122,10 +143,14 @@
 
 #v(0.2cm)
 
-#two-col-entry(
-  "Aug. 2022 - Feb. 2023",
-  [*Machine Learning Engineer Intern*, NAVER Corp. -- Seoul, South Korea]
-)[
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*Machine Learning Engineer Intern*, NAVER Corp. -- Seoul, South Korea],
+  [Aug. 2022 - Feb. 2023]
+)
+#v(0.1cm)
+#one-col-entry[
   #highlight-list((
     "Enhanced hate speech detection model for AI Clean Bot 2.0 (40+ million users) using Active Learning",
   ))
@@ -156,10 +181,14 @@
 // Projects
 #section-header("Projects")
 
-#two-col-entry(
-  "May, 2024 - Present",
-  [*#link("https://github.com/prometheus-eval/prometheus-eval")[Prometheus-Eval]*, Core Developer]
-)[
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*#link("https://github.com/prometheus-eval/prometheus-eval")[Prometheus-Eval]*, Core Developer],
+  [May, 2024 - Present]
+)
+#v(0.1cm)
+#one-col-entry[
   #highlight-list((
     "Led development of a 900+ stars open-source repository for evaluating language models using specialized LMs.",
     [Architected and implemented core functionalities, including evaluation pipelines, model training scripts, and the `prometheus-eval` Python package.]
@@ -169,17 +198,21 @@
 // Teaching Experience
 #section-header("Teaching Experience")
 
-#two-col-entry(
-  "Jan. 2022 - June. 2024",
-  [*Teaching Assistant*, Introduction to Programming with Python, KAIST MOOC Platform -- Online]
-)[]
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*Teaching Assistant*, Introduction to Programming with Python, KAIST MOOC Platform -- Online],
+  [Jan. 2022 - June. 2024]
+)
 
 #v(0.2cm)
 
-#two-col-entry(
-  "Aug. 2021 - June. 2022",
-  [*Teaching Assistant*, Introduction to Programming (CS101), KAIST -- Daejeon, South Korea]
-)[]
+#grid(
+  columns: (1fr, 4.5cm),
+  column-gutter: 1em,
+  [*Teaching Assistant*, Introduction to Programming (CS101), KAIST -- Daejeon, South Korea],
+  [Aug. 2021 - June. 2022]
+)
 
 // Languages
 #section-header("Languages")

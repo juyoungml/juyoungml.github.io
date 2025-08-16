@@ -9,7 +9,7 @@
     "export": "next build",
     "deploy": "next build && touch out/.nojekyll",
     "cv:build": "cd cv && ./build.sh",
-    "cv:extract": "cd cv && python3 extract-data.py",
+    "cv:extract": "cd cv && uv run extract-data.py",
     "cv:sync": "npm run cv:extract && npm run cv:build"
   },
   "dependencies": {
