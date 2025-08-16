@@ -50,3 +50,6 @@ Thumbs.db
 
 # Playwright MCP screenshots
 .playwright-mcp/
+
+# Project todos (private)
+TODOS.md

@@ -11,7 +11,6 @@
 #set page(
   paper: "us-letter",
   margin: (x: 2cm, y: 2cm),
-  footer-ascent: 1cm,
 )
 
 #set text(
