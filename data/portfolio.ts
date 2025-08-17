@@ -6,18 +6,11 @@ export const portfolioData = {
     email: "juyoung@kaist.ac.kr",
     github: "https://github.com/juyoungml",
     linkedin: "https://www.linkedin.com/in/juyoung-suk-b5175a192/",
-    googleScholar: "#",
+    googleScholar: "https://scholar.google.com/citations?user=mENsLCkAAAAJ",
     profileImage: "/profile.jpeg",
-    bio: "I am a graduate student at KAIST researching machine learning and artificial intelligence, advised by Minjoon Seo. My work focuses on language model evaluation, multilingual AI systems, and developing novel approaches to deep learning architectures."
+    bio: "I am a graduate student at KAIST AI LK Lab, advised by Minjoon Seo. I am focusing on training foundation models at scale, and optimizing them for real-world applications."
   },
 
-  // About Section
-  about: {
-    paragraphs: [
-      "I am currently pursuing my Master's degree in Computer Science, where I work on advancing the state-of-the-art in machine learning. My research interests span neural architecture search, interpretable AI, and efficient deep learning.",
-      "Prior to graduate school, I completed my B.S. in Computer Science with a focus on artificial intelligence and data science. I have industry experience working on large-scale ML systems and have contributed to several open-source projects."
-    ]
-  },
 
   // Work Experience
   experience: [
@@ -26,9 +19,9 @@ export const portfolioData = {
       role: "Member of Technical Staff",
       company: "Trillion Labs",
       period: "Nov. 2024 - Present",
-      description: "Core developer of Trillion-7B multilingual LLM.",
+      description: "Pretraining & Post-training foundation models",
       highlights: [
-        "Trillion-7B development (HuggingFace, NVIDIA GTC)"
+        "Trained Tri-7B, Tri-21B, and Tri-70B models",
       ]
     },
     {
@@ -36,9 +29,9 @@ export const portfolioData = {
       role: "Machine Learning Engineer",
       company: "ThetaOne",
       period: "Feb. 2023 - July. 2023",
-      description: "RAG pipeline development for Metabuddy.",
+      description: "Developed RAG pipeline for Metabuddy.",
       highlights: [
-        "End-to-end ML pipeline with LangChain"
+        "End-to-end ML pipeline for Metabuddy application"
       ]
     },
     {
