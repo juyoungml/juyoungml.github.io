@@ -64,23 +64,6 @@ export const portfolioData = {
       demo: "#",
       featured: true
     },
-    {
-      id: 3,
-      title: "Federated Learning Platform",
-      description: "Privacy-preserving distributed learning platform for healthcare applications",
-      technologies: ["Python", "TensorFlow", "gRPC", "Kubernetes"],
-      github: "https://github.com/username/fed-learning",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "AI Code Assistant",
-      description: "VS Code extension for AI-powered code completion and refactoring suggestions",
-      technologies: ["TypeScript", "Node.js", "OpenAI API", "VS Code API"],
-      github: "https://github.com/username/ai-code-assistant",
-      demo: "#",
-      featured: false
-    }
   ],
 
   // Publications
@@ -175,70 +158,32 @@ export const portfolioData = {
     }
   ],
 
-  // Research Areas
-  research: [
-    {
-      id: 1,
-      title: "Efficient Deep Learning",
-      description: "Developing methods to reduce the computational and memory requirements of deep neural networks while maintaining accuracy.",
-      icon: "⚡"
-    },
-    {
-      id: 2,
-      title: "Interpretable AI",
-      description: "Creating techniques to understand and explain the decision-making processes of complex machine learning models.",
-      icon: "🔍"
-    },
-    {
-      id: 3,
-      title: "Vision-Language Models",
-      description: "Exploring the intersection of computer vision and natural language processing for multimodal understanding.",
-      icon: "👁️"
-    },
-    {
-      id: 4,
-      title: "Federated Learning",
-      description: "Investigating privacy-preserving machine learning techniques for distributed and decentralized training scenarios.",
-      icon: "🔐"
-    }
-  ],
 
   // News
   news: [
     {
+      id: 0,
+      date: "2025-08",
+      content: "We released Tri-7B, Tri-21B, and Tri-70B models! Come check out our models on HuggingFace!",
+      link: "https://huggingface.co/collections/trillionlabs/tri-series-687fa9ff7eb23e8ba847ef93"
+    },
+    {
       id: 1,
-      date: "2025-01",
-      content: "🚀 Released Trillion-7B Technical Whitepaper detailing our compute-efficient multilingual frontier model.",
-      link: "https://arxiv.org/abs/2504.15431"
+      date: "2025-06",
+      content: "Glad to share that The BiGGen Bench has won the best paper award in NAACL 2025!",
+      link: "https://arxiv.org/abs/2406.05761"
     },
     {
       id: 2,
-      date: "2024-12",
-      content: "📝 Two new papers released: \"LLM-AS-AN-INTERVIEWER\" introducing dynamic evaluation paradigm and \"Evaluating Language Models as Synthetic Data Generators\" with AgoraBench."
+      date: "2025-03",
+      content: "We released Trillion-7B Technical Whitepaper detailing our compute-efficient multilingual frontier model.",
+      link: "https://arxiv.org/abs/2504.15431" 
     },
     {
       id: 3,
       date: "2024-11",
-      content: "🎉 Started position as Member of Technical Staff at Trillion Labs, working on next-generation multilingual language models."
+      content: "Started position as Member of Technical Staff at Trillion Labs, working on next-generation multilingual language models."
     },
-    {
-      id: 4,
-      date: "2024-10",
-      content: "🌐 Released MM-Eval: A comprehensive multilingual meta-evaluation benchmark for LLM-as-a-Judge and reward models.",
-      link: "https://arxiv.org/abs/2410.17578"
-    },
-    {
-      id: 5,
-      date: "2024-06",
-      content: "🏆 BiGGen Bench receives recognition as Best Paper - our principled benchmark for fine-grained LLM evaluation.",
-      link: "https://arxiv.org/abs/2406.05761"
-    },
-    {
-      id: 6,
-      date: "2024-05",
-      content: "⭐ Prometheus 2 open-sourced with 900+ GitHub stars - specialized language model for evaluating other LLMs.",
-      link: "https://arxiv.org/abs/2405.01535"
-    }
   ],
 
   // Skills

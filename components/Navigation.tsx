@@ -30,9 +30,10 @@ function ScrollProgress() {
 }
 
 const navItems = [
-  { href: '/about', label: 'About', isPage: true },
-  { href: '/blog', label: 'Blog', isPage: true },
-  { href: '#contact', label: 'Contact', isPage: false },
+  { href: '#news', label: 'News', isPage: false },
+  { href: '#projects', label: 'Projects', isPage: false },
+  { href: '#publications', label: 'Publications', isPage: false },
+  { href: '#experience', label: 'Experience', isPage: false },
 ]
 
 export default function Navigation({ name }: { name: string }) {
