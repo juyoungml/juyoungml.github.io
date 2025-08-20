@@ -65,7 +65,7 @@ export const portfolioData = {
       id: 1,
       title: "Prometheus 2: An open source language model specialized in evaluating other language models",
       authors: "S Kim, J Suk, S Longpre, BY Lin, J Shin, S Welleck, G Neubig, M Lee, ...",
-      venue: "Preprint",
+      venue: "EMNLP",
       year: 2024,
       abstract: "Proprietary LMs such as GPT-4 are often employed to assess the quality of responses from various LMs. However, concerns including transparency, controllability, and affordability strongly motivate the development of open-source LMs specialized in evaluations. On the other hand, existing open evaluator LMs exhibit critical shortcomings: 1) they issue scores that significantly diverge from those assigned by humans, and 2) they lack the flexibility to perform both direct assessment and pairwise ran",
       links: {
@@ -78,7 +78,7 @@ export const portfolioData = {
       id: 2,
       title: "CLIcK: A Benchmark Dataset of Cultural and Linguistic Intelligence in Korean",
       authors: "E Kim, J Suk, P Oh, H Yoo, J Thorne, A Oh",
-      venue: "Preprint",
+      venue: "LREC-COLING",
       year: 2024,
       abstract: "Despite the rapid development of large language models (LLMs) for the Korean language, there remains an obvious lack of benchmark datasets that test the requisite Korean cultural and linguistic knowledge. Because many existing Korean benchmark datasets are derived from the English counterparts through translation, they often overlook the different cultural contexts. For the few benchmark datasets that are sourced from Korean data capturing cultural knowledge, only narrow tasks such as bias and h",
       links: {
@@ -91,7 +91,7 @@ export const portfolioData = {
       id: 3,
       title: "The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models",
       authors: "S Kim, J Suk, JY Cho, S Longpre, C Kim, D Yoon, G Son, Y Cho, ...",
-      venue: "Preprint",
+      venue: "NAACL Best Paper Award",
       year: 2024,
       abstract: "As language models (LMs) become capable of handling a wide range of tasks, their evaluation is becoming as challenging as their development. Most generation benchmarks currently assess LMs using abstract evaluation criteria like helpfulness and harmlessness, which often lack the flexibility and granularity of human assessment. Additionally, these benchmarks tend to focus disproportionately on specific capabilities such as instruction following, leading to coverage bias. To overcome these limitat",
       links: {
@@ -104,8 +104,8 @@ export const portfolioData = {
       id: 4,
       title: "Evaluating Language Models as Synthetic Data Generators",
       authors: "S Kim, J Suk, X Yue, V Viswanathan, S Lee, Y Wang, K Gashteovski, ...",
-      venue: "Preprint",
-      year: 2024,
+      venue: "ACL",
+      year: 2025,
       abstract: "Given the increasing use of synthetic data in language model (LM) post-training, an LM's ability to generate high-quality data has become nearly as crucial as its ability to solve problems directly. While prior works have focused on developing effective data generation methods, they lack systematic comparison of different LMs as data generators in a unified setting. To address this gap, we propose AgoraBench, a benchmark that provides standardized settings and metrics to evaluate LMs' data gener",
       links: {
         paper: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mENsLCkAAAAJ&citation_for_view=mENsLCkAAAAJ:2osOgNQ5qMEC",
@@ -117,8 +117,8 @@ export const portfolioData = {
       id: 5,
       title: "LLM-AS-AN-INTERVIEWER: Beyond Static Testing Through Dynamic LLM Evaluation",
       authors: "E Kim, J Suk, S Kim, N Muennighoff, D Kim, A Oh",
-      venue: "Preprint",
-      year: 2024,
+      venue: "ACL",
+      year: 2025,
       abstract: "We introduce LLM-as-an-Interviewer, a novel paradigm for evaluating large language models (LLMs). This approach leverages multi-turn interactions where the LLM interviewer actively provides feedback on responses and poses follow-up questions to the evaluated LLM. At the start of the interview, the LLM interviewer dynamically modifies datasets to generate initial questions, mitigating data contamination. We apply the LLM-as-an-Interviewer framework to evaluate six models on the MATH and DepthQA t",
       links: {
         paper: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mENsLCkAAAAJ&citation_for_view=mENsLCkAAAAJ:UeHWp8X0CEIC",
