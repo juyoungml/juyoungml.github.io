@@ -68,9 +68,9 @@
     Seoul, South Korea |
     #link("mailto:juyoung@kaist.ac.kr")[juyoung\@kaist.ac.kr] |
     010 8077 9092 |
-    #link("https://scottsuk0306.github.io/")[scottsuk0306.github.io] |
+    #link("https://juyoungml.github.io/")[juyoungml.github.io] |
     #link("https://www.linkedin.com/in/juyoung-suk-b5175a192/")[linkedin.com/in/juyoung-suk] |
-    #link("https://github.com/scottsuk0306")[github.com/scottsuk0306]
+    #link("https://github.com/juyoungml")[github.com/juyoungml]
   ]
 ]
 
@@ -167,15 +167,19 @@
   ]
 }
 
-#publication("1", "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models", [Seungone Kim*, *Juyoung Suk**, Shayne Longpre, Bill Yuchen Lin, Jamin Shin, Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo])
+#publication("1", "Trillion 7B Technical Report", [Sungjun Han, *Juyoung Suk*, Suyeong An, Hyungguk Kim, Kyuseok Kim, Wonsuk Yang, Seungtaek Choi, Jay Shin])
 
-#publication("2", "CLIcK: A Benchmark Dataset of Cultural and Linguistic Intelligence in Korean", [Eunsu Kim, *Juyoung Suk*, Philhoon Oh, Haneul Yoo, James Thorne, Alice Oh])
+#publication("2", "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models", [Seungone Kim*, *Juyoung Suk**, Shayne Longpre, Bill Yuchen Lin, Jamin Shin, Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo])
 
-#publication("3", "The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models", [Seungone Kim, *Juyoung Suk*, JiYong Cho, Shayne Longpre, [23 Authors], Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo])
+#publication("3", "CLIcK: A Benchmark Dataset of Cultural and Linguistic Intelligence in Korean", [Eunsu Kim, *Juyoung Suk*, Philhoon Oh, Haneul Yoo, James Thorne, Alice Oh])
 
-#publication("4", "Evaluating Language Models as Synthetic Data Generators", [Seungone Kim, *Juyoung Suk*, Xiang Yue, Vijay Viswanathan, Seongyun Lee, Yizhong Wang, Kiril Gashteovski, Carolin Lawrence, Sean Welleck, Graham Neubig])
+#publication("4", "The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models", [Seungone Kim, *Juyoung Suk*, JiYong Cho, Shayne Longpre, [23 Authors], Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo])
 
-#publication("5", "MM-Eval: A Multilingual Meta-Evaluation Benchmark for LLM-as-a-Judge and Reward Models", [Guijin Son, Dongkeun Yoon, *Juyoung Suk*, Javier Aula-Blasco, Mano Aslan, Vu Trong Kim, Shayekh Bin Islam, Jaume Prats-Cristià, Lucía Tormo-Bañuelos, Seungone Kim])
+#publication("5", "Evaluating Language Models as Synthetic Data Generators", [Seungone Kim, *Juyoung Suk*, Xiang Yue, Vijay Viswanathan, Seongyun Lee, Yizhong Wang, Kiril Gashteovski, Carolin Lawrence, Sean Welleck, Graham Neubig])
+
+#publication("6", "LLM-AS-AN-INTERVIEWER: Beyond Static Testing Through Dynamic LLM Evaluation", [Eunsu Kim, *Juyoung Suk*, Seungone Kim, Niklas Muennighoff, Dongkeun Kim, Alice Oh])
+
+#publication("7", "MM-Eval: A Multilingual Meta-Evaluation Benchmark for LLM-as-a-Judge and Reward Models", [Guijin Son, Dongkeun Yoon, *Juyoung Suk*, Javier Aula-Blasco, Mano Aslan, Vu Trong Kim, Shayekh Bin Islam, Jaume Prats-Cristià, Lucía Tormo-Bañuelos, Seungone Kim])
 
 // Projects
 #section-header("Projects")
@@ -222,10 +226,3 @@
   *Korean:* Native proficiency
 ]
 
-// Footer with last updated
-#place(
-  top + right,
-  dx: -1cm,
-  dy: 1cm,
-  text(size: 8pt, fill: gray, style: "italic")[Last updated in January 2025]
-)

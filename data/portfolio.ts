@@ -8,7 +8,7 @@ export const portfolioData = {
     linkedin: "https://www.linkedin.com/in/juyoung-suk-b5175a192/",
     googleScholar: "https://scholar.google.com/citations?user=mENsLCkAAAAJ",
     profileImage: "/profile.jpeg",
-    bio: "I am a graduate student at KAIST AI LK Lab, advised by Minjoon Seo. I am focusing on training foundation models at scale, and optimizing them for real-world applications."
+    bio: "I am a graduate student at KAIST LK Lab, advised by Minjoon Seo. I am focusing on training foundation models at scale, and optimizing them for real-world applications."
   },
 
 
