@@ -67,10 +67,10 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
       <div className="min-h-screen bg-background">
         <Navigation name={personal.name} />
 
-        <main className="research-container section-padding py-12">
+        <main className="research-container section-padding py-14">
           <header className="mb-14">
-            <div className="mb-8">
-              <div className="relative mb-5 h-24 w-24 overflow-hidden rounded-sm border border-border/70">
+            <div className="mb-10">
+              <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-sm border border-border/70">
                 <Image
                   src={personal.profileImage}
                   alt={personal.name}
@@ -80,7 +80,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
                 />
               </div>
 
-              <h1 className="mb-1.5 text-xl text-foreground">
+              <h1 className="mb-2 text-2xl leading-tight text-foreground">
                 {personal.name}
               </h1>
               <p className="mb-1 text-sm text-muted-foreground">
@@ -91,19 +91,19 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
 
             <div>
               <h2 className="research-heading">About</h2>
-              <p className="mb-4 text-[15px] leading-6 text-muted-foreground">
+              <p className="mb-4 text-[16px] leading-7 text-muted-foreground">
                 Hi, I&apos;m Juyoung, an ML engineer at Trillion Labs in Seoul.
                 I work across long-context training, pretraining infrastructure,
                 evals, and whatever else needs untangling on any given day.
               </p>
-              <p className="mb-4 text-[15px] leading-6 text-muted-foreground">
+              <p className="mb-4 text-[16px] leading-7 text-foreground/85">
                 What I enjoy most is going deep. I like understanding systems
                 from the bottom up, finding the mechanisms underneath the
                 abstractions, and automating away the parts that shouldn&apos;t
                 need a human in the loop. I tend to follow my curiosity wherever
                 it leads, especially when an abstraction feels too convenient.
               </p>
-              <p className="mb-4 text-[15px] leading-6 text-muted-foreground">
+              <p className="mb-4 text-[16px] leading-7 text-muted-foreground">
                 Outside of work, I&apos;m a perpetual beginner at a lot of
                 things. I love picking up something new and finding out how far
                 I can take it: cooking, a bit of piano, fumbling my way through
@@ -177,7 +177,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
                 <li key={item.title}>
                   {item.href ? (
                     <a
-                      className="work-link text-sm font-medium"
+                      className="work-link text-[15px] font-medium"
                       href={item.href}
                     >
                       {item.title}

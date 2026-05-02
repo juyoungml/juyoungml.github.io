@@ -47,7 +47,7 @@
   body {
     @apply bg-background text-foreground;
     font:
-      400 17px/1.65 'Iowan Old Style',
+      400 18px/1.65 'Iowan Old Style',
       'Iowan Old Style BT',
       Georgia,
       serif;
@@ -97,7 +97,7 @@
   }
 
   .work-link {
-    @apply text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent/50;
+    @apply text-foreground underline decoration-border decoration-[1.5px] underline-offset-4 transition-colors hover:text-accent hover:decoration-accent/50;
   }
 
   .link-hover {

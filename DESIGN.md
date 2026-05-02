@@ -16,7 +16,11 @@ human.
 ## Typography
 
 - Body copy uses the serif stack in `styles/globals.css`.
+- The global base size is `18px`; avoid dropping below `15px` except for
+  compact metadata.
 - Main reading text should usually be `text-[15px] leading-6`.
+- Homepage intro text may use `text-[16px] leading-7` when it needs to carry
+  the main visual emphasis.
 - Metadata, dates, contact links, and descriptions should usually be `text-sm`.
 - Page titles should stay modest, usually `text-xl` or `text-2xl`.
 - Avoid bold headings unless the surrounding page genuinely needs emphasis.
@@ -26,7 +30,8 @@ human.
 - Use `research-container` for homepage, blog index, and blog posts.
 - Keep sections separated with generous vertical spacing, usually `mb-12` or
   `mb-14`.
-- Keep the profile image small and documentary, not heroic.
+- Keep the profile image documentary, not heroic. `h-28 w-28` is the upper
+  bound for the current homepage style.
 - Navigation should feel quiet and secondary to the content.
 
 ## Color
@@ -35,6 +40,8 @@ human.
 - Default text should be readable, but not harsh black.
 - Muted text is appropriate for intro copy, descriptions, metadata, and contact
   information.
+- One sentence or paragraph may use stronger foreground contrast when it
+  expresses the core identity of the page.
 - Accent color should be reserved for hover states or important links.
 
 ## Links
