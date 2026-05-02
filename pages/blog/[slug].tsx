@@ -38,17 +38,14 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, source }) => {
       <div className="min-h-screen bg-background">
         <Navigation name="Juyoung Suk" />
 
-        <main className="max-width-container section-padding py-16">
-          <article className="mx-auto max-w-3xl">
-            <Link
-              href="/blog"
-              className="mb-10 inline-flex text-sm font-medium text-muted-foreground transition-colors hover:text-accent"
-            >
-              ← Back to blog
+        <main className="research-container section-padding py-12">
+          <article>
+            <Link href="/blog" className="quiet-link mb-10 inline-flex text-sm">
+              back to blog
             </Link>
 
-            <header className="mb-12">
-              <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+            <header className="mb-14">
+              <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 <time dateTime={post.date}>
                   {new Date(post.date).toLocaleDateString('en', {
                     year: 'numeric',
@@ -56,13 +53,13 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, source }) => {
                     day: 'numeric',
                   })}
                 </time>
-                <span>·</span>
+                <span>/</span>
                 <span>{post.readingTime}</span>
               </div>
-              <h1 className="mb-5 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+              <h1 className="mb-5 text-2xl leading-tight text-foreground">
                 {post.title}
               </h1>
-              <p className="text-lg leading-relaxed text-muted-foreground">
+              <p className="text-[15px] leading-6 text-muted-foreground">
                 {post.description}
               </p>
             </header>

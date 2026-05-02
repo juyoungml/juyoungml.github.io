@@ -22,10 +22,10 @@ const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
       <div className="min-h-screen bg-background">
         <Navigation name="Juyoung Suk" />
 
-        <main className="research-container section-padding py-10">
-          <header className="mb-10">
-            <h1 className="mb-3 text-2xl font-semibold tracking-tight">Blog</h1>
-            <p className="max-w-2xl leading-7 text-muted-foreground">
+        <main className="research-container section-padding py-12">
+          <header className="mb-14">
+            <h1 className="mb-4 text-xl text-foreground">blog</h1>
+            <p className="max-w-2xl text-[15px] leading-6 text-muted-foreground">
               Research notes, implementation details, and technical writeups.
               Mostly language models, evaluation, training, and systems.
             </p>
@@ -34,14 +34,14 @@ const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
           <section>
             <h2 className="research-heading">recent posts</h2>
             {posts.length > 0 ? (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {posts.map(post => (
                   <article
                     key={post.slug}
-                    className="grid gap-1 sm:grid-cols-[120px_1fr]"
+                    className="grid gap-1 text-sm sm:grid-cols-[110px_1fr]"
                   >
                     <time
-                      className="text-sm text-muted-foreground"
+                      className="text-muted-foreground"
                       dateTime={post.date}
                     >
                       {new Date(post.date).toLocaleDateString('en', {
@@ -53,7 +53,7 @@ const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
                     <div>
                       <Link
                         href={`/blog/${post.slug}`}
-                        className="text-link font-medium"
+                        className="work-link font-medium"
                       >
                         {post.title}
                       </Link>

@@ -159,28 +159,28 @@
   }
 
   .prose-research {
-    @apply text-base leading-relaxed text-foreground;
+    @apply text-[15px] leading-6 text-foreground;
   }
 
   .prose-research > * + * {
-    @apply mt-6;
+    @apply mt-5;
   }
 
   .prose-research h2 {
-    @apply mt-12 font-serif text-2xl font-semibold tracking-tight text-foreground;
+    @apply mt-12 font-serif text-xl leading-tight text-foreground;
   }
 
   .prose-research h3 {
-    @apply mt-10 text-xl font-semibold tracking-tight text-foreground;
+    @apply mt-10 text-base leading-tight text-foreground;
   }
 
   .prose-research p,
   .prose-research li {
-    @apply leading-8 text-muted-foreground;
+    @apply leading-6 text-muted-foreground;
   }
 
   .prose-research a {
-    @apply text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent;
+    @apply text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent/50;
   }
 
   .prose-research ul {
