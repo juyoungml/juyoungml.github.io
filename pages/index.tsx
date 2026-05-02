@@ -15,7 +15,7 @@ const selectedWork = [
     title: 'Tri-21B-Think',
     description:
       'Reasoning-enhanced 21B foundation model for agentic workflows, tool use, and long-horizon tasks.',
-    href: 'https://artificialanalysis.ai/models/tri-21b-think-v0-5',
+    href: 'https://huggingface.co/trillionlabs/Tri-21B-Think',
   },
   {
     title: 'Prometheus-Eval',
