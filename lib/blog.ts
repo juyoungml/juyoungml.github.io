@@ -21,7 +21,7 @@ export interface BlogPost extends BlogPostMeta {
 
 interface BlogFrontmatter {
   title?: string
-  date?: string
+  date?: string | Date
   description?: string
   tags?: string[]
   draft?: boolean
@@ -37,19 +37,50 @@ function getPostSlug(fileName: string) {
   return fileName.replace(/\.mdx?$/, '')
 }
 
+function normalizeDate(date: string | Date | undefined, slug: string) {
+  if (date instanceof Date) {
+    return date.toISOString().slice(0, 10)
+  }
+
+  if (typeof date === 'string' && date.trim()) {
+    const normalizedDate = date.trim()
+    const timestamp = Number(new Date(normalizedDate))
+
+    if (Number.isNaN(timestamp)) {
+      throw new Error(`Invalid blog post date for ${slug}: ${normalizedDate}`)
+    }
+
+    return normalizedDate
+  }
+
+  return ''
+}
+
 function normalizeFrontmatter(
   slug: string,
   frontmatter: BlogFrontmatter,
   content: string
 ): BlogPostMeta {
+  const draft = frontmatter.draft === true
+  const title = frontmatter.title?.trim()
+  const date = normalizeDate(frontmatter.date, slug)
+
+  if (!draft && !title) {
+    throw new Error(`Missing blog post title: ${slug}`)
+  }
+
+  if (!draft && !date) {
+    throw new Error(`Missing blog post date: ${slug}`)
+  }
+
   return {
     slug,
-    title: frontmatter.title ?? slug,
-    date: frontmatter.date ?? new Date().toISOString().slice(0, 10),
-    description: frontmatter.description ?? '',
-    tags: frontmatter.tags ?? [],
+    title: title ?? slug,
+    date,
+    description: frontmatter.description?.trim() ?? '',
+    tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : [],
     readingTime: readingTime(content).text,
-    draft: frontmatter.draft,
+    draft,
   }
 }
 

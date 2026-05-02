@@ -2,7 +2,6 @@ import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { MouseEvent } from 'react'
 import Navigation from '../components/Navigation'
 import { portfolioData } from '../data/portfolio'
 import { getAllBlogPosts, type BlogPostMeta } from '../lib/blog'
@@ -36,9 +35,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
   const { personal } = portfolioData
   const obfuscatedEmail = `${personal.emailUser} [at] ${personal.emailDomain}`
 
-  const handleEmailClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-
+  const handleEmailClick = () => {
     window.location.href = `mailto:${personal.emailUser}@${personal.emailDomain}`
   }
 
@@ -114,9 +111,13 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
                 onto.
               </p>
               <p className="text-sm text-muted-foreground">
-                <a className="quiet-link" href="#" onClick={handleEmailClick}>
+                <button
+                  className="quiet-link"
+                  type="button"
+                  onClick={handleEmailClick}
+                >
                   email
-                </a>
+                </button>
                 {' / '}
                 <a className="quiet-link" href={personal.github}>
                   github
