@@ -29,10 +29,17 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Inter',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif',
+        ],
         serif: ['Georgia', 'Times New Roman', 'serif'],
       },
     },
   },
   plugins: [],
-} 
+}

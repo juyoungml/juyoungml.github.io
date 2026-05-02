@@ -23,19 +23,19 @@
   }
 
   .dark {
-    --background: 15 15 15;
-    --foreground: 245 245 245;
-    --muted: 38 38 38;
-    --muted-foreground: 163 163 163;
-    --border: 38 38 38;
-    --card: 38 38 38;
-    --card-foreground: 245 245 245;
-    --primary: 245 245 245;
-    --primary-foreground: 15 15 15;
-    --secondary: 38 38 38;
-    --secondary-foreground: 245 245 245;
-    --accent: 59 130 246;
-    --accent-foreground: 255 255 255;
+    --background: 24 22 20;
+    --foreground: 238 231 222;
+    --muted: 33 30 27;
+    --muted-foreground: 184 172 160;
+    --border: 58 52 47;
+    --card: 29 27 24;
+    --card-foreground: 238 231 222;
+    --primary: 238 231 222;
+    --primary-foreground: 24 22 20;
+    --secondary: 37 33 30;
+    --secondary-foreground: 238 231 222;
+    --accent: 221 130 72;
+    --accent-foreground: 24 22 20;
   }
 }
 
@@ -45,12 +45,16 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground;
+    font: 400 17px/1.65 "Iowan Old Style", "Iowan Old Style BT", Georgia,
+      serif;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans;
+    font-weight: 400;
   }
 }
 
@@ -60,7 +64,32 @@
   }
 
   .max-width-container {
-    @apply max-w-4xl mx-auto;
+    @apply w-full max-w-4xl mx-auto;
+  }
+
+  .research-container {
+    max-width: calc(640px + 3.2rem);
+    @apply w-full mx-auto;
+  }
+
+  .research-heading {
+    @apply mb-4 text-[15px] lowercase tracking-[0.01em] text-foreground;
+  }
+
+  .research-list {
+    @apply list-disc space-y-1 pl-5 leading-7 text-muted-foreground;
+  }
+
+  .text-link {
+    @apply text-accent underline decoration-accent/25 underline-offset-4 transition-colors hover:decoration-accent;
+  }
+
+  .quiet-link {
+    @apply text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground/30;
+  }
+
+  .work-link {
+    @apply text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent/50;
   }
 
   .link-hover {
@@ -90,11 +119,13 @@
 
 @layer utilities {
   .font-serif {
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: "Iowan Old Style", "Iowan Old Style BT", Georgia, serif;
   }
 
   .font-sans {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
   }
 
   .line-clamp-3 {
@@ -125,6 +156,72 @@
 
   .button-secondary {
     @apply px-6 py-3 border border-border text-foreground rounded-md font-medium hover:bg-muted transition-colors duration-200;
+  }
+
+  .prose-research {
+    @apply text-base leading-relaxed text-foreground;
+  }
+
+  .prose-research > * + * {
+    @apply mt-6;
+  }
+
+  .prose-research h2 {
+    @apply mt-12 font-serif text-2xl font-semibold tracking-tight text-foreground;
+  }
+
+  .prose-research h3 {
+    @apply mt-10 text-xl font-semibold tracking-tight text-foreground;
+  }
+
+  .prose-research p,
+  .prose-research li {
+    @apply leading-8 text-muted-foreground;
+  }
+
+  .prose-research a {
+    @apply text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent;
+  }
+
+  .prose-research ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+
+  .prose-research ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+
+  .prose-research blockquote {
+    @apply border-l-2 border-accent/40 pl-5 italic text-muted-foreground;
+  }
+
+  .prose-research code {
+    @apply rounded bg-secondary px-1.5 py-0.5 text-sm text-foreground;
+  }
+
+  .prose-research pre {
+    @apply overflow-x-auto rounded-lg border border-border bg-secondary p-5 text-sm;
+  }
+
+  .prose-research pre code {
+    @apply bg-transparent p-0 text-foreground;
+  }
+
+  .prose-research table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .prose-research th,
+  .prose-research td {
+    @apply border-b border-border px-3 py-2 text-left;
+  }
+
+  .prose-research img {
+    @apply rounded-lg border border-border;
+  }
+
+  .prose-research .katex-display {
+    @apply overflow-x-auto overflow-y-hidden py-3;
   }
 
   .fade-in {

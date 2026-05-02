@@ -14,8 +14,11 @@ export default function ResearchSection({ research }: ResearchProps) {
     <section id="research" className="mb-20">
       <h2 className="section-heading">Current Research</h2>
       <div className="grid gap-6 md:grid-cols-2">
-        {research.map((area) => (
-          <div key={area.id} className="p-6 border border-border rounded-lg hover:border-accent transition-colors">
+        {research.map(area => (
+          <div
+            key={area.id}
+            className="p-6 border border-border rounded-lg hover:border-accent transition-colors"
+          >
             <div className="flex items-start gap-3">
               <span className="text-2xl">{area.icon}</span>
               <div>

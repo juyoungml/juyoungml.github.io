@@ -1,185 +1,108 @@
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 
-function ScrollProgress() {
-  const [scrollProgress, setScrollProgress] = useState(0)
-
-  useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const scrollPercent = (scrollTop / docHeight) * 100
-      setScrollProgress(Math.min(100, Math.max(0, scrollPercent)))
-    }
-
-    window.addEventListener('scroll', updateScrollProgress)
-    updateScrollProgress()
-    
-    return () => window.removeEventListener('scroll', updateScrollProgress)
-  }, [])
-
-  return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-border/20 z-40">
-      <div 
-        className="h-full bg-gradient-to-r from-accent to-accent/60 transition-all duration-300"
-        style={{ width: `${scrollProgress}%` }}
-      />
-    </div>
-  )
-}
-
 const navItems = [
-  { href: '#news', label: 'News', isPage: false },
-  { href: '#projects', label: 'Projects', isPage: false },
-  { href: '#publications', label: 'Publications', isPage: false },
-  { href: '#experience', label: 'Experience', isPage: false },
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 export default function Navigation({ name }: { name: string }) {
+  const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
-  const [isScrolled, setIsScrolled] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-      
-      // Update active section based on scroll position
-      const sections = navItems.map(item => item.href.substring(1))
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
-      })
-      
-      if (currentSection) {
-        setActiveSection(currentSection)
-      }
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return router.pathname === '/'
     }
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Check initial state
-    
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const smoothScrollTo = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      })
-    }
+    return router.pathname.startsWith(href)
   }
 
   return (
     <>
-      {/* Main Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-border/50' : 'bg-transparent'
-      }`}>
-        <div className="max-width-container section-padding py-4">
+      <nav className="font-sans fixed top-0 z-50 w-full bg-background/80 backdrop-blur-md">
+        <div className="research-container section-padding py-4">
           <div className="flex items-center justify-between">
-            <Link 
-              href="/" 
-              className={`text-lg font-serif font-semibold transition-colors duration-200 hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-foreground'
-              }`}
+            <Link
+              href="/"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {name}
             </Link>
-            
-            {/* Desktop Navigation - Simplified */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
-                item.isPage ? (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="px-3 py-2 text-sm transition-colors duration-200 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <button
-                    key={item.href}
-                    onClick={() => smoothScrollTo(item.href)}
-                    className={`px-3 py-2 text-sm transition-colors duration-200 rounded-md ${
-                      activeSection === item.href.substring(1)
-                        ? 'text-accent bg-accent/10'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                )
+
+            <div className="hidden items-center gap-1 md:flex">
+              {navItems.map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-2 py-1 text-sm transition-colors ${
+                    isActive(item.href)
+                      ? 'text-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {item.label}
+                </Link>
               ))}
               <ThemeToggle />
             </div>
 
-            {/* Mobile Navigation Controls */}
-            <div className="md:hidden flex items-center space-x-1">
+            <div className="flex items-center gap-1 md:hidden">
               <ThemeToggle />
               <button
-                className="p-2 rounded-md hover:bg-muted/50 transition-colors"
+                className="rounded-md p-2 transition-colors hover:bg-muted/50"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle menu"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   {mobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
                   )}
                 </svg>
               </button>
             </div>
           </div>
 
-          {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 space-y-1 border-t border-border/20 pt-4">
-              {navItems.map((item) => (
-                item.isPage ? (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block w-full text-left py-2 px-3 text-sm rounded-md transition-colors text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <button
-                    key={item.href}
-                    onClick={() => {
-                      smoothScrollTo(item.href)
-                      setMobileMenuOpen(false)
-                    }}
-                    className={`block w-full text-left py-2 px-3 text-sm rounded-md transition-colors ${
-                      activeSection === item.href.substring(1)
-                        ? 'text-accent bg-accent/10'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                )
+            <div className="mt-4 space-y-1 border-t border-border/20 pt-4 md:hidden">
+              {navItems.map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`block rounded-md px-3 py-2 transition-colors ${
+                    isActive(item.href)
+                      ? 'text-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
               ))}
             </div>
           )}
         </div>
       </nav>
-      
-      {/* Scroll Progress Indicator */}
-      <ScrollProgress />
-      
-      {/* Spacer to prevent content from being hidden under fixed nav */}
+
       <div className="h-16" />
     </>
   )

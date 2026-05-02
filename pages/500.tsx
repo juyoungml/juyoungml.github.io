@@ -6,9 +6,12 @@ const Custom500: NextPage = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
         <h1 className="text-6xl font-bold text-red-500 mb-4">500</h1>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Server Error</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Server Error
+        </h2>
         <p className="text-gray-600 mb-8">
-          Sorry, something went wrong on our server. We're working to fix it.
+          Sorry, something went wrong on our server. We&apos;re working to fix
+          it.
         </p>
         <Link
           href="/"
@@ -21,4 +24,4 @@ const Custom500: NextPage = () => {
   )
 }
 
-export default Custom500 
+export default Custom500
