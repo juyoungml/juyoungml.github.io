@@ -91,19 +91,19 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
 
             <div>
               <h2 className="research-heading">About</h2>
-              <p className="mb-4 text-[16px] leading-7 text-muted-foreground">
+              <p className="mb-4 text-[16px] leading-7 text-foreground">
                 Hi, I&apos;m Juyoung, an ML engineer at Trillion Labs in Seoul.
                 I work across long-context training, pretraining infrastructure,
                 evals, and whatever else needs untangling on any given day.
               </p>
-              <p className="mb-4 text-[16px] leading-7 text-foreground/85">
+              <p className="mb-4 text-[16px] leading-7 text-foreground">
                 What I enjoy most is going deep. I like understanding systems
                 from the bottom up, finding the mechanisms underneath the
                 abstractions, and automating away the parts that shouldn&apos;t
                 need a human in the loop. I tend to follow my curiosity wherever
                 it leads, especially when an abstraction feels too convenient.
               </p>
-              <p className="mb-4 text-[16px] leading-7 text-muted-foreground">
+              <p className="mb-4 text-[16px] leading-7 text-foreground">
                 Outside of work, I&apos;m a perpetual beginner at a lot of
                 things. I love picking up something new and finding out how far
                 I can take it: cooking, a bit of piano, fumbling my way through

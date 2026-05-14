@@ -4,44 +4,53 @@
 
 @layer base {
   :root {
-    --background: 254 252 248;
-    --foreground: 41 37 36;
-    --muted: 250 249 246;
-    --muted-foreground: 120 113 108;
-    --border: 231 229 228;
-    --card: 255 253 250;
-    --card-foreground: 41 37 36;
-    --primary: 120 53 15;
-    --primary-foreground: 255 253 250;
-    --secondary: 246 243 238;
-    --secondary-foreground: 41 37 36;
-    --accent: 194 65 12;
-    --accent-foreground: 255 253 250;
+    --background: 250 250 250;
+    --foreground: 9 9 11;
+    --muted: 244 244 245;
+    --muted-foreground: 113 113 122;
+    --border: 228 228 231;
+    --card: 255 255 255;
+    --card-foreground: 9 9 11;
+    --primary: 9 9 11;
+    --primary-foreground: 250 250 250;
+    --secondary: 244 244 245;
+    --secondary-foreground: 9 9 11;
+    --accent: 99 102 241;
+    --accent-foreground: 255 255 255;
+    --prose-body: 63 63 70;
     --success: 34 197 94;
     --warning: 251 191 36;
     --error: 239 68 68;
+    --font-korean: 'Pretendard Variable', Pretendard, -apple-system,
+      BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic',
+      'Noto Sans KR', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+      'Cascadia Mono', 'Liberation Mono', monospace;
   }
 
   .dark {
-    --background: 24 22 20;
-    --foreground: 238 231 222;
-    --muted: 33 30 27;
-    --muted-foreground: 184 172 160;
-    --border: 58 52 47;
-    --card: 29 27 24;
-    --card-foreground: 238 231 222;
-    --primary: 238 231 222;
-    --primary-foreground: 24 22 20;
-    --secondary: 37 33 30;
-    --secondary-foreground: 238 231 222;
-    --accent: 221 130 72;
-    --accent-foreground: 24 22 20;
+    --background: 9 9 11;
+    --foreground: 250 250 250;
+    --muted: 24 24 27;
+    --muted-foreground: 161 161 170;
+    --border: 39 39 42;
+    --card: 24 24 27;
+    --card-foreground: 250 250 250;
+    --primary: 250 250 250;
+    --primary-foreground: 9 9 11;
+    --secondary: 39 39 42;
+    --secondary-foreground: 250 250 250;
+    --accent: 129 140 248;
+    --accent-foreground: 9 9 11;
+    --prose-body: 212 212 216;
   }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    scrollbar-gutter: stable;
   }
 
   body {
@@ -175,16 +184,17 @@
   }
 
   .prose-research h2 {
-    @apply mt-12 font-serif text-xl leading-tight text-foreground;
+    @apply mt-12 scroll-mt-24 font-serif text-xl leading-tight text-foreground;
   }
 
   .prose-research h3 {
-    @apply mt-10 text-base leading-tight text-foreground;
+    @apply mt-10 scroll-mt-24 text-base leading-tight text-foreground;
   }
 
   .prose-research p,
   .prose-research li {
-    @apply leading-6 text-muted-foreground;
+    @apply leading-6;
+    color: rgb(var(--prose-body));
   }
 
   .prose-research a {
@@ -230,6 +240,42 @@
 
   .prose-research .katex-display {
     @apply overflow-x-auto overflow-y-hidden py-3;
+  }
+
+  [lang='ko'] {
+    font-family: var(--font-korean);
+    letter-spacing: -0.01em;
+  }
+
+  [lang='ko'] .prose-research p,
+  [lang='ko'] .prose-research li {
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  [lang='ko'] .prose-research h2,
+  [lang='ko'] .prose-research h3 {
+    font-family: var(--font-korean);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  [lang='ko'] code,
+  [lang='ko'] pre,
+  [lang='ko'] .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* KaTeX positions glyphs sub-pixel-precise; inherited letter-spacing
+     breaks layout. Reset inside math. */
+  [lang='ko'] .katex,
+  [lang='ko'] .katex * {
+    letter-spacing: normal;
+    word-break: normal;
+  }
+
+  [lang='ko'] .katex {
+    font-family: KaTeX_Main, 'Times New Roman', serif;
   }
 
   .fade-in {
