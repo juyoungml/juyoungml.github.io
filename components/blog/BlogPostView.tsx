@@ -7,6 +7,7 @@ import SEO from '../SEO'
 import TableOfContents from './TableOfContents'
 import Figure from './Figure'
 import Callout from './Callout'
+import Citation from './Citation'
 import Video from './Video'
 import LanguageToggle from '../LanguageToggle'
 import { postComponents } from './posts'
@@ -132,6 +133,13 @@ export default function BlogPostView({
             <div className="prose-research">
               <MDXRemote {...source} components={components} />
             </div>
+
+            <Citation
+              slug={slug}
+              title={meta.title}
+              date={meta.date}
+              locale={locale}
+            />
           </article>
         </main>
       </div>
