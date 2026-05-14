@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run postbuild",
-    "postbuild": "node scripts/build-sitemap.mjs && node scripts/build-feeds.mjs",
+    "build": "next build",
+    "postbuild": "node scripts/build-sitemap.mjs && node scripts/build-feeds.mjs && node scripts/build-llms.mjs && node scripts/build-og-images.mjs",
     "start": "next start",
     "export": "next build",
     "deploy": "npm run build && touch out/.nojekyll",
@@ -32,6 +32,7 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^22.17.2",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
@@ -44,6 +45,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
+    "satori": "^0.26.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.9.2"
   }

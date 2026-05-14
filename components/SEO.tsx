@@ -132,9 +132,6 @@ export default function SEO({
         title={`${SITE_NAME} — Blog (한국어)`}
         href={`${SITE_URL}/rss.ko.xml`}
       />
-
-      <link rel="icon" href="/favicon.ico" />
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     </Head>
   )
 }

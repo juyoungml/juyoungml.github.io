@@ -22,7 +22,11 @@ const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
       <div className="min-h-screen bg-background">
         <Navigation name="Juyoung Suk" />
 
-        <main className="research-container section-padding py-12">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="research-container section-padding py-12"
+        >
           <header className="mb-14">
             <h1 className="mb-4 text-xl text-foreground">blog</h1>
             <p className="max-w-2xl text-[15px] leading-6 text-muted-foreground">

@@ -73,7 +73,7 @@ function buildFeed(locale) {
   const posts = collectPosts(locale)
   const lastBuild = rfc822(posts[0]?.date ?? new Date().toISOString())
   const feedUrl = `${SITE_URL}/${info.file}`
-  const homeUrl = locale === 'ko' ? `${SITE_URL}/ko/` : `${SITE_URL}/`
+  const homeUrl = `${SITE_URL}/blog/`
 
   const items = posts
     .map(post => {
@@ -113,7 +113,9 @@ ${items}
 
 function main() {
   if (!fs.existsSync(OUT_DIR)) {
-    console.error(`build-feeds: ${OUT_DIR} does not exist. Run next build first.`)
+    console.error(
+      `build-feeds: ${OUT_DIR} does not exist. Run next build first.`
+    )
     process.exit(1)
   }
   for (const locale of /** @type {const} */ (['en', 'ko'])) {

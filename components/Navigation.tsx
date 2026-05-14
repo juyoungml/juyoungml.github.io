@@ -22,12 +22,16 @@ export default function Navigation({ name }: { name: string }) {
 
   return (
     <>
-      <nav className="font-sans fixed top-0 z-50 w-full bg-background/80 backdrop-blur-md">
+      <nav
+        aria-label="Primary"
+        className="font-sans fixed top-0 z-50 w-full bg-background/80 backdrop-blur-md"
+      >
         <div className="research-container section-padding py-4">
           <div className="flex items-center justify-between">
             <Link
               href="/"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              aria-label={`${name} — home`}
             >
               {name}
             </Link>
@@ -37,6 +41,7 @@ export default function Navigation({ name }: { name: string }) {
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
                   className={`px-2 py-1 text-sm transition-colors ${
                     isActive(item.href)
                       ? 'text-foreground'
@@ -54,7 +59,9 @@ export default function Navigation({ name }: { name: string }) {
               <button
                 className="rounded-md p-2 transition-colors hover:bg-muted/50"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle menu"
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav"
               >
                 <svg
                   className="h-5 w-5"
@@ -83,11 +90,15 @@ export default function Navigation({ name }: { name: string }) {
           </div>
 
           {mobileMenuOpen && (
-            <div className="mt-4 space-y-1 border-t border-border/20 pt-4 md:hidden">
+            <div
+              id="mobile-nav"
+              className="mt-4 space-y-1 border-t border-border/20 pt-4 md:hidden"
+            >
               {navItems.map(item => (
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
                   className={`block rounded-md px-3 py-2 transition-colors ${
                     isActive(item.href)
                       ? 'text-foreground'

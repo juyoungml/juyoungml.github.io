@@ -78,6 +78,8 @@ export default function BlogPostView({
         <Navigation name="Juyoung Suk" />
 
         <main
+          id="main-content"
+          tabIndex={-1}
           className="research-container section-padding relative py-12"
           lang={locale}
         >

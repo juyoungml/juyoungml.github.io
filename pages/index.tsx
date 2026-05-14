@@ -1,5 +1,4 @@
 import type { GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import Navigation from '../components/Navigation'
 import SEO from '../components/SEO'
@@ -53,17 +52,31 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
       <div className="min-h-screen bg-background">
         <Navigation name={personal.name} />
 
-        <main className="research-container section-padding py-14">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="research-container section-padding py-14"
+        >
           <header className="mb-14">
             <div className="mb-10">
               <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-sm border border-border/70">
-                <Image
-                  src={personal.profileImage}
-                  alt={personal.name}
-                  fill
-                  className="object-cover object-bottom"
-                  priority
-                />
+                {/* Hand-rolled <picture> instead of next/image: with
+                    images.unoptimized=true Next can't generate AVIF/WebP
+                    variants, so the browser would only ever see the JPEG. */}
+                <picture>
+                  <source srcSet="/profile.avif" type="image/avif" />
+                  <source srcSet="/profile.webp" type="image/webp" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={personal.profileImage}
+                    alt={personal.name}
+                    width={240}
+                    height={320}
+                    decoding="async"
+                    fetchPriority="high"
+                    className="absolute inset-0 h-full w-full object-cover object-bottom"
+                  />
+                </picture>
               </div>
 
               <h1 className="mb-2 text-2xl leading-tight text-foreground">
@@ -72,7 +85,9 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
               <p className="mb-1 text-sm text-muted-foreground">
                 ML engineer @ Trillion Labs
               </p>
-              <p className="text-sm text-muted-foreground">{obfuscatedEmail}</p>
+              <address className="not-italic text-sm text-muted-foreground">
+                {obfuscatedEmail}
+              </address>
             </div>
 
             <div>

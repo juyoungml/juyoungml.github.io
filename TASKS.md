@@ -79,7 +79,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T07 · Favicon set + web manifest
 
-- [ ] **Effort:** XS · **Deps:** —
+- [x] **Effort:** XS · **Deps:** —
 - **Do:**
   - Generate `apple-touch-icon.png` (180×180), `icon-192.png`, `icon-512.png` from the existing favicon source.
   - Add `public/site.webmanifest` referencing them; reference in `_document.tsx`.
@@ -110,7 +110,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T10 · Semantic HTML + a11y pass
 
-- [ ] **Effort:** S · **Deps:** —
+- [x] **Effort:** S · **Deps:** —
 - **Do:**
   - Audit pages for real `<article>`, `<section>`, `<nav>`, `<time dateTime>`, `<address>`.
   - Add skip-to-content link at top of `_app.tsx` layout.

@@ -76,7 +76,22 @@
   }
 }
 
+@layer base {
+  :where(a, button, [role='button'], input, select, textarea, summary, [tabindex]):focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background rounded-sm;
+  }
+}
+
 @layer components {
+  .skip-to-content {
+    @apply sr-only;
+  }
+
+  .skip-to-content:focus,
+  .skip-to-content:focus-visible {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background no-underline;
+  }
+
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }

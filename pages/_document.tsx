@@ -10,7 +10,11 @@ import { getAllBlogPosts } from '../lib/blog'
 
 interface MyDocumentProps extends DocumentInitialProps {
   koSlugs: string[]
+  needsPretendard: boolean
 }
+
+const PRETENDARD_HREF =
+  'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css'
 
 class MyDocument extends Document<MyDocumentProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
@@ -18,7 +22,11 @@ class MyDocument extends Document<MyDocumentProps> {
     const koSlugs = getAllBlogPosts({ includeDrafts: true })
       .filter(p => p.availableLocales.includes('ko'))
       .map(p => p.slug)
-    return { ...initialProps, koSlugs }
+    // Pretendard is only needed where Korean glyphs render. Today that's
+    // /blog/ko/[slug] only — EN pages either stay English or redirect to a
+    // KO URL (separate document load) before any Korean is painted.
+    const needsPretendard = ctx.pathname?.startsWith('/blog/ko') ?? false
+    return { ...initialProps, koSlugs, needsPretendard }
   }
 
   render() {
@@ -45,6 +53,11 @@ if(pref==='ko')location.replace('/blog/ko/'+slug+'/');
       <Html lang="en">
         <Head>
           <script dangerouslySetInnerHTML={{ __html: redirectScript }} />
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+          <meta name="theme-color" content="#c2410c" />
           <link
             rel="preconnect"
             href="https://cdn.jsdelivr.net"
