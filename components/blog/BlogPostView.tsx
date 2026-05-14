@@ -101,7 +101,7 @@ export default function BlogPostView({
 
           <article>
             <header className="mb-14">
-              <div className="mb-4 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+              <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                 <time dateTime={meta.date}>
                   {new Date(meta.date).toLocaleDateString(dateLocale, {
                     year: 'numeric',

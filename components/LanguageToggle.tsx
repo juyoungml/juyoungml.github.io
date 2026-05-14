@@ -32,7 +32,7 @@ export default function LanguageToggle({
     <div
       role="group"
       aria-label="Language"
-      className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.12em]"
+      className="inline-flex items-center gap-1 text-sm"
     >
       {availableLocales.map((l, i) => (
         <span key={l} className="contents">
