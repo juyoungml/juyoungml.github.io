@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import Link from 'next/link'
 import Navigation from '../../components/Navigation'
+import SEO from '../../components/SEO'
 import { getAllBlogPosts, type BlogPostMeta } from '../../lib/blog'
 
 interface BlogIndexProps {
@@ -11,13 +11,13 @@ interface BlogIndexProps {
 const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
   return (
     <>
-      <Head>
-        <title>Blog - Juyoung Suk</title>
-        <meta
-          name="description"
-          content="Research notes and technical writing by Juyoung Suk."
-        />
-      </Head>
+      <SEO
+        title="Blog"
+        description="Research notes and technical writing by Juyoung Suk on foundation models, evaluation, and training systems."
+        path="/blog"
+        ogType="website"
+        locale="en"
+      />
 
       <div className="min-h-screen bg-background">
         <Navigation name="Juyoung Suk" />

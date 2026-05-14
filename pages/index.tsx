@@ -1,12 +1,11 @@
 import type { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navigation from '../components/Navigation'
+import SEO from '../components/SEO'
 import { portfolioData } from '../data/portfolio'
 import { getAllBlogPosts, type BlogPostMeta } from '../lib/blog'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://juyoung.site'
+import { SITE_DESCRIPTION, SITE_NAME } from '../lib/site'
 
 interface HomeProps {
   posts: BlogPostMeta[]
@@ -43,26 +42,13 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
 
   return (
     <>
-      <Head>
-        <title>{personal.name}</title>
-        <meta
-          name="description"
-          content="Juyoung Suk works on foundation models, evaluation, and training systems."
-        />
-        <meta name="author" content={personal.name} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content={personal.name} />
-        <meta
-          property="og:description"
-          content="Research notes and selected work on foundation models, evaluation, and training systems."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={SITE_URL} />
-        <meta property="og:image" content={`${SITE_URL}/profile.jpeg`} />
-        <link rel="canonical" href={SITE_URL} />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      </Head>
+      <SEO
+        title={SITE_NAME}
+        description={SITE_DESCRIPTION}
+        path="/"
+        ogType="website"
+        locale="en"
+      />
 
       <div className="min-h-screen bg-background">
         <Navigation name={personal.name} />

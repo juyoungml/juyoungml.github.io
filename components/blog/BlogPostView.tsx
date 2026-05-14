@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type React from 'react'
 import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote'
 import Navigation from '../Navigation'
+import SEO from '../SEO'
 import TableOfContents from './TableOfContents'
 import Figure from './Figure'
 import Callout from './Callout'
@@ -47,11 +48,25 @@ export default function BlogPostView({
     ...(postComponents[slug] ?? {}),
   }
 
+  const path = locale === 'ko' ? `/blog/ko/${slug}` : `/blog/${slug}`
+  const alternateLocales = availableLocales.map(loc => ({
+    locale: loc,
+    path: loc === 'ko' ? `/blog/ko/${slug}` : `/blog/${slug}`,
+  }))
+
   return (
     <>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        path={path}
+        ogType="article"
+        locale={locale}
+        alternateLocales={availableLocales.length > 1 ? alternateLocales : []}
+        publishedTime={meta.date}
+        tags={meta.tags}
+      />
       <Head>
-        <title>{`${meta.title} - Juyoung Suk`}</title>
-        <meta name="description" content={meta.description} />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
