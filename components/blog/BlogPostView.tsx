@@ -53,6 +53,7 @@ export default function BlogPostView({
     locale: loc,
     path: loc === 'ko' ? `/blog/ko/${slug}` : `/blog/${slug}`,
   }))
+  const ogImage = locale === 'ko' ? `/og/${slug}.ko.png` : `/og/${slug}.png`
 
   return (
     <>
@@ -60,6 +61,7 @@ export default function BlogPostView({
         title={meta.title}
         description={meta.description}
         path={path}
+        ogImage={ogImage}
         ogType="article"
         locale={locale}
         alternateLocales={availableLocales.length > 1 ? alternateLocales : []}

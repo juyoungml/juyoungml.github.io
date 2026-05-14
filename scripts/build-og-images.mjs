@@ -20,40 +20,63 @@ const OUT_DIR = path.join(ROOT, 'out')
 const OG_DIR = path.join(OUT_DIR, 'og')
 const FONT_CACHE = path.join(ROOT, 'node_modules/.cache/og-fonts')
 
+// Satori needs TTF/OTF (WOFF works but not all WOFFs parse cleanly). The Google
+// Fonts CSS API returns TTF URLs when the request advertises an older browser,
+// so we hit the CSS endpoint once per font, scrape the gstatic .ttf URL, and
+// cache the result on disk.
 const FONTS = [
   {
     name: 'Newsreader',
     weight: 400,
-    file: 'Newsreader-Regular.ttf',
-    url: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/newsreader/static/Newsreader-Regular.ttf',
+    file: 'newsreader-400.ttf',
+    cssUrl: 'https://fonts.googleapis.com/css2?family=Newsreader:wght@400',
   },
   {
     name: 'Newsreader',
     weight: 600,
-    file: 'Newsreader-SemiBold.ttf',
-    url: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/newsreader/static/Newsreader-SemiBold.ttf',
+    file: 'newsreader-600.ttf',
+    cssUrl: 'https://fonts.googleapis.com/css2?family=Newsreader:wght@600',
   },
   {
     name: 'NotoSerifKR',
     weight: 400,
-    file: 'NotoSerifKR-Regular.ttf',
-    url: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/notoserifkr/NotoSerifKR-Regular.ttf',
+    file: 'noto-serif-kr-400.ttf',
+    cssUrl:
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400&subset=korean',
   },
   {
     name: 'NotoSerifKR',
     weight: 600,
-    file: 'NotoSerifKR-SemiBold.ttf',
-    url: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/notoserifkr/NotoSerifKR-SemiBold.ttf',
+    file: 'noto-serif-kr-600.ttf',
+    cssUrl:
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&subset=korean',
   },
 ]
+
+// Old UA so Google Fonts CSS returns TTF instead of WOFF2.
+const LEGACY_UA = 'Mozilla/5.0 (X11; Linux i686; rv:1.9.2)'
+
+async function resolveTtfUrl(cssUrl) {
+  const res = await fetch(cssUrl, { headers: { 'User-Agent': LEGACY_UA } })
+  if (!res.ok) {
+    throw new Error(`failed to fetch ${cssUrl}: ${res.status}`)
+  }
+  const css = await res.text()
+  const match = css.match(/url\((https:\/\/[^)]+\.ttf)\)/)
+  if (!match) {
+    throw new Error(`no .ttf url in CSS response for ${cssUrl}`)
+  }
+  return match[1]
+}
 
 async function loadFont(spec) {
   fs.mkdirSync(FONT_CACHE, { recursive: true })
   const local = path.join(FONT_CACHE, spec.file)
   if (!fs.existsSync(local)) {
-    const res = await fetch(spec.url)
+    const ttfUrl = await resolveTtfUrl(spec.cssUrl)
+    const res = await fetch(ttfUrl)
     if (!res.ok) {
-      throw new Error(`failed to fetch ${spec.url}: ${res.status}`)
+      throw new Error(`failed to fetch ${ttfUrl}: ${res.status}`)
     }
     const buf = Buffer.from(await res.arrayBuffer())
     fs.writeFileSync(local, buf)

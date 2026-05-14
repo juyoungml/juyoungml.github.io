@@ -133,7 +133,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T12 · Image + font perf audit
 
-- [ ] **Effort:** S · **Deps:** —
+- [x] **Effort:** S · **Deps:** —
 - **Do:**
   - Convert `public/profile.jpeg` to AVIF + WebP at appropriate sizes; serve via `<picture>` or Next `<Image>` (note: `unoptimized: true` means manual variants).
   - Confirm Pretendard isn't loading on EN-only pages (check `_document.tsx` script behavior).

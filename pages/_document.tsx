@@ -49,6 +49,8 @@ if(pref==='ko')location.replace('/blog/ko/'+slug+'/');
     // media="print" (non-blocking) and flip to media="all" once loaded.
     const fontSwapScript = `(function(){var l=document.getElementById('font-pretendard');if(!l)return;function on(){l.media='all'}if(l.sheet){on()}else{l.addEventListener('load',on)}})();`
 
+    const { needsPretendard } = this.props
+
     return (
       <Html lang="en">
         <Head>
@@ -58,24 +60,25 @@ if(pref==='ko')location.replace('/blog/ko/'+slug+'/');
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="theme-color" content="#c2410c" />
-          <link
-            rel="preconnect"
-            href="https://cdn.jsdelivr.net"
-            crossOrigin=""
-          />
-          <link
-            id="font-pretendard"
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-            media="print"
-          />
-          <script dangerouslySetInnerHTML={{ __html: fontSwapScript }} />
-          <noscript>
-            <link
-              rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-            />
-          </noscript>
+          {needsPretendard && (
+            <>
+              <link
+                rel="preconnect"
+                href="https://cdn.jsdelivr.net"
+                crossOrigin=""
+              />
+              <link
+                id="font-pretendard"
+                rel="stylesheet"
+                href={PRETENDARD_HREF}
+                media="print"
+              />
+              <script dangerouslySetInnerHTML={{ __html: fontSwapScript }} />
+              <noscript>
+                <link rel="stylesheet" href={PRETENDARD_HREF} />
+              </noscript>
+            </>
+          )}
         </Head>
         <body>
           <Main />

@@ -21,9 +21,15 @@ export const DEFAULT_OG_IMAGE = '/profile.jpeg'
 export const SUPPORTED_LOCALES = ['en', 'ko'] as const
 export type SiteLocale = (typeof SUPPORTED_LOCALES)[number]
 
+// Treat anything with a file extension in the last segment as a file URL
+// (skip trailing-slash normalization). Pages always get a trailing slash to
+// match next.config.js `trailingSlash: true`.
+const FILE_EXTENSION = /\.[a-z0-9]{2,5}$/i
+
 export function absoluteUrl(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`
   if (normalized === '/') return SITE_URL
+  if (FILE_EXTENSION.test(normalized)) return `${SITE_URL}${normalized}`
   const withSlash = normalized.endsWith('/') ? normalized : `${normalized}/`
   return `${SITE_URL}${withSlash}`
 }
