@@ -8,6 +8,8 @@ export const SITE_DESCRIPTION =
 
 export const SITE_AUTHOR = {
   name: 'Juyoung Suk',
+  jobTitle: 'Member of Technical Staff',
+  affiliation: 'Trillion Labs',
   twitter: '@juyoungml',
   sameAs: [
     'https://github.com/juyoungml',

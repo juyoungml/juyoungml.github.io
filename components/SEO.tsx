@@ -26,6 +26,12 @@ export interface SEOProps {
   author?: string
   tags?: string[]
   noindex?: boolean
+  /**
+   * Optional schema.org JSON-LD blocks. The SEO component always emits a
+   * sensible default (Person on websites, BlogPosting on articles); pass
+   * additional graph nodes here to extend rather than replace.
+   */
+  extraJsonLd?: object[]
 }
 
 const LOCALE_OG: Record<SiteLocale, string> = {
@@ -46,10 +52,49 @@ export default function SEO({
   author = SITE_AUTHOR.name,
   tags = [],
   noindex = false,
+  extraJsonLd = [],
 }: SEOProps) {
   const fullTitle = title === SITE_NAME ? SITE_NAME : `${title} · ${SITE_NAME}`
   const canonical = absoluteUrl(path)
   const ogImageUrl = ogImage.startsWith('http') ? ogImage : absoluteUrl(ogImage)
+
+  const personSchema = {
+    '@type': 'Person',
+    '@id': `${SITE_URL}/#person`,
+    name: SITE_AUTHOR.name,
+    url: SITE_URL,
+    image: absoluteUrl(DEFAULT_OG_IMAGE),
+    jobTitle: SITE_AUTHOR.jobTitle,
+    worksFor: { '@type': 'Organization', name: SITE_AUTHOR.affiliation },
+    sameAs: SITE_AUTHOR.sameAs,
+  }
+
+  const articleSchema =
+    ogType === 'article'
+      ? {
+          '@type': 'BlogPosting',
+          '@id': `${canonical}#article`,
+          headline: title,
+          description,
+          inLanguage: locale,
+          datePublished: publishedTime,
+          dateModified: modifiedTime ?? publishedTime,
+          image: ogImageUrl,
+          mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+          author: { '@id': `${SITE_URL}/#person` },
+          publisher: { '@id': `${SITE_URL}/#person` },
+          keywords: tags.length ? tags.join(', ') : undefined,
+        }
+      : null
+
+  const jsonLdGraph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      personSchema,
+      articleSchema,
+      ...extraJsonLd.map(node => ({ ...(node as object) })),
+    ].filter(Boolean),
+  }
 
   return (
     <Head>
@@ -131,6 +176,11 @@ export default function SEO({
         type="application/rss+xml"
         title={`${SITE_NAME} — Blog (한국어)`}
         href={`${SITE_URL}/rss.ko.xml`}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
       />
     </Head>
   )

@@ -68,7 +68,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T06 · Per-post OG images
 
-- [ ] **Effort:** M · **Deps:** T02
+- [x] **Effort:** M · **Deps:** T02
 - **Do:**
   - Pick approach: (a) static SVG-to-PNG generated at build via `satori` + `@resvg/resvg-js`, or (b) commit one OG image per post manually.
   - For (a): `scripts/build-og-images.mjs` reads each post's frontmatter (title, date, author) and writes `out/og/<slug>.png` (1200×630).
