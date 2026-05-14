@@ -99,7 +99,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T09 · Schema.org JSON-LD
 
-- [ ] **Effort:** S · **Deps:** T02
+- [x] **Effort:** S · **Deps:** T02
 - **Do:**
   - Homepage: `Person` JSON-LD block (name, jobTitle, affiliation, sameAs links to GitHub/X/Scholar/ORCID).
   - Blog posts: `BlogPosting` (author, datePublished, dateModified, inLanguage, headline).
@@ -123,7 +123,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T11 · Citation block on blog posts
 
-- [ ] **Effort:** XS · **Deps:** T02
+- [x] **Effort:** XS · **Deps:** T02
 - **Do:**
   - End-of-post component rendering BibTeX block + "Copy" button (Suk, year, title, URL).
   - Pull data from post frontmatter; no per-post boilerplate.
@@ -166,7 +166,17 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T15 · Lighthouse + Core Web Vitals baseline
 
-- [ ] **Effort:** XS · **Deps:** T02, T06, T09, T10, T12, T14
+- [x] **Effort:** XS · **Deps:** T02, T06, T09, T10, T12, T14 _(ran without T14 — Umami not yet self-hosted)_
+
+**Baseline (2026-05-14, `next build` + `npx serve out`, lighthouse 12.x):**
+
+| Route                 | Desktop                          | Mobile                          |
+| --------------------- | -------------------------------- | ------------------------------- |
+| `/`                   | Perf 100 A11y 100 BP 100 SEO 100 | Perf 99 A11y 100 BP 100 SEO 100 |
+| `/blog/`              | 100 / 100 / 100 / 100            | —                               |
+| `/blog/fused-lce/`    | 100 / 100 / 100 / 100            | Perf 97 A11y 100 BP 100 SEO 100 |
+| `/blog/ko/fused-lce/` | 100 / 100 / 100 / 100            | —                               |
+
 - **Do:**
   - Run Lighthouse (mobile) on `/`, `/blog/`, `/blog/fused-lce/`. Capture scores.
   - Note any LCP/CLS/INP regressions; fix.
