@@ -53,3 +53,7 @@ Thumbs.db
 
 # Project todos (private)
 TODOS.md
+
+# Python (manim source)
+__pycache__/
+*.pyc
