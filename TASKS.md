@@ -89,7 +89,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T08 · `/llms.txt` + `/llms-full.txt`
 
-- [ ] **Effort:** S · **Deps:** T01
+- [x] **Effort:** S · **Deps:** T01
 - **Do:**
   - Static `public/llms.txt`: short bio, one-line per major page, links to CV / GitHub / Scholar.
   - Postbuild script writes `out/llms-full.txt`: concatenated markdown of homepage content + every published blog post (frontmatter + body).
