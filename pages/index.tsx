@@ -6,6 +6,8 @@ import Navigation from '../components/Navigation'
 import { portfolioData } from '../data/portfolio'
 import { getAllBlogPosts, type BlogPostMeta } from '../lib/blog'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://juyoung.site'
+
 interface HomeProps {
   posts: BlogPostMeta[]
 }
@@ -55,11 +57,9 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
           content="Research notes and selected work on foundation models, evaluation, and training systems."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://juyoungml.github.io" />
-        <meta
-          property="og:image"
-          content="https://juyoungml.github.io/profile.jpeg"
-        />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:image" content={`${SITE_URL}/profile.jpeg`} />
+        <link rel="canonical" href={SITE_URL} />
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>

@@ -12,7 +12,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 ## Phase 0 — Pre-launch must-haves
 
 ### T01 · Commit CNAME + bump site URL to custom domain
-- [ ] **Effort:** XS · **Deps:** —
+- [x] **Effort:** XS · **Deps:** —
 - **Do:**
   - Commit `public/CNAME` (already on disk) and `.env`/`.env.example`.
   - Replace hardcoded `https://juyoungml.github.io` in `pages/index.tsx:58,61` with `process.env.NEXT_PUBLIC_SITE_URL`.

@@ -4,7 +4,7 @@ A personal portfolio website showcasing my research, publications, and professio
 
 ## 🌐 Live Site
 
-Visit the portfolio at: [juyoungml.github.io](https://juyoungml.github.io)
+Visit the portfolio at: [juyoung.site](https://juyoung.site)
 
 ## ✨ Features
 

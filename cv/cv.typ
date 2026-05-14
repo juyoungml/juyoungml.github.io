@@ -68,7 +68,7 @@
     Seoul, South Korea |
     #link("mailto:juyoung@kaist.ac.kr")[juyoung\@kaist.ac.kr] |
     010 8077 9092 |
-    #link("https://juyoungml.github.io/")[juyoungml.github.io] |
+    #link("https://juyoung.site/")[juyoung.site] |
     #link("https://www.linkedin.com/in/juyoung-suk-b5175a192/")[linkedin.com/in/juyoung-suk] |
     #link("https://github.com/juyoungml")[github.com/juyoungml]
   ]
