@@ -47,7 +47,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T04 · Rebuild RSS / Atom feed (EN + KO)
 
-- [ ] **Effort:** S · **Deps:** T01
+- [x] **Effort:** S · **Deps:** T01
 - **Do:**
   - `scripts/build-feeds.mjs` postbuild step using `lib/blog.ts`.
   - Generate `out/rss.xml` (EN) and `out/rss.ko.xml` (KO). Include full content or excerpt + canonical URL.
@@ -58,7 +58,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T05 · `hreflang` correctness across locales
 
-- [ ] **Effort:** XS · **Deps:** T02
+- [x] **Effort:** XS · **Deps:** T02 _(implemented inside SEO component)_
 - **Do:**
   - On every blog post with both locales: emit `hreflang="en"`, `hreflang="ko"`, `hreflang="x-default"` pointing to the right URLs.
   - On EN-only or KO-only posts: emit only the available locale + `x-default`.

@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/build-sitemap.mjs",
+    "build": "next build && npm run postbuild",
+    "postbuild": "node scripts/build-sitemap.mjs && node scripts/build-feeds.mjs",
     "start": "next start",
     "export": "next build",
-    "deploy": "next build && touch out/.nojekyll",
+    "deploy": "npm run build && touch out/.nojekyll",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
