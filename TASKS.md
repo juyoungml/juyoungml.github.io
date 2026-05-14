@@ -25,7 +25,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T02 · Reusable `<SEO>` component
 
-- [ ] **Effort:** S · **Deps:** T01
+- [x] **Effort:** S · **Deps:** T01
 - **Do:**
   - `components/SEO.tsx` with props: `title`, `description`, `path`, `ogImage`, `ogType`, `locale`, `alternateLocales`.
   - Renders `<title>`, description, canonical, OG, Twitter card, `hreflang` siblings.
@@ -36,7 +36,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T03 · Sitemap + robots.txt
 
-- [ ] **Effort:** S · **Deps:** T01
+- [x] **Effort:** S · **Deps:** T01
 - **Do:**
   - Add a `scripts/build-sitemap.mjs` invoked from `postbuild` in `package.json`.
   - Emit `out/sitemap.xml` listing `/`, `/blog/`, every post (EN + KO variants with `<xhtml:link rel="alternate">`).
