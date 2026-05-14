@@ -13,9 +13,7 @@ interface MyDocumentProps extends DocumentInitialProps {
 }
 
 class MyDocument extends Document<MyDocumentProps> {
-  static async getInitialProps(
-    ctx: DocumentContext
-  ): Promise<MyDocumentProps> {
+  static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
     const initialProps = await Document.getInitialProps(ctx)
     const koSlugs = getAllBlogPosts({ includeDrafts: true })
       .filter(p => p.availableLocales.includes('ko'))

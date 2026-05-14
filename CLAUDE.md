@@ -3,11 +3,13 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
+
 This is a personal portfolio website deployed to GitHub Pages (juyoungml.github.io). It's built with Next.js 14 using the Pages Router, TypeScript, and TailwindCSS with a warm, comfortable color scheme.
 
 ## Essential Commands
 
 ### Development
+
 ```bash
 npm run dev        # Start development server at localhost:3000
 npm run build      # Build for production (creates static export in /out)
@@ -16,6 +18,7 @@ npm run deploy     # Build and export in one command
 ```
 
 ### Deployment
+
 The site automatically deploys to GitHub Pages when pushing to the main branch via GitHub Actions. The workflow is defined in `.github/workflows/deploy.yml`.
 
 ## Visual Testing with Playwright MCP
@@ -28,36 +31,40 @@ The site automatically deploys to GitHub Pages when pushing to the main branch v
 4. **Screenshot naming**: Use descriptive names like `feature-name-preview.png` or `final-design-check.png`
 
 Example workflow:
+
 ```typescript
 // Navigate to localhost:3000
-await mcp__playwright__browser_navigate({ url: "http://localhost:3000" })
+await mcp__playwright__browser_navigate({ url: 'http://localhost:3000' })
 
 // Take full page screenshot
-await mcp__playwright__browser_take_screenshot({ 
-  fullPage: true, 
-  filename: "design-verification.png" 
+await mcp__playwright__browser_take_screenshot({
+  fullPage: true,
+  filename: 'design-verification.png',
 })
 ```
 
 ## Architecture
 
 ### Technology Stack
+
 - **Framework**: Next.js 14.2.28 with Pages Router (not App Router)
 - **Language**: TypeScript with strict mode
 - **Styling**: TailwindCSS with PostCSS and warm color palette
 - **Deployment**: Static export to GitHub Pages
 
 ### Design System
+
 - **Color Scheme**: Warm tones with cream/beige background (#fefcf8) and orange accents (#c2410c)
 - **Typography**: Comfortable, readable fonts with proper hierarchy
 - **Components**: Card-based layouts with subtle shadows and hover effects
 - **Responsive**: Mobile-first approach with smooth transitions
 
 ### Project Structure
+
 - **Pages**: Located in `/pages/` using Next.js Pages Router conventions
   - `_app.tsx`: Global app wrapper
   - `index.tsx`: Homepage with section-based layout
-  - Error pages: 404.tsx, 500.tsx, _error.tsx
+  - Error pages: 404.tsx, 500.tsx, \_error.tsx
 
 - **Components**: Modular components in `/components/`
   - `Navigation.tsx`: Navigation with smooth scrolling and progress indicator
@@ -67,7 +74,7 @@ await mcp__playwright__browser_take_screenshot({
   - `BackToTop.tsx`: Floating back-to-top button
   - Other sections: NewsSection, ExperienceSection, ResearchSection, ContactSection
 
-- **Styling**: 
+- **Styling**:
   - `styles/globals.css`: Global styles with CSS variables for colors
   - Utility classes for consistent spacing, typography, and interactions
   - Card hover effects and smooth transitions
@@ -78,6 +85,7 @@ await mcp__playwright__browser_take_screenshot({
   - `tailwind.config.js`: Custom color palette and font configurations
 
 ### Key Implementation Details
+
 1. **Static Export**: The site uses `output: 'export'` in next.config.js for GitHub Pages compatibility
 2. **No Image Optimization**: Images are unoptimized due to static hosting limitations
 3. **Warm Design**: Comfortable color palette designed to be easy on the eyes
@@ -90,6 +98,7 @@ await mcp__playwright__browser_take_screenshot({
 The CV is maintained in Typst format for better maintainability and web integration:
 
 ### CV Workflow
+
 ```bash
 # Local development
 cd cv
@@ -101,12 +110,14 @@ python3 extract-data.py       # Extracts structured data from CV
 ```
 
 ### CV Files Structure
+
 - `cv/cv.typ`: Main CV source in Typst format
 - `cv/build.sh`: Build script for local development
 - `cv/extract-data.py`: Data extraction for website sync
 - `public/juyoung-suk-cv.pdf`: Generated PDF for download
 
 ### Typst Installation
+
 ```bash
 # Using Cargo (Rust)
 cargo install --git https://github.com/typst/typst --locked typst-cli
@@ -115,16 +126,19 @@ cargo install --git https://github.com/typst/typst --locked typst-cli
 ```
 
 ### GitHub Actions
+
 - `.github/workflows/build-cv.yml`: Automatically builds CV on changes
 - CV PDF is automatically updated and committed when `cv/` files change
 
 ### Keeping CV and Website in Sync
+
 1. Update CV content in `cv/cv.typ`
 2. Run `cd cv && python3 extract-data.py` to extract data
 3. Update website components if needed to reflect CV changes
 4. GitHub Actions will automatically build and deploy both CV and website
 
 ### Development Notes
+
 - When adding new pages, ensure they work with static export
 - Test the build locally with `npm run build && npm run export` before pushing
 - Always use Playwright MCP to verify visual changes before committing
@@ -134,12 +148,14 @@ cargo install --git https://github.com/typst/typst --locked typst-cli
 - CV changes trigger automatic PDF generation and website updates
 
 ### Code Quality & Standards
+
 - **Linting**: Use `npm run lint` to check for code issues
 - **Formatting**: Use `npm run format` to auto-format code with Prettier
 - **Type Checking**: Use `npm run typecheck` to verify TypeScript types
 - **Pre-commit**: Always run `npm run lint:fix && npm run format` before committing
 
 ### Recent Improvements (Latest Session)
+
 - **Enhanced Publications**: Added smart author name truncation with "..." for long author lists while ensuring "Juyoung Suk" is always bolded and visible
 - **Streamlined Experience**: Made work experience section more concise with shorter descriptions and single highlight points
 - **Removed Clutter**: Eliminated "Other Projects" section and placeholder "Current Research" section
@@ -155,6 +171,7 @@ cargo install --git https://github.com/typst/typst --locked typst-cli
 ## GitHub Actions Debugging & Verification
 
 ### Workflow Overview
+
 This project uses GitHub Actions for automated deployment to GitHub Pages:
 
 1. **Main Deployment**: `.github/workflows/deploy.yml` - Deploys website on pushes to main
@@ -164,6 +181,7 @@ This project uses GitHub Actions for automated deployment to GitHub Pages:
 ### Essential Debugging Commands
 
 #### Check Workflow Status
+
 ```bash
 # List all workflow runs
 gh run list
@@ -180,6 +198,7 @@ gh run download <run-id>
 ```
 
 #### Check Repository Status
+
 ```bash
 # Verify current branch and commit
 git status
@@ -194,10 +213,11 @@ gh api repos/:owner/:repo/pages
 ```
 
 #### Check Build Status Locally
+
 ```bash
 # Test production build locally (must pass before deployment)
 npm run build                    # Should succeed without errors
-npm run export                   # Should generate /out directory  
+npm run export                   # Should generate /out directory
 ls -la out/                     # Verify static files exist
 
 # Test CV build locally
@@ -208,8 +228,10 @@ ls -la public/juyoung-cv.pdf   # Verify PDF exists
 ### Common Deployment Issues & Solutions
 
 #### 1. Build Failures
+
 **Symptoms**: GitHub Actions shows red X, deployment doesn't update
 **Debugging**:
+
 ```bash
 # Check for TypeScript errors
 npm run build 2>&1 | grep error
@@ -223,8 +245,10 @@ cat next.config.js
 ```
 
 #### 2. Static Export Issues
+
 **Symptoms**: Site loads but pages show 404 or missing assets
 **Debugging**:
+
 ```bash
 # Verify static export configuration
 grep -n "output.*export" next.config.js
@@ -238,8 +262,10 @@ python3 -m http.server 8000 --directory out/
 ```
 
 #### 3. CV Build Issues
+
 **Symptoms**: CV PDF missing or outdated, workflow fails
 **Debugging**:
+
 ```bash
 # Check Typst installation and CV syntax
 typst --version
@@ -254,8 +280,10 @@ cd cv && ./build.sh
 ```
 
 #### 4. GitHub Pages Configuration
+
 **Symptoms**: Site not deploying or showing wrong content
 **Debugging**:
+
 ```bash
 # Check Pages source configuration
 gh api repos/:owner/:repo/pages
@@ -272,18 +300,21 @@ ls -la out/.nojekyll
 Before considering deployment successful, verify:
 
 #### ✅ Local Testing
+
 - [ ] `npm run build` succeeds without errors
 - [ ] `npm run export` generates complete `/out` directory
 - [ ] CV builds successfully: `cd cv && ./build.sh`
 - [ ] All tests pass: `npm test` (if tests exist)
 
 #### ✅ GitHub Actions Status
+
 - [ ] Latest workflow run shows green checkmarks
 - [ ] No failed jobs in the workflow
 - [ ] Deployment time matches recent push time
 - [ ] Both deploy.yml and build-cv.yml succeed
 
 #### ✅ Live Site Verification
+
 ```bash
 # Test live site endpoints
 curl -I https://juyoungml.github.io/
@@ -294,6 +325,7 @@ curl -vI https://juyoungml.github.io/ 2>&1 | grep -i certificate
 ```
 
 #### ✅ Visual Testing with Playwright MCP
+
 ```bash
 # Navigate to live site
 mcp__playwright__browser_navigate({ url: "https://juyoungml.github.io" })
@@ -303,9 +335,9 @@ mcp__playwright__browser_click("Download CV button")
 # Verify download initiates correctly
 
 # Take verification screenshot
-mcp__playwright__browser_take_screenshot({ 
-  fullPage: true, 
-  filename: "deployment-verification.png" 
+mcp__playwright__browser_take_screenshot({
+  fullPage: true,
+  filename: "deployment-verification.png"
 })
 ```
 
@@ -331,6 +363,7 @@ curl -I https://juyoungml.github.io/
 ### Monitoring & Alerts
 
 #### Setup GitHub CLI for monitoring:
+
 ```bash
 # Watch workflow runs in real-time
 gh run watch
@@ -340,14 +373,16 @@ gh api user/subscriptions/repos/:owner/:repo
 ```
 
 #### Key metrics to monitor:
+
 - **Build time**: Should be < 5 minutes typically
-- **Deploy frequency**: Matches git push frequency  
+- **Deploy frequency**: Matches git push frequency
 - **Error rate**: Should be near 0% for main branch
 - **Site availability**: Monitor https://juyoungml.github.io/ uptime
 
 ### Advanced Debugging
 
 #### Access workflow logs programmatically:
+
 ```bash
 # Get latest run ID
 RUN_ID=$(gh run list --workflow=deploy.yml --limit=1 --json id -q '.[0].id')
@@ -358,6 +393,7 @@ unzip -l artifacts/*.zip
 ```
 
 #### Debug build environment:
+
 ```bash
 # Check Node.js version in workflow
 grep -n "node-version" .github/workflows/deploy.yml

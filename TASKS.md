@@ -3,6 +3,7 @@
 Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 **Legend**
+
 - **Effort:** XS (<30min) · S (<2h) · M (half day) · L (>1 day)
 - **Status:** `[ ]` todo · `[~]` in progress · `[x]` done
 - **Deps:** task IDs that must finish first. `—` = no deps.
@@ -12,6 +13,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 ## Phase 0 — Pre-launch must-haves
 
 ### T01 · Commit CNAME + bump site URL to custom domain
+
 - [x] **Effort:** XS · **Deps:** —
 - **Do:**
   - Commit `public/CNAME` (already on disk) and `.env`/`.env.example`.
@@ -22,6 +24,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - After deploy, `curl -s https://juyoung.site | grep og:url` shows `juyoung.site`.
 
 ### T02 · Reusable `<SEO>` component
+
 - [ ] **Effort:** S · **Deps:** T01
 - **Do:**
   - `components/SEO.tsx` with props: `title`, `description`, `path`, `ogImage`, `ogType`, `locale`, `alternateLocales`.
@@ -32,6 +35,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - `curl -s https://juyoung.site/blog/fused-lce/ | grep -E 'canonical|hreflang'` shows post-specific URLs.
 
 ### T03 · Sitemap + robots.txt
+
 - [ ] **Effort:** S · **Deps:** T01
 - **Do:**
   - Add a `scripts/build-sitemap.mjs` invoked from `postbuild` in `package.json`.
@@ -42,6 +46,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - `curl -s https://juyoung.site/robots.txt` — points to the sitemap.
 
 ### T04 · Rebuild RSS / Atom feed (EN + KO)
+
 - [ ] **Effort:** S · **Deps:** T01
 - **Do:**
   - `scripts/build-feeds.mjs` postbuild step using `lib/blog.ts`.
@@ -52,6 +57,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Paste URL into Feedly/NetNewsWire — feed loads with current posts.
 
 ### T05 · `hreflang` correctness across locales
+
 - [ ] **Effort:** XS · **Deps:** T02
 - **Do:**
   - On every blog post with both locales: emit `hreflang="en"`, `hreflang="ko"`, `hreflang="x-default"` pointing to the right URLs.
@@ -61,6 +67,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Google's [Rich Results Test](https://search.google.com/test/rich-results) shows no hreflang errors.
 
 ### T06 · Per-post OG images
+
 - [ ] **Effort:** M · **Deps:** T02
 - **Do:**
   - Pick approach: (a) static SVG-to-PNG generated at build via `satori` + `@resvg/resvg-js`, or (b) commit one OG image per post manually.
@@ -71,6 +78,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Twitter [Card Validator](https://cards-dev.twitter.com/validator) renders correctly.
 
 ### T07 · Favicon set + web manifest
+
 - [ ] **Effort:** XS · **Deps:** —
 - **Do:**
   - Generate `apple-touch-icon.png` (180×180), `icon-192.png`, `icon-512.png` from the existing favicon source.
@@ -80,6 +88,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Add to iOS home screen — correct icon appears.
 
 ### T08 · `/llms.txt` + `/llms-full.txt`
+
 - [ ] **Effort:** S · **Deps:** T01
 - **Do:**
   - Static `public/llms.txt`: short bio, one-line per major page, links to CV / GitHub / Scholar.
@@ -89,6 +98,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Ask ChatGPT/Claude: "Read https://juyoung.site/llms-full.txt and summarize Juyoung Suk's work." — coherent answer.
 
 ### T09 · Schema.org JSON-LD
+
 - [ ] **Effort:** S · **Deps:** T02
 - **Do:**
   - Homepage: `Person` JSON-LD block (name, jobTitle, affiliation, sameAs links to GitHub/X/Scholar/ORCID).
@@ -99,6 +109,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Google Rich Results Test detects `Person` on `/` and `Article` on each post.
 
 ### T10 · Semantic HTML + a11y pass
+
 - [ ] **Effort:** S · **Deps:** —
 - **Do:**
   - Audit pages for real `<article>`, `<section>`, `<nav>`, `<time dateTime>`, `<address>`.
@@ -111,6 +122,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - axe reports 0 critical/serious issues.
 
 ### T11 · Citation block on blog posts
+
 - [ ] **Effort:** XS · **Deps:** T02
 - **Do:**
   - End-of-post component rendering BibTeX block + "Copy" button (Suk, year, title, URL).
@@ -120,6 +132,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Copy button works; pasted BibTeX is valid (try `bibtex-parser` or paste into Overleaf).
 
 ### T12 · Image + font perf audit
+
 - [ ] **Effort:** S · **Deps:** —
 - **Do:**
   - Convert `public/profile.jpeg` to AVIF + WebP at appropriate sizes; serve via `<picture>` or Next `<Image>` (note: `unoptimized: true` means manual variants).
@@ -130,6 +143,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - DevTools Network panel: profile image < 50KB on mobile breakpoint.
 
 ### T13 · Self-host Umami
+
 - [ ] **Effort:** M · **Deps:** —
 - **Do:**
   - Pick host (Railway free tier or Fly.io with SQLite recommended).
@@ -141,6 +155,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - `aws route53 list-resource-record-sets` (if subdomain'd to `analytics.juyoung.site`) shows record. Otherwise dashboard URL responds 200.
 
 ### T14 · Add Umami snippet + custom events
+
 - [ ] **Effort:** XS · **Deps:** T13
 - **Do:**
   - Add `<script defer data-website-id={env} src={env} />` to `_document.tsx`.
@@ -150,6 +165,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Click CV download; event appears in Umami.
 
 ### T15 · Lighthouse + Core Web Vitals baseline
+
 - [ ] **Effort:** XS · **Deps:** T02, T06, T09, T10, T12, T14
 - **Do:**
   - Run Lighthouse (mobile) on `/`, `/blog/`, `/blog/fused-lce/`. Capture scores.
@@ -159,6 +175,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - PageSpeed Insights shows green CWV after 28-day field data accumulates (defer).
 
 ### T16 · Verify GitHub Pages 301 from old URL
+
 - [ ] **Effort:** XS · **Deps:** T01
 - **Do:**
   - After the next deploy, check that `juyoungml.github.io` redirects to `juyoung.site`.
@@ -170,6 +187,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 ## Phase 1 — Ship soon after launch
 
 ### T17 · Translate site chrome to Korean
+
 - [ ] **Effort:** M · **Deps:** —
 - **Do:**
   - Extract user-facing strings from `Navigation`, hero, about, projects, contact into a small i18n map.
@@ -179,6 +197,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - No untranslated strings on the Korean side.
 
 ### T18 · Locale switcher + `/ko/` homepage
+
 - [ ] **Effort:** M · **Deps:** T17
 - **Do:**
   - Global locale toggle in `Navigation`, persisted to `localStorage['site-locale']`.
@@ -189,6 +208,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Korean browsers land on `/ko/` directly (test with `Accept-Language: ko` via `curl -H` and DevTools sensor emulation).
 
 ### T19 · Giscus comments
+
 - [ ] **Effort:** S · **Deps:** —
 - **Do:**
   - Enable GitHub Discussions on the repo; create a "Comments" category.
@@ -199,6 +219,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Post a test comment; appears in Discussions tab.
 
 ### T20 · Newsletter (Buttondown)
+
 - [ ] **Effort:** S · **Deps:** —
 - **Do:**
   - Create Buttondown account; enable RSS-to-email pointing at `/rss.xml`.
@@ -209,6 +230,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Publish a new post; subscriber inbox receives it.
 
 ### T21 · Share buttons on posts
+
 - [ ] **Effort:** XS · **Deps:** T02
 - **Do:**
   - Plain `<a>` links (no SDK): X intent URL, LinkedIn share URL, copy-link button.
@@ -218,6 +240,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Copy button copies the canonical URL.
 
 ### T22 · Tags / categories pages
+
 - [ ] **Effort:** S · **Deps:** T03
 - **Do:**
   - Generate `/blog/tag/[tag]/` and `/blog/ko/tag/[tag]/` from frontmatter `tags`.
@@ -228,6 +251,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Sitemap includes tag URLs.
 
 ### T23 · Paper landing pages
+
 - [ ] **Effort:** L · **Deps:** T09
 - **Do:**
   - Schema: `content/papers/<slug>.mdx` with frontmatter (authors, venue, year, links to PDF/arXiv/HF/code, BibTeX).
@@ -239,6 +263,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Author profile on Google Scholar links back to these pages (after a few weeks).
 
 ### T24 · Search consoles (Google + Bing + Naver)
+
 - [ ] **Effort:** S · **Deps:** T03
 - **Do:**
   - Add ownership-verification meta tags to `<SEO>`.
@@ -249,6 +274,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Coverage report (after ~1 week) shows ≥80% of submitted URLs indexed.
 
 ### T25 · Academic profile links
+
 - [ ] **Effort:** XS · **Deps:** T09
 - **Do:**
   - Add ORCID + Semantic Scholar URLs to `Person` JSON-LD `sameAs` and to the visible contact section.
@@ -258,6 +284,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Google Scholar crawler picks up `citation_*` (check Scholar profile after a few weeks).
 
 ### T26 · Uptime monitor
+
 - [ ] **Effort:** XS · **Deps:** —
 - **Do:**
   - UptimeRobot free monitor pinging `https://juyoung.site` every 5 minutes.
@@ -270,6 +297,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 ## Phase 2 — Growth / nice-to-have
 
 ### T27 · Dark mode
+
 - [ ] **Effort:** M · **Deps:** —
 - **Do:**
   - Design a dark palette that respects the warm aesthetic (not just inverted).
@@ -279,6 +307,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - No FOUC; contrast AA in both modes.
 
 ### T28 · Blog search (Pagefind)
+
 - [ ] **Effort:** S · **Deps:** T03
 - **Do:**
   - Add Pagefind as a postbuild step; emit `out/pagefind/`.
@@ -288,6 +317,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Search bundle < 100KB transferred.
 
 ### T29 · TOC + reading progress
+
 - [ ] **Effort:** S · **Deps:** —
 - **Do:**
   - Use `extractHeadings` (already in `lib/blog.ts`) to render sticky TOC on desktop blog posts.
@@ -297,6 +327,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - Progress bar reaches 100% at bottom.
 
 ### T30 · `/now`, reading list, talks pages
+
 - [ ] **Effort:** M · **Deps:** —
 - **Do:**
   - Three small content-driven pages: `/now/`, `/reading/`, `/talks/`.
@@ -305,6 +336,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
   - All three reachable from nav; included in sitemap.
 
 ### T31 · View counts
+
 - [ ] **Effort:** S · **Deps:** T13
 - **Do:**
   - Use Umami's stats API server-side at build time, OR a client fetch with caching.

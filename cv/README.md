@@ -5,7 +5,9 @@ This directory contains the CV management system using Typst for better maintain
 ## Quick Start
 
 ### Prerequisites
+
 Install Typst:
+
 ```bash
 # Using Cargo (Rust)
 cargo install --git https://github.com/typst/typst --locked typst-cli
@@ -14,6 +16,7 @@ cargo install --git https://github.com/typst/typst --locked typst-cli
 ```
 
 ### Local Development
+
 ```bash
 # Build CV and copy to website
 ./build.sh
@@ -53,6 +56,7 @@ npm run cv:sync  # Both extract and build
 ## Automatic Deployment
 
 GitHub Actions automatically:
+
 - Builds CV PDF when `cv/` files change
 - Commits updated PDF to `public/juyoung-suk-cv.pdf`
 - Deploys to GitHub Pages with website
@@ -60,6 +64,7 @@ GitHub Actions automatically:
 ## Data Sync
 
 The CV and website stay in sync through:
+
 - Structured data extraction from `cv.typ`
 - Automatic PDF generation
 - Download link in website hero section

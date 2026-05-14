@@ -8,11 +8,7 @@ import remarkMath from 'remark-math'
 import BlogPostView, {
   type BlogPostViewProps,
 } from '../../components/blog/BlogPostView'
-import {
-  extractHeadings,
-  getAllBlogPosts,
-  getBlogPost,
-} from '../../lib/blog'
+import { extractHeadings, getAllBlogPosts, getBlogPost } from '../../lib/blog'
 
 const BlogPostPage: NextPage<BlogPostViewProps> = props => (
   <BlogPostView {...props} />
