@@ -80,15 +80,15 @@
   }
 }
 
-// Render one publication.
+// Render one publication. Tight spacing — entries stack densely.
 #let publication(num, title, authors, venue) = {
   [
     *[#num] #title*
-    #v(0.08cm)
+    #v(0.04cm)
     #text(size: 9pt)[#authors]
-    #v(0.03cm)
+    #v(0.01cm)
     #text(size: 9pt, style: "italic", fill: gray-color)[#venue]
-    #v(0.18cm)
+    #v(0.1cm)
   ]
 }
 

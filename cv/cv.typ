@@ -69,20 +69,6 @@
 
 #v(0.35cm)
 
-// Summary
-Member of Technical Staff at Trillion Labs working on long-context training, pretraining infrastructure, and evaluation for foundation models. Co-author of #emph[Trillion-7B] and #emph[The BiGGen Bench] (NAACL 2025 Best Paper). M.S. in AI from KAIST, advised by Minjoon Seo.
-
-// Highlights
-#section-header("Highlights")
-
-#text(size: 9.5pt)[
-  • *Best Paper Award*, NAACL 2025 for #emph[The BiGGen Bench] · *Minister of Science and ICT Award*, Republic of Korea (Aug. 2025) #linebreak()
-  • *Core developer of Trillion-7B*, a 7.76B-parameter compute-efficient multilingual frontier model (#link("https://huggingface.co/trillionlabs/Trillion-7B-preview")[HuggingFace]) #linebreak()
-  • *9 publications* at ACL, NAACL, EMNLP, ICLR, LREC-COLING with 600+ citations on #link("https://scholar.google.com/citations?user=mENsLCkAAAAJ")[Google Scholar] #linebreak()
-  • *Prometheus-Eval* — built and maintained an open-source LM evaluation toolkit (1.1k+ GitHub stars) #linebreak()
-  • Invited talks at *Meta* (RAM Talk series) and *Microsoft Research India* (SNLP reading group)
-]
-
 // Education
 #section-header("Education")
 
