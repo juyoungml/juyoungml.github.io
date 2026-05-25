@@ -38,7 +38,7 @@
 // Section title — serif, bold, sentence case. Traditional academic CV look.
 #let section-header(title) = {
   v(0.25cm)
-  text(size: 11pt, weight: "bold", fill: body-color)[#title]
+  text(size: 11pt, weight: "bold", fill: accent)[#title]
   v(2pt)
   line(length: 100%, stroke: 0.4pt + rule-color)
   v(0.1cm)
@@ -59,7 +59,7 @@
 // Header (name + tagline + link row).
 #let cv-header(name, tagline, links) = {
   align(center)[
-    #text(size: 24pt, weight: "bold", tracking: 0.5pt)[#name]
+    #text(size: 24pt, weight: "bold", tracking: 0.5pt, fill: accent)[#name]
     #v(0.15cm)
     #text(size: 9.5pt, fill: gray-color, style: "italic")[#tagline]
     #v(0.35cm)
