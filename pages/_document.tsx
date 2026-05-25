@@ -59,11 +59,15 @@ location.replace('/blog/ko/'+slug+'/');
     // media="print" (non-blocking) and flip to media="all" once loaded.
     const fontSwapScript = `(function(){var l=document.getElementById('font-pretendard');if(!l)return;function on(){l.media='all'}if(l.sheet){on()}else{l.addEventListener('load',on)}})();`
 
+    // Apply theme before first paint to prevent light→dark FOUC.
+    const themeScript = `(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`
+
     const { needsPretendard } = this.props
 
     return (
       <Html lang="en">
         <Head>
+          <script dangerouslySetInnerHTML={{ __html: themeScript }} />
           <script dangerouslySetInnerHTML={{ __html: redirectScript }} />
           <link rel="icon" href="/favicon.ico" sizes="any" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
