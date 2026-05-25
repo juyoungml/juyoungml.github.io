@@ -1,0 +1,35 @@
+---
+title: 'Predicting LLM Reasoning Performance with Small Proxy Model'
+date: 2025-09-25
+year: 2026
+venue: ICLR 2026
+description: rBridge uses sub-1B proxy models to predict large-model reasoning performance, cutting dataset ranking costs by over 100x.
+authors:
+  - Woosung Koh
+  - Juyoung Suk
+  - Sungjun Han
+  - Se-Young Yun
+  - Jamin Shin
+arxiv: '2509.21013'
+pdf: https://arxiv.org/pdf/2509.21013
+links:
+  arxiv: https://arxiv.org/abs/2509.21013
+tags:
+  - pretraining
+  - scaling-laws
+  - reasoning
+bibtex: |
+  @inproceedings{koh2026rbridge,
+    title     = {Predicting LLM Reasoning Performance with Small Proxy Model},
+    author    = {Koh, Woosung and Suk, Juyoung and Han, Sungjun and Yun, Se-Young and Shin, Jamin},
+    booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
+    year      = {2026},
+    url       = {https://arxiv.org/abs/2509.21013}
+  }
+---
+
+## Abstract
+
+Given the prohibitive cost of pre-training large language models, it is essential to leverage smaller proxy models to optimize datasets before scaling up. However, this approach becomes challenging for reasoning capabilities, which exhibit emergent behavior that only appear reliably at larger model sizes, often exceeding 7B parameters. To address this, we introduce rBridge, showing that small proxies (≤1B) can effectively predict large-model reasoning by aligning more closely with (1) the pre-training objective and (2) the target task. rBridge achieves this by weighting negative log-likelihood with task alignment, using reasoning traces from frontier models as gold labels.
+
+In our experiments, rBridge (i) reduces dataset ranking costs by over 100x relative to the best baseline, (ii) achieves the strongest correlation across six reasoning benchmarks at 1B to 32B scale, and (iii) zero-shot transfers predictive relationships across pre-training datasets at 1B to 7B scale. These findings indicate that rBridge offers a practical path for exploring reasoning-oriented pre-training at lower cost.

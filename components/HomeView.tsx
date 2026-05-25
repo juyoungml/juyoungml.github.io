@@ -149,6 +149,22 @@ export default function HomeView({ locale, posts, papers }: HomeViewProps) {
                 >
                   {s.linkLinkedin}
                 </a>
+                {' / '}
+                <a
+                  className="quiet-link"
+                  href="/juyoung-cv.pdf"
+                  onClick={() => track('download-cv')}
+                >
+                  cv
+                </a>
+                {' / '}
+                <a
+                  className="quiet-link"
+                  href="/juyoung-ms-thesis.pdf"
+                  onClick={() => track('download-thesis')}
+                >
+                  thesis
+                </a>
               </p>
             </div>
           </header>
