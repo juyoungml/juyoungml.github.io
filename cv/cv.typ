@@ -69,16 +69,6 @@
 
 #v(0.35cm)
 
-// Highlights
-#section-header("Highlights")
-
-#text(size: 9.5pt)[
-  • *Best Paper Award* at NAACL 2025 for _The BiGGen Bench_ #linebreak()
-  • *Minister of Science and ICT Award* (과학기술정보통신부 장관상), Republic of Korea — Aug. 2025 #linebreak()
-  • Co-developer on Trillion Labs' #link("https://huggingface.co/trillionlabs")[foundation model lineup] — the *Gravity* (MoE) and *Tri* (0.5B–70B) series #linebreak()
-  • Built and maintained *#link("https://github.com/prometheus-eval/prometheus-eval")[Prometheus-Eval]*, an open-source LM evaluation toolkit (1.1k+ GitHub stars)
-]
-
 // Education
 #section-header("Education")
 

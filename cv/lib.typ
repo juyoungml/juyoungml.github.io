@@ -2,10 +2,12 @@
 // Imported by cv.typ; keep formatting concerns in here so cv.typ
 // stays focused on content.
 
-#let accent = rgb("#5a3e2b")
 #let body-color = rgb("#1a1a1a")
-#let gray-color = rgb("#6b6b6b")
+#let gray-color = rgb("#555555")
 #let muted = rgb("#8a8a8a")
+#let rule-color = rgb("#1a1a1a")
+// Restrained accent reserved for links only.
+#let accent = rgb("#1a1a1a")
 
 #let body-fonts = (
   "Charter",
@@ -33,20 +35,13 @@
   doc
 }
 
-// Render the section title block (header + rule). Used inside `section`,
-// which keeps it stuck to its content via a non-breakable block.
+// Section title — serif, bold, sentence case. Traditional academic CV look.
 #let section-header(title) = {
-  v(0.2cm)
-  text(
-    size: 9.5pt,
-    weight: "bold",
-    tracking: 1.6pt,
-    font: sans-fonts,
-    fill: accent,
-  )[#upper(title)]
-  v(1pt)
-  line(length: 100%, stroke: 0.6pt + accent)
-  v(0.08cm)
+  v(0.25cm)
+  text(size: 11pt, weight: "bold", fill: body-color)[#title]
+  v(2pt)
+  line(length: 100%, stroke: 0.4pt + rule-color)
+  v(0.1cm)
 }
 
 // Section helper. Wraps the title and the first chunk of body content in a
