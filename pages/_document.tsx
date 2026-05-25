@@ -16,6 +16,10 @@ interface MyDocumentProps extends DocumentInitialProps {
 const PRETENDARD_HREF =
   'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css'
 
+const UMAMI_SRC = 'https://umami-production-c1c9.up.railway.app/script.js'
+const UMAMI_WEBSITE_ID = 'a2b1edb1-1f23-404a-b65a-a0253f85ca02'
+const ENABLE_ANALYTICS = process.env.NODE_ENV === 'production'
+
 class MyDocument extends Document<MyDocumentProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
     const initialProps = await Document.getInitialProps(ctx)
@@ -60,6 +64,9 @@ if(pref==='ko')location.replace('/blog/ko/'+slug+'/');
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="theme-color" content="#c2410c" />
+          {ENABLE_ANALYTICS && (
+            <script defer src={UMAMI_SRC} data-website-id={UMAMI_WEBSITE_ID} />
+          )}
           {needsPretendard && (
             <>
               <link
