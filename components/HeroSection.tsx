@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { track } from '../lib/analytics'
 
 interface HeroProps {
   name: string
@@ -46,6 +47,7 @@ export default function HeroSection({
             <div className="flex flex-wrap gap-3 mt-3 mb-4 justify-center md:justify-start">
               <a
                 href={`mailto:${email}`}
+                onClick={() => track('click-email')}
                 className="text-muted-foreground hover:text-accent transition-colors"
                 aria-label="Email"
               >
@@ -68,6 +70,7 @@ export default function HeroSection({
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => track('click-github')}
                   className="text-muted-foreground hover:text-accent transition-colors"
                   aria-label="GitHub"
                 >
@@ -85,6 +88,7 @@ export default function HeroSection({
                   href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => track('click-linkedin')}
                   className="text-muted-foreground hover:text-accent transition-colors"
                   aria-label="LinkedIn"
                 >
@@ -102,6 +106,7 @@ export default function HeroSection({
                   href={googleScholar}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => track('click-scholar')}
                   className="text-muted-foreground hover:text-accent transition-colors"
                   aria-label="Google Scholar"
                 >
@@ -117,6 +122,7 @@ export default function HeroSection({
               <a
                 href="/juyoung-cv.pdf"
                 download
+                onClick={() => track('download-cv')}
                 className="text-muted-foreground hover:text-accent transition-colors"
                 aria-label="Download CV"
               >

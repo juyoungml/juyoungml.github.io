@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { absoluteUrl } from '../../lib/site'
+import { track } from '../../lib/analytics'
 import type { PostLocale } from '../../lib/blog'
 
 interface ShareButtonsProps {
@@ -31,6 +32,7 @@ export default function ShareButtons({
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(url)
+      track('share-copy', { slug })
       setCopied(true)
       if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current)
       timeoutRef.current = window.setTimeout(() => setCopied(false), 2000)
@@ -53,6 +55,7 @@ export default function ShareButtons({
         href={xUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => track('share-x', { slug })}
         className="quiet-link"
       >
         X
@@ -62,6 +65,7 @@ export default function ShareButtons({
         href={linkedInUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => track('share-linkedin', { slug })}
         className="quiet-link"
       >
         LinkedIn

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { track } from '../lib/analytics'
 import type { PostLocale } from '../lib/blog'
 
 const LABEL: Record<PostLocale, string> = { en: 'EN', ko: 'KO' }
@@ -39,7 +40,10 @@ export default function LanguageToggle({
           {i > 0 && <span className="text-border">/</span>}
           <Link
             href={hrefFor(slug, l)}
-            onClick={() => persist(l)}
+            onClick={() => {
+              persist(l)
+              if (l !== currentLocale) track('language-toggle', { to: l })
+            }}
             aria-current={currentLocale === l ? 'page' : undefined}
             className={`transition-colors ${
               currentLocale === l
