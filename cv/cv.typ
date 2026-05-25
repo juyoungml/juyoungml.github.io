@@ -28,12 +28,26 @@
 #let accent = rgb("#5a3e2b")
 #let gray-color = rgb("#6b6b6b")
 #let muted = rgb("#8a8a8a")
+#let sans = (
+  "Inter",
+  "SF Pro Text",
+  "Helvetica Neue",
+  "Noto Sans",
+  "DejaVu Sans",
+  "sans-serif",
+)
 
 #show link: it => underline(stroke: 0.4pt + accent, offset: 1.5pt)[#text(fill: accent)[#it]]
 
 #let section-header(title) = {
   v(0.35cm)
-  text(size: 11pt, weight: "bold", tracking: 1.2pt)[#upper(title)]
+  text(
+    size: 10pt,
+    weight: "bold",
+    tracking: 1.6pt,
+    font: sans,
+    fill: accent,
+  )[#upper(title)]
   v(2pt)
   line(length: 100%, stroke: 0.6pt + accent)
   v(0.15cm)
@@ -80,6 +94,22 @@
 ]
 
 #v(0.35cm)
+
+// Summary
+#text(size: 10pt)[
+  Member of Technical Staff at Trillion Labs working on long-context training, pretraining infrastructure, and evaluation for foundation models. Co-author of #emph[Trillion-7B] and #emph[The BiGGen Bench] (NAACL 2025 Best Paper). M.S. in AI from KAIST, advised by Minjoon Seo.
+]
+
+// Highlights
+#section-header("Highlights")
+
+#text(size: 9.5pt)[
+  • *Best Paper Award*, NAACL 2025 for #emph[The BiGGen Bench] · *Minister of Science and ICT Award*, Republic of Korea (Aug. 2025) #linebreak()
+  • *Core developer of Trillion-7B*, a 7.76B-parameter compute-efficient multilingual frontier model (#link("https://huggingface.co/trillionlabs/Trillion-7B-preview")[HuggingFace]) #linebreak()
+  • *9 publications* at ACL, NAACL, EMNLP, ICLR, LREC-COLING with 600+ citations on #link("https://scholar.google.com/citations?user=mENsLCkAAAAJ")[Google Scholar] #linebreak()
+  • *Prometheus-Eval* — built and maintained an open-source LM evaluation toolkit (1.1k+ GitHub stars) #linebreak()
+  • Invited talks at *Meta* (RAM Talk series) and *Microsoft Research India* (SNLP reading group)
+]
 
 // Education
 #section-header("Education")
@@ -151,7 +181,7 @@
 
 #two-col(
   [*Minister's Award*, Ministry of Science and ICT (과학기술정보통신부 장관상), Republic of Korea],
-  [Fall 2025]
+  [Aug. 2025]
 )
 
 #v(0.1cm)
@@ -206,42 +236,42 @@
   "4",
   "Evaluating Language Models as Synthetic Data Generators",
   [Seungone Kim, *Juyoung Suk*, Xiang Yue, Vijay Viswanathan, Seongyun Lee, Yizhong Wang, Kiril Gashteovski, Carolin Lawrence, Sean Welleck, Graham Neubig],
-  [ACL 2025]
+  [ACL 2025 · 41 citations]
 )
 
 #publication(
   "5",
   "LLM-as-an-Interviewer: Beyond Static Testing Through Dynamic LLM Evaluation",
   [Eunsu Kim, *Juyoung Suk*, Seungone Kim, Niklas Muennighoff, Dongkeun Kim, Alice Oh],
-  [Findings of ACL 2025]
+  [Findings of ACL 2025 · 24 citations]
 )
 
 #publication(
   "6",
   "MM-Eval: A Multilingual Meta-Evaluation Benchmark for LLM-as-a-Judge and Reward Models",
   [Guijin Son, Dongkeun Yoon, *Juyoung Suk*, Javier Aula-Blasco, Mano Aslan, Vu Trong Kim, Shayekh Bin Islam, Jaume Prats-Cristià, Lucía Tormo-Bañuelos, Seungone Kim],
-  [arXiv preprint, October 2024]
+  [arXiv preprint, October 2024 · 8 citations]
 )
 
 #publication(
   "7",
   "The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models",
   [Seungone Kim, *Juyoung Suk*, Ji Yong Cho, Shayne Longpre, Chaeeun Kim, Dongkeun Yoon, Guijin Son, Yejin Cho, Sheikh Shafayat, et al.],
-  [NAACL 2025 (Best Paper Award)]
+  [NAACL 2025 (Best Paper Award) · 27 citations]
 )
 
 #publication(
   "8",
   "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models",
   [Seungone Kim\*, *Juyoung Suk*\*, Shayne Longpre, Bill Yuchen Lin, Jamin Shin, Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo],
-  [EMNLP 2024]
+  [EMNLP 2024 · 468 citations]
 )
 
 #publication(
   "9",
   "CLIcK: A Benchmark Dataset of Cultural and Linguistic Intelligence in Korean",
   [Eunsu Kim, *Juyoung Suk*, Philhoon Oh, Haneul Yoo, James Thorne, Alice Oh],
-  [LREC-COLING 2024]
+  [LREC-COLING 2024 · 73 citations]
 )
 
 // Selected Talks
