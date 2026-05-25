@@ -4,7 +4,7 @@ import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 import { STRINGS } from '../lib/i18n'
 import { track } from '../lib/analytics'
-import type { SiteLocale } from '../lib/site'
+import { SUPPORT_KO_CHROME, type SiteLocale } from '../lib/site'
 
 interface NavigationProps {
   name: string
@@ -22,13 +22,16 @@ function persistSiteLocale(locale: SiteLocale) {
 export default function Navigation({ name, locale = 'en' }: NavigationProps) {
   const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const s = STRINGS[locale]
+  // When KO chrome is off, render English labels everywhere — the post body
+  // still respects its own locale via lang attributes.
+  const chromeLocale: SiteLocale = SUPPORT_KO_CHROME ? locale : 'en'
+  const s = STRINGS[chromeLocale]
 
-  const homeHref = locale === 'ko' ? '/ko' : '/'
-  const blogHref = locale === 'ko' ? '/blog/ko' : '/blog'
-  const otherHref = locale === 'ko' ? '/' : '/ko'
-  const otherLocale: SiteLocale = locale === 'ko' ? 'en' : 'ko'
-  const otherLabel = locale === 'ko' ? 'EN' : 'KO'
+  const homeHref = chromeLocale === 'ko' ? '/ko' : '/'
+  const blogHref = chromeLocale === 'ko' ? '/blog/ko' : '/blog'
+  const otherHref = chromeLocale === 'ko' ? '/' : '/ko'
+  const otherLocale: SiteLocale = chromeLocale === 'ko' ? 'en' : 'ko'
+  const otherLabel = chromeLocale === 'ko' ? 'EN' : 'KO'
 
   const handleLocaleToggle = () => {
     persistSiteLocale(otherLocale)
@@ -75,14 +78,16 @@ export default function Navigation({ name, locale = 'en' }: NavigationProps) {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href={otherHref}
-                onClick={handleLocaleToggle}
-                className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                aria-label={`Switch to ${otherLabel}`}
-              >
-                {otherLabel}
-              </Link>
+              {SUPPORT_KO_CHROME && (
+                <Link
+                  href={otherHref}
+                  onClick={handleLocaleToggle}
+                  className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  aria-label={`Switch to ${otherLabel}`}
+                >
+                  {otherLabel}
+                </Link>
+              )}
               <ThemeToggle />
             </div>
 
@@ -143,16 +148,18 @@ export default function Navigation({ name, locale = 'en' }: NavigationProps) {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href={otherHref}
-                onClick={() => {
-                  handleLocaleToggle()
-                  setMobileMenuOpen(false)
-                }}
-                className="block rounded-md px-3 py-2 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {otherLabel}
-              </Link>
+              {SUPPORT_KO_CHROME && (
+                <Link
+                  href={otherHref}
+                  onClick={() => {
+                    handleLocaleToggle()
+                    setMobileMenuOpen(false)
+                  }}
+                  className="block rounded-md px-3 py-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {otherLabel}
+                </Link>
+              )}
             </div>
           )}
         </div>

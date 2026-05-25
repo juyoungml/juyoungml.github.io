@@ -33,6 +33,11 @@ export const DEFAULT_OG_IMAGE = '/profile.jpeg'
 export const SUPPORTED_LOCALES = ['en', 'ko'] as const
 export type SiteLocale = (typeof SUPPORTED_LOCALES)[number]
 
+// Default audience is English-speaking. KO blog post variants still render,
+// and the per-post EN/KO chip lets readers opt in. Flip to true to bring back
+// the homepage/index KO variants in nav + the Accept-Language auto-redirect.
+export const SUPPORT_KO_CHROME = false
+
 // Treat anything with a file extension in the last segment as a file URL
 // (skip trailing-slash normalization). Pages always get a trailing slash to
 // match next.config.js `trailingSlash: true`.
