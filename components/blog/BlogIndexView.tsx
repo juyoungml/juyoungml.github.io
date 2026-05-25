@@ -4,7 +4,7 @@ import Navigation from '../Navigation'
 import SEO from '../SEO'
 import type { BlogPostMeta, TagEntry } from '../../lib/blog'
 import { tagSlug as toTagSlug } from '../../lib/tags'
-import type { SiteLocale } from '../../lib/site'
+import { SITE_URL, absoluteUrl, type SiteLocale } from '../../lib/site'
 
 const PagefindSearch = dynamic(() => import('./PagefindSearch'), { ssr: false })
 
@@ -55,6 +55,25 @@ export default function BlogIndexView({
   const base = locale === 'ko' ? '/blog/ko' : '/blog'
   const tagBase = locale === 'ko' ? '/blog/ko/tag' : '/blog/tag'
 
+  const blogSchema = {
+    '@type': 'Blog',
+    '@id': `${SITE_URL}${base}/#blog`,
+    name: s.seoTitle,
+    description: s.seoDescription,
+    inLanguage: locale,
+    url: absoluteUrl(`${base}/`),
+    publisher: { '@id': `${SITE_URL}/#person` },
+    blogPost: posts.slice(0, 20).map(p => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: absoluteUrl(`${base}/${p.slug}/`),
+      datePublished: p.date,
+      inLanguage: locale,
+      author: { '@id': `${SITE_URL}/#person` },
+      keywords: p.tags.length ? p.tags.join(', ') : undefined,
+    })),
+  }
+
   return (
     <>
       <SEO
@@ -74,6 +93,7 @@ export default function BlogIndexView({
           },
           { name: locale === 'ko' ? '블로그' : 'Blog', path: `${base}/` },
         ]}
+        extraJsonLd={[blogSchema]}
       />
 
       <div className="min-h-screen bg-background">
