@@ -1,9 +1,4 @@
 #!/usr/bin/env node
-/**
- * Postbuild: emit out/sitemap.xml and out/robots.txt.
- * Reads content/blog/ directly (no TS imports) so it works in CI without
- * a transpiler. Mirrors locale detection from lib/blog.ts.
- */
 import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
@@ -91,7 +86,6 @@ function collectPosts() {
         }
       }
     }
-    // Use the most recent date if EN/KO disagree
     if (new Date(date) > new Date(entry.date)) entry.date = date
     bySlug.set(slug, entry)
   }

@@ -26,9 +26,6 @@ class MyDocument extends Document<MyDocumentProps> {
     const koSlugs = getAllBlogPosts()
       .filter(p => p.availableLocales.includes('ko'))
       .map(p => p.slug)
-    // Pretendard is only needed where Korean glyphs render. Today that's
-    // /blog/ko/[slug] only — EN pages either stay English or redirect to a
-    // KO URL (separate document load) before any Korean is painted.
     const pathname = ctx.pathname ?? ''
     const needsPretendard =
       pathname.startsWith('/blog/ko') || pathname.startsWith('/ko')
@@ -36,10 +33,7 @@ class MyDocument extends Document<MyDocumentProps> {
   }
 
   render() {
-    // Pre-hydration redirect. Runs synchronously in <head> before any DOM is
-    // painted, so Korean visitors never see the English page flash.
-    // Handles two cases: (1) `/` → `/ko/`, (2) `/blog/<slug>/` → `/blog/ko/<slug>/`
-    // when that post has a KO variant. Already-KO URLs are untouched.
+    // Synchronous redirect for KO visitors before first paint — async would flash EN.
     const redirectScript = `(function(){try{
 var p=location.pathname;
 var stored=null;try{stored=localStorage.getItem('site-locale')||localStorage.getItem('blog-locale')}catch(e){}
@@ -54,9 +48,7 @@ if(ko.indexOf(slug)===-1)return;
 location.replace('/blog/ko/'+slug+'/');
 }catch(e){}})();`
 
-    // Pretendard is only used for Korean glyphs. Loading it as a render-blocking
-    // stylesheet causes a blank first paint on cold cache. We download with
-    // media="print" (non-blocking) and flip to media="all" once loaded.
+    // media="print" makes Pretendard load non-blocking; flip to "all" once parsed.
     const fontSwapScript = `(function(){var l=document.getElementById('font-pretendard');if(!l)return;function on(){l.media='all'}if(l.sheet){on()}else{l.addEventListener('load',on)}})();`
 
     // Apply theme before first paint to prevent light→dark FOUC.
