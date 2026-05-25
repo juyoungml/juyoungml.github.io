@@ -157,14 +157,6 @@ export default function HomeView({ locale, posts, papers }: HomeViewProps) {
                 >
                   cv
                 </a>
-                {' / '}
-                <a
-                  className="quiet-link"
-                  href="/juyoung-ms-thesis.pdf"
-                  onClick={() => track('download-thesis')}
-                >
-                  thesis
-                </a>
               </p>
             </div>
           </header>
