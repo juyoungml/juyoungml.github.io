@@ -1,1 +1,0 @@
-{"pageProps":{"posts":[{"slug":"fused-lce","title":"Fused Linear Cross-Entropy","date":"2026-05-05","description":"Why fusing the LM head projection with cross-entropy is the single biggest memory win for training LLMs at long context.","tags":["training","kernels","memory"],"readingTime":"5 min read","draft":false,"availableLocales":["en","ko"]}]},"__N_SSG":true}

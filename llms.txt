@@ -12,20 +12,22 @@ available.
 
 - [Homepage](https://juyoung.site/): bio, latest posts, selected work
 - [Blog index](https://juyoung.site/blog/): all published research notes
+- [Papers index](https://juyoung.site/papers/): peer-reviewed papers and preprints with BibTeX
 - [CV (PDF)](https://juyoung.site/juyoung-cv.pdf): up-to-date résumé
 - [RSS feed](https://juyoung.site/rss.xml): subscribe to new posts
-- [Full corpus](https://juyoung.site/llms-full.txt): every post inlined as markdown
+- [Full corpus](https://juyoung.site/llms-full.txt): every paper and post inlined as markdown
 
 ## Selected work
 
 - [Tri-21B-Think](https://huggingface.co/trillionlabs/Tri-21B-Think): reasoning-enhanced 21B foundation model for agentic workflows, tool use, and long-horizon tasks
 - [Prometheus-Eval](https://github.com/prometheus-eval/prometheus-eval): open-source evaluator models and tooling for language model assessment
-- [BiGGen Bench](https://arxiv.org/abs/2406.05761): fine-grained benchmark for evaluating language model generations
+- [BiGGen Bench](https://juyoung.site/papers/biggen-bench/): fine-grained benchmark for evaluating language model generations (NAACL 2025 Best Paper)
 
 ## Profiles
 
 - [GitHub](https://github.com/juyoungml)
 - [Google Scholar](https://scholar.google.com/citations?user=mENsLCkAAAAJ)
+- [Semantic Scholar](https://www.semanticscholar.org/author/Juyoung-Suk/2299329316)
 - [LinkedIn](https://www.linkedin.com/in/juyoung-suk-b5175a192/)
 
 ## Contact

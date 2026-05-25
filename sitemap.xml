@@ -3,10 +3,54 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://juyoung.site/</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-25</lastmod>
   </url>
   <url>
     <loc>https://juyoung.site/blog/</loc>
+    <lastmod>2026-05-25</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/</loc>
+    <lastmod>2026-05-25</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/trillion-7b/</loc>
+    <lastmod>2025-04-21</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/llm-as-an-interviewer/</loc>
+    <lastmod>2024-12-10</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/agorabench/</loc>
+    <lastmod>2024-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/mm-eval/</loc>
+    <lastmod>2024-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/biggen-bench/</loc>
+    <lastmod>2024-06-09</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/prometheus-2/</loc>
+    <lastmod>2024-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/papers/click/</loc>
+    <lastmod>2024-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/now/</loc>
+    <lastmod>2026-05-14</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/reading/</loc>
+    <lastmod>2026-05-14</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/talks/</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
@@ -22,5 +66,29 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://juyoung.site/blog/fused-lce/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://juyoung.site/blog/ko/fused-lce/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://juyoung.site/blog/fused-lce/"/>
+  </url>
+  <url>
+    <loc>https://juyoung.site/blog/tag/kernels/</loc>
+    <lastmod>2026-05-25</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/blog/tag/memory/</loc>
+    <lastmod>2026-05-25</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/blog/tag/training/</loc>
+    <lastmod>2026-05-25</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/blog/ko/tag/kernels/</loc>
+    <lastmod>2026-05-25</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/blog/ko/tag/memory/</loc>
+    <lastmod>2026-05-25</lastmod>
+  </url>
+  <url>
+    <loc>https://juyoung.site/blog/ko/tag/training/</loc>
+    <lastmod>2026-05-25</lastmod>
   </url>
 </urlset>

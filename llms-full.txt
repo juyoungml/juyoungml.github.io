@@ -34,8 +34,205 @@ in one shot. The structured index lives at https://juyoung.site/llms.txt.
 
 Email: juyoung.suk [at] trillionlabs.co
 
-Generated: 2026-05-14T04:52:36.032Z
+Generated: 2026-05-25T09:13:51.138Z
 Posts included: 1
+Papers included: 7
+
+---
+
+# Papers
+
+Reverse chronological. Each entry below corresponds to a canonical URL
+under https://juyoung.site/papers/.
+
+---
+
+# Trillion 7B Technical Report
+Source: https://juyoung.site/papers/trillion-7b/
+Venue: Technical Whitepaper
+Date: 2025-04-21
+Authors: Sungjun Han, Juyoung Suk, Suyeong An, Hyungguk Kim, Kyuseok Kim, Wonsuk Yang, Seungtaek Choi, Jamin Shin
+arXiv: https://arxiv.org/abs/2504.15431
+Summary: A token-efficient Korean-centric multilingual 7B model that achieves competitive results with 10% of its 2T training tokens dedicated to multilingual data.
+
+## Abstract
+
+We introduce Trillion-7B, the most token-efficient Korean-centric multilingual
+LLM available. Our novel Cross-lingual Document Attention (XLDA) mechanism
+enables highly efficient and effective knowledge transfer from English to
+target languages like Korean and Japanese. Combined with optimized data
+mixtures, language-specific filtering, and tailored tokenizer construction,
+Trillion-7B achieves competitive performance while dedicating only 10% of
+its 2T training tokens to multilingual data and requiring just 59.4K H100
+GPU-hours ($148K) for full training.
+
+Comprehensive evaluations across 27 benchmarks in four languages
+demonstrate Trillion-7B's robust multilingual performance and exceptional
+cross-lingual consistency.
+
+---
+
+# LLM-as-an-Interviewer: Beyond Static Testing Through Dynamic LLM Evaluation
+Source: https://juyoung.site/papers/llm-as-an-interviewer/
+Venue: ACL 2025
+Date: 2024-12-10
+Authors: Eunsu Kim, Juyoung Suk, Seungone Kim, Niklas Muennighoff, Dongkwan Kim, Alice Oh
+arXiv: https://arxiv.org/abs/2412.10424
+Summary: A multi-turn evaluation paradigm where the LLM interviewer issues follow-up questions and feedback to the model under test.
+
+## Abstract
+
+We introduce LLM-as-an-Interviewer, a novel paradigm for evaluating large
+language models (LLMs). This approach leverages multi-turn interactions where
+the LLM interviewer actively provides feedback on responses and poses
+follow-up questions to the evaluated LLM. At the start of the interview, the
+LLM interviewer dynamically modifies datasets to generate initial questions,
+mitigating data contamination.
+
+We apply the LLM-as-an-Interviewer framework to evaluate six models on the
+MATH and DepthQA tasks. Our results show that the framework effectively
+provides insights into LLM performance, including the quality of initial
+responses, adaptability to feedback, and ability to address follow-up
+queries, like clarification or additional knowledge requests.
+
+---
+
+# Evaluating Language Models as Synthetic Data Generators
+Source: https://juyoung.site/papers/agorabench/
+Venue: ACL 2025
+Date: 2024-12-04
+Authors: Seungone Kim, Juyoung Suk, Xiang Yue, Vijay Viswanathan, Seongyun Lee, Yizhong Wang, Kiril Gashteovski, Carolin Lawrence, Sean Welleck, Graham Neubig
+arXiv: https://arxiv.org/abs/2412.03679
+Summary: AgoraBench compares language models as synthetic data generators across instance generation, response generation, and quality enhancement.
+
+## Abstract
+
+Given the increasing use of synthetic data in language model (LM)
+post-training, an LM's ability to generate high-quality data has become
+nearly as crucial as its ability to solve problems directly. While prior works
+have focused on developing effective data generation methods, they lack
+systematic comparison of different LMs as data generators in a unified
+setting.
+
+To address this gap, we propose AgoraBench, a benchmark that provides
+standardized settings and metrics to evaluate LMs' data generation abilities.
+Through synthesizing 1.26 million training instances using 6 LMs and
+training 99 student models, we uncover key insights about LMs' data
+generation capabilities. We find that LMs exhibit distinct strengths
+(e.g., GPT-4o excels at generating new problems, while Claude 3.5 Sonnet
+performs better at enhancing existing ones) and that an LM's data generation
+ability does not necessarily correlate with its problem-solving ability.
+
+---
+
+# MM-Eval: A Multilingual Meta-Evaluation Benchmark for LLM-as-a-Judge and Reward Models
+Source: https://juyoung.site/papers/mm-eval/
+Venue: Preprint
+Date: 2024-10-23
+Authors: Guijin Son, Dongkeun Yoon, Juyoung Suk, Javier Aula-Blasco, Mano Aslan, Vu Trong Kim, Shayekh Bin Islam, Jaume Prats-Cristià, Lucía Tormo-Bañuelos, Seungone Kim
+arXiv: https://arxiv.org/abs/2410.17578
+Summary: A meta-evaluation suite spanning 18 languages and 6 subsets that stress-tests judge and reward models on non-English outputs.
+
+## Abstract
+
+As Large Language Models (LLMs) are now capable of producing fluent and
+coherent content in languages other than English, it is now imperative to
+precisely evaluate these non-English outputs. However, when assessing the
+outputs from multilingual LLMs, prior works often employed LLM-based
+evaluators that excel at assessing English outputs, without a thorough
+examination of whether these evaluators could effectively assess non-English
+text as well.
+
+Moreover, existing benchmarks to test evaluator LLMs (referred to as
+"meta-evaluation benchmarks") are mostly English-centric. To bridge this gap
+and examine the multilingual proficiency of evaluator LLMs, we introduce
+MM-Eval, a multilingual meta-evaluation benchmark comprising six subsets that
+cover 18 languages.
+
+---
+
+# The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models
+Source: https://juyoung.site/papers/biggen-bench/
+Venue: NAACL 2025 (Best Paper Award)
+Date: 2024-06-09
+Authors: Seungone Kim, Juyoung Suk, Ji Yong Cho, Shayne Longpre, Chaeeun Kim, Dongkeun Yoon, Guijin Son, Yejin Cho, Sheikh Shafayat, Jinheon Baek, Sue Hyun Park, Hyeonbin Hwang, Jinkyung Jo, Hyowon Cho, Haebin Shin, Seongyun Lee, Hanseok Oh, Noah Lee, Namgyu Ho, Se June Joo, Miyoung Ko, Yoonjoo Lee, Hyungjoo Chae, Jamin Shin, Joel Jang, Seonghyeon Ye, Bill Yuchen Lin, Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo
+arXiv: https://arxiv.org/abs/2406.05761
+Summary: A 765-instance benchmark covering nine capabilities with instance-specific rubrics, evaluated by language model judges.
+
+## Abstract
+
+As language models (LMs) become capable of handling a wide range of tasks,
+their evaluation is becoming as challenging as their development. Most
+generation benchmarks currently assess LMs using abstract evaluation criteria
+like helpfulness and harmlessness, which often lack the flexibility and
+granularity of human assessment. Additionally, these benchmarks tend to focus
+disproportionately on specific capabilities such as instruction following,
+leading to coverage bias.
+
+To overcome these limitations, we introduce the BiGGen Bench, a principled
+generation benchmark designed to thoroughly evaluate nine distinct
+capabilities of LMs across 77 diverse tasks. A key feature of the BiGGen Bench
+is its use of instance-specific evaluation criteria, closely mirroring the
+nuanced discernment of human evaluation. We apply this benchmark to assess 103
+frontier LMs using five evaluator LMs.
+
+---
+
+# Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models
+Source: https://juyoung.site/papers/prometheus-2/
+Venue: EMNLP 2024
+Date: 2024-05-02
+Authors: Seungone Kim, Juyoung Suk, Shayne Longpre, Bill Yuchen Lin, Jamin Shin, Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo
+arXiv: https://arxiv.org/abs/2405.01535
+Summary: An open evaluator LM trained by merging direct-assessment and pairwise-ranking experts, narrowing the gap to GPT-4 on judge benchmarks.
+
+## Abstract
+
+Proprietary LMs such as GPT-4 are often employed to assess the quality of
+responses from various LMs. However, concerns including transparency,
+controllability, and affordability strongly motivate the development of
+open-source LMs specialized in evaluations. On the other hand, existing open
+evaluator LMs exhibit critical shortcomings: 1) they issue scores that
+significantly diverge from those assigned by humans, and 2) they lack the
+flexibility to perform both direct assessment and pairwise ranking, the two
+most prevalent forms of assessment.
+
+Additionally, they do not possess the ability to evaluate based on custom
+evaluation criteria, focusing instead on general attributes like helpfulness
+and harmlessness. To address these issues, we introduce Prometheus 2, a more
+powerful evaluator LM than its predecessor that closely mirrors human and
+GPT-4 judgements. Moreover, it is capable of processing both direct
+assessment and pair-wise ranking formats grouped with a user-defined
+evaluation criteria.
+
+---
+
+# CLIcK: A Benchmark Dataset of Cultural and Linguistic Intelligence in Korean
+Source: https://juyoung.site/papers/click/
+Venue: LREC-COLING 2024
+Date: 2024-03-11
+Authors: Eunsu Kim, Juyoung Suk, Philhoon Oh, Haneul Yoo, James Thorne, Alice Oh
+arXiv: https://arxiv.org/abs/2403.06412
+Summary: 1,995 Korean-native QA items spanning culture and linguistics for benchmarking Korean cultural and linguistic competence in LLMs.
+
+## Abstract
+
+Despite the rapid development of large language models (LLMs) for the Korean
+language, there remains an obvious lack of benchmark datasets that test the
+requisite Korean cultural and linguistic knowledge. Because many existing
+Korean benchmark datasets are derived from the English counterparts through
+translation, they often overlook the different cultural contexts. For the
+few benchmark datasets that are sourced from Korean data capturing cultural
+knowledge, only narrow tasks such as bias and hate speech detection are
+offered.
+
+To address this gap, we introduce a benchmark of Cultural and Linguistic
+Intelligence in Korean (CLIcK), a dataset comprising 1,995 QA pairs. CLIcK
+sources its data from official Korean exams and textbooks, partitioning the
+questions into eleven categories under the two main categories of language
+and culture. For each instance in CLIcK, we provide fine-grained annotation
+of which cultural and linguistic knowledge is required to answer the question
+correctly.
 
 ---
 
