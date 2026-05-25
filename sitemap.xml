@@ -4,6 +4,16 @@
   <url>
     <loc>https://juyoung.site/</loc>
     <lastmod>2026-05-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juyoung.site/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://juyoung.site/ko/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juyoung.site/"/>
+  </url>
+  <url>
+    <loc>https://juyoung.site/ko/</loc>
+    <lastmod>2026-05-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juyoung.site/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://juyoung.site/ko/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juyoung.site/"/>
   </url>
   <url>
     <loc>https://juyoung.site/blog/</loc>
