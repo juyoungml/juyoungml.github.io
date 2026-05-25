@@ -11,6 +11,7 @@ import Citation from './Citation'
 import Comments from './Comments'
 import ShareButtons from './ShareButtons'
 import ReadingProgress from './ReadingProgress'
+import ViewCount from './ViewCount'
 import Video from './Video'
 import LanguageToggle from '../LanguageToggle'
 import { postComponents } from './posts'
@@ -115,6 +116,7 @@ export default function BlogPostView({
                 </time>
                 <span>·</span>
                 <span>{meta.readingTime}</span>
+                <ViewCount slug={slug} locale={locale} />
                 {availableLocales.length > 1 && (
                   <>
                     <span>·</span>
