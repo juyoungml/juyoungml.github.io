@@ -31,7 +31,7 @@ export default function HeroSection({
             src={profileImage}
             alt={name}
             fill
-            className="rounded-lg object-cover object-bottom shadow-lg"
+            className="rounded-lg object-cover object-center shadow-lg"
             priority
           />
         </div>

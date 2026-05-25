@@ -84,7 +84,7 @@ export default function HomeView({ locale, posts, papers }: HomeViewProps) {
                     height={320}
                     decoding="async"
                     fetchPriority="high"
-                    className="absolute inset-0 h-full w-full object-cover object-bottom"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
                   />
                 </picture>
               </div>
