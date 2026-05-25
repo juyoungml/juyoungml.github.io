@@ -244,6 +244,21 @@
   [LREC-COLING 2024]
 )
 
+// Selected Talks
+#section-header("Selected Talks")
+
+#two-col(
+  [*Prometheus 2 Reward Model*, Meta (RAM Talk series, hosted by Ilia Kulikov) --- joint with Seungone Kim],
+  [May 2024]
+)
+
+#v(0.1cm)
+
+#two-col(
+  [*LLMs as Evaluators*, Microsoft Research India (SNLP reading group, hosted by Sanchit Ahuja and Varun Gumma) --- joint with Seungone Kim],
+  [Jun. 2024]
+)
+
 // Projects
 #section-header("Open-Source")
 
