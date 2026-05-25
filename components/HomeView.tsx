@@ -74,8 +74,8 @@ export default function HomeView({ locale, posts, papers }: HomeViewProps) {
             <div className="mb-10">
               <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-sm border border-border/70">
                 <picture>
-                  <source srcSet="/profile.avif" type="image/avif" />
-                  <source srcSet="/profile.webp" type="image/webp" />
+                  <source srcSet="/profile.avif?v=2" type="image/avif" />
+                  <source srcSet="/profile.webp?v=2" type="image/webp" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={personal.profileImage}

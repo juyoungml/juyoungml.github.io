@@ -8,7 +8,7 @@ export const portfolioData = {
     github: 'https://github.com/juyoungml',
     linkedin: 'https://www.linkedin.com/in/juyoung-suk-b5175a192/',
     googleScholar: 'https://scholar.google.com/citations?user=mENsLCkAAAAJ',
-    profileImage: '/profile.jpeg',
+    profileImage: '/profile.jpeg?v=2',
     bio: 'I completed my M.S. in Artificial Intelligence at KAIST LK Lab, advised by Minjoon Seo. I focus on training foundation models at scale, and optimizing them for real-world applications.',
   },
 
