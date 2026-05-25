@@ -186,7 +186,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T16 · Verify GitHub Pages 301 from old URL
 
-- [ ] **Effort:** XS · **Deps:** T01
+- [x] **Effort:** XS · **Deps:** T01 _(`/` and `/blog/` both 301 → `https://juyoung.site/...` as of 2026-05-25)_
 - **Do:**
   - After the next deploy, check that `juyoungml.github.io` redirects to `juyoung.site`.
 - **Verify:**
