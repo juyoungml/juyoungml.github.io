@@ -68,7 +68,16 @@ location.replace('/blog/ko/'+slug+'/');
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <link rel="manifest" href="/site.webmanifest" />
-          <meta name="theme-color" content="#c2410c" />
+          <meta
+            name="theme-color"
+            media="(prefers-color-scheme: light)"
+            content="#fafafa"
+          />
+          <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#17120b"
+          />
           {ENABLE_ANALYTICS && (
             <script defer src={UMAMI_SRC} data-website-id={UMAMI_WEBSITE_ID} />
           )}
