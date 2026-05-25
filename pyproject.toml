@@ -3,7 +3,7 @@ name = "juyoungml-portfolio"
 version = "0.1.0"
 description = "Personal portfolio website with automated Google Scholar integration"
 authors = [
-    {name = "Juyoung Suk", email = "juyoung@university.edu"},
+    {name = "Juyoung Suk", email = "juyoung.suk@trillionlabs.co"},
 ]
 dependencies = [
     "requests>=2.32.2",
