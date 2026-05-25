@@ -8,11 +8,19 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 - **Status:** `[ ]` todo · `[~]` in progress · `[x]` done
 - **Deps:** task IDs that must finish first. `—` = no deps.
 
-**Status snapshot (2026-05-25):** 23/31 complete.
+**Status snapshot (2026-05-25, end of day):** 27/31 fully done, 4 awaiting user account setup (`[~]`).
 
 - **Phase 0** — 16/16, launch-ready
-- **Phase 1** — 4/10 — open: T17, T18, **T19 (next)**, T20, T24, T26
-- **Phase 2** — 3/5 — open: T27, T31 _(T31 unblocked now that Umami is live)_
+- **Phase 1** — 8/10 fully done; T20 (Buttondown) + T24 (search consoles) + T26 (UptimeRobot) all code-ready, just need the user to create accounts and paste tokens/credentials
+- **Phase 2** — 4/5 fully done; T31 (view counts) code-ready, needs `UMAMI_USERNAME` + `UMAMI_PASSWORD` as GH Actions secrets
+
+Outstanding user actions (no more code needed):
+
+1. **Install Giscus GitHub App** at https://github.com/apps/giscus → grant access to `juyoungml/juyoungml.github.io`. Without this, the comments widget loads but visitors can't post.
+2. **UptimeRobot signup** → see T26 steps.
+3. **Buttondown signup** → add `NEXT_PUBLIC_BUTTONDOWN_USERNAME` to GH Actions secrets.
+4. **Search consoles** (Google + Bing + Naver) → register, paste verification tokens into 3 GH Actions secrets, submit sitemap.
+5. **Umami credentials for view counts** → add `UMAMI_USERNAME` + `UMAMI_PASSWORD` (the Umami admin login) as GH Actions secrets.
 
 ---
 
@@ -204,7 +212,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T17 · Translate site chrome to Korean
 
-- [ ] **Effort:** M · **Deps:** —
+- [x] **Effort:** M · **Deps:** — _(STRINGS map in `lib/i18n.ts`; bio prose translated as a first pass, review/edit there if tone needs tuning)_
 - **Do:**
   - Extract user-facing strings from `Navigation`, hero, about, projects, contact into a small i18n map.
   - Add KO translations; gate by locale.
@@ -214,7 +222,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T18 · Locale switcher + `/ko/` homepage
 
-- [ ] **Effort:** M · **Deps:** T17
+- [x] **Effort:** M · **Deps:** T17 _(toggle in `Navigation`; `/ko/` mirrors `/`; pre-hydration redirect extended)_
 - **Do:**
   - Global locale toggle in `Navigation`, persisted to `localStorage['site-locale']`.
   - Build `/ko/index.tsx` mirroring `/` with Korean strings.
@@ -225,7 +233,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T19 · Giscus comments
 
-- [ ] **Effort:** S · **Deps:** —
+- [x] **Effort:** S · **Deps:** — _(Discussions enabled via gh API; component in `components/blog/Comments.tsx` against "General" category. User must install the Giscus GitHub App at github.com/apps/giscus for visitors to be able to post.)_
 - **Do:**
   - Enable GitHub Discussions on the repo; create a "Comments" category.
   - Configure giscus at https://giscus.app; copy IDs into `.env`.
@@ -236,7 +244,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T20 · Newsletter (Buttondown)
 
-- [ ] **Effort:** S · **Deps:** —
+- [~] **Effort:** S · **Deps:** — _(Code wired: `components/NewsletterSignup.tsx` renders the Buttondown embed when `NEXT_PUBLIC_BUTTONDOWN_USERNAME` is set. User action: sign up at buttondown.com, enable RSS-to-email pointing at `/rss.xml`, set the env var as a GitHub Actions secret.)_
 - **Do:**
   - Create Buttondown account; enable RSS-to-email pointing at `/rss.xml`.
   - Embed signup form: inline at end of each post, small block on homepage.
@@ -280,7 +288,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T24 · Search consoles (Google + Bing + Naver)
 
-- [ ] **Effort:** S · **Deps:** T03
+- [~] **Effort:** S · **Deps:** T03 _(SEO renders verification meta when `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` / `NEXT_PUBLIC_BING_SITE_VERIFICATION` / `NEXT_PUBLIC_NAVER_SITE_VERIFICATION` are set. User action: register the site in each console, paste the verification tokens as GitHub Actions secrets, submit `sitemap.xml`.)_
 - **Do:**
   - Add ownership-verification meta tags to `<SEO>`.
   - Submit sitemap to each console.
@@ -301,12 +309,14 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T26 · Uptime monitor
 
-- [ ] **Effort:** XS · **Deps:** —
+- [~] **Effort:** XS · **Deps:** — _(Pure browser setup; no code. Steps below.)_
 - **Do:**
-  - UptimeRobot free monitor pinging `https://juyoung.site` every 5 minutes.
-  - Email alert to `juyoung.suk@trillionlabs.co`.
+  1. Sign up free at https://uptimerobot.com.
+  2. Add New Monitor → HTTPS → `https://juyoung.site` → 5-minute interval.
+  3. Alert Contacts → add `juyoung.suk@trillionlabs.co`, attach to the monitor.
+  4. Also worth adding: `https://umami-production-c1c9.up.railway.app/api/heartbeat` so the Umami instance gets watched too.
 - **Verify:**
-  - UptimeRobot dashboard shows green; force a test alert via "Test" feature.
+  - UptimeRobot dashboard shows green; click "Test" on the contact to confirm email arrives.
 
 ---
 
@@ -314,7 +324,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T27 · Dark mode
 
-- [ ] **Effort:** M · **Deps:** —
+- [x] **Effort:** M · **Deps:** — _(Warm dark palette in `styles/globals.css .dark`; no-flash inline script in `_document.tsx`; existing `ThemeToggle` wired)_
 - **Do:**
   - Design a dark palette that respects the warm aesthetic (not just inverted).
   - `prefers-color-scheme` default + manual toggle, persisted to `localStorage`.
@@ -353,7 +363,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T31 · View counts
 
-- [ ] **Effort:** S · **Deps:** T13
+- [~] **Effort:** S · **Deps:** T13 _(Build-time fetch via `scripts/build-views.mjs` → `out/views.json`; `components/blog/ViewCount.tsx` reads it. User action: add `UMAMI_USERNAME` and `UMAMI_PASSWORD` as GitHub Actions secrets and expose them on the build step.)_
 - **Do:**
   - Use Umami's stats API server-side at build time, OR a client fetch with caching.
   - Display under post title as "N views".
