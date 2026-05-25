@@ -2,23 +2,39 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
+import { STRINGS } from '../lib/i18n'
+import { track } from '../lib/analytics'
+import type { SiteLocale } from '../lib/site'
 
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-]
+interface NavigationProps {
+  name: string
+  locale?: SiteLocale
+}
 
-export default function Navigation({ name }: { name: string }) {
+function persistSiteLocale(locale: SiteLocale) {
+  try {
+    window.localStorage.setItem('site-locale', locale)
+  } catch {
+    /* ignore */
+  }
+}
+
+export default function Navigation({ name, locale = 'en' }: NavigationProps) {
   const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const s = STRINGS[locale]
 
-  const isActive = (href: string) => {
-    if (href === '/') {
-      return router.pathname === '/'
-    }
+  const homeHref = locale === 'ko' ? '/ko' : '/'
+  const blogHref = locale === 'ko' ? '/blog/ko' : '/blog'
+  const otherHref = locale === 'ko' ? '/' : '/ko'
+  const otherLabel = locale === 'ko' ? 'EN' : 'KO'
+  const navItems = [
+    { href: homeHref, label: s.navHome, exact: true },
+    { href: blogHref, label: s.navBlog, exact: false },
+  ]
 
-    return router.pathname.startsWith(href)
-  }
+  const isActive = (href: string, exact: boolean) =>
+    exact ? router.pathname === href : router.pathname.startsWith(href)
 
   return (
     <>
@@ -29,9 +45,9 @@ export default function Navigation({ name }: { name: string }) {
         <div className="research-container section-padding py-4">
           <div className="flex items-center justify-between">
             <Link
-              href="/"
+              href={homeHref}
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              aria-label={`${name} — home`}
+              aria-label={`${name} ${s.homeAriaSuffix}`}
             >
               {name}
             </Link>
@@ -41,9 +57,11 @@ export default function Navigation({ name }: { name: string }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  aria-current={
+                    isActive(item.href, item.exact) ? 'page' : undefined
+                  }
                   className={`px-2 py-1 text-sm transition-colors ${
-                    isActive(item.href)
+                    isActive(item.href, item.exact)
                       ? 'text-foreground'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
@@ -51,6 +69,19 @@ export default function Navigation({ name }: { name: string }) {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href={otherHref}
+                onClick={() => {
+                  persistSiteLocale(locale === 'ko' ? 'en' : 'ko')
+                  track('site-locale-toggle', {
+                    to: locale === 'ko' ? 'en' : 'ko',
+                  })
+                }}
+                className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                aria-label={`Switch to ${otherLabel}`}
+              >
+                {otherLabel}
+              </Link>
               <ThemeToggle />
             </div>
 
@@ -98,9 +129,11 @@ export default function Navigation({ name }: { name: string }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  aria-current={
+                    isActive(item.href, item.exact) ? 'page' : undefined
+                  }
                   className={`block rounded-md px-3 py-2 transition-colors ${
-                    isActive(item.href)
+                    isActive(item.href, item.exact)
                       ? 'text-foreground'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
@@ -109,6 +142,16 @@ export default function Navigation({ name }: { name: string }) {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href={otherHref}
+                onClick={() => {
+                  persistSiteLocale(locale === 'ko' ? 'en' : 'ko')
+                  setMobileMenuOpen(false)
+                }}
+                className="block rounded-md px-3 py-2 text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {otherLabel}
+              </Link>
             </div>
           )}
         </div>

@@ -120,7 +120,13 @@ function buildSitemap(posts, papers) {
   const today = new Date().toISOString().slice(0, 10)
   const urls = []
 
-  urls.push(urlEntry(`${SITE_URL}/`, today))
+  const homeAlternates = [
+    { hreflang: 'en', href: `${SITE_URL}/` },
+    { hreflang: 'ko', href: `${SITE_URL}/ko/` },
+    { hreflang: 'x-default', href: `${SITE_URL}/` },
+  ]
+  urls.push(urlEntry(`${SITE_URL}/`, today, homeAlternates))
+  urls.push(urlEntry(`${SITE_URL}/ko/`, today, homeAlternates))
   urls.push(urlEntry(`${SITE_URL}/blog/`, today))
   urls.push(urlEntry(`${SITE_URL}/papers/`, today))
 

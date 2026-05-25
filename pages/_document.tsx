@@ -29,23 +29,29 @@ class MyDocument extends Document<MyDocumentProps> {
     // Pretendard is only needed where Korean glyphs render. Today that's
     // /blog/ko/[slug] only — EN pages either stay English or redirect to a
     // KO URL (separate document load) before any Korean is painted.
-    const needsPretendard = ctx.pathname?.startsWith('/blog/ko') ?? false
+    const pathname = ctx.pathname ?? ''
+    const needsPretendard =
+      pathname.startsWith('/blog/ko') || pathname.startsWith('/ko')
     return { ...initialProps, koSlugs, needsPretendard }
   }
 
   render() {
     // Pre-hydration redirect. Runs synchronously in <head> before any DOM is
-    // painted, so Korean visitors never see the English page flash. Matches
-    // /blog/<slug>/? URLs only; KO URLs and other routes are untouched.
+    // painted, so Korean visitors never see the English page flash.
+    // Handles two cases: (1) `/` → `/ko/`, (2) `/blog/<slug>/` → `/blog/ko/<slug>/`
+    // when that post has a KO variant. Already-KO URLs are untouched.
     const redirectScript = `(function(){try{
-var m=location.pathname.match(/^\\/blog\\/([^\\/]+)\\/?$/);
+var p=location.pathname;
+var stored=null;try{stored=localStorage.getItem('site-locale')||localStorage.getItem('blog-locale')}catch(e){}
+var pref=stored||(((navigator.language||'').toLowerCase().indexOf('ko')===0)?'ko':'en');
+if(pref!=='ko')return;
+if(p==='/'||p===''){location.replace('/ko/');return;}
+var m=p.match(/^\\/blog\\/([^\\/]+)\\/?$/);
 if(!m)return;
 var slug=m[1];
 var ko=${JSON.stringify(this.props.koSlugs)};
 if(ko.indexOf(slug)===-1)return;
-var stored=null;try{stored=localStorage.getItem('blog-locale')}catch(e){}
-var pref=stored||(((navigator.language||'').toLowerCase().indexOf('ko')===0)?'ko':'en');
-if(pref==='ko')location.replace('/blog/ko/'+slug+'/');
+location.replace('/blog/ko/'+slug+'/');
 }catch(e){}})();`
 
     // Pretendard is only used for Korean glyphs. Loading it as a render-blocking
