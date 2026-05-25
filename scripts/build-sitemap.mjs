@@ -116,7 +116,7 @@ function urlEntry(loc, lastmod, alternates = []) {
     .join('\n')
 }
 
-function buildSitemap(posts, papers) {
+function buildSitemap(posts, papers, tags) {
   const today = new Date().toISOString().slice(0, 10)
   const urls = []
 
@@ -161,7 +161,6 @@ function buildSitemap(posts, papers) {
     if (hasKo) urls.push(urlEntry(koUrl, post.date, alternates))
   }
 
-  const tags = collectTagsByLocale(posts)
   for (const tag of tags.en) {
     urls.push(urlEntry(`${SITE_URL}/blog/tag/${tag}/`, today))
   }
@@ -197,7 +196,7 @@ function main() {
   const tags = collectTagsByLocale(posts)
   fs.writeFileSync(
     path.join(OUT_DIR, 'sitemap.xml'),
-    buildSitemap(posts, papers)
+    buildSitemap(posts, papers, tags)
   )
   fs.writeFileSync(path.join(OUT_DIR, 'robots.txt'), buildRobots())
   console.log(

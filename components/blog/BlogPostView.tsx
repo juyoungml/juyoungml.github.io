@@ -16,6 +16,7 @@ import ViewCount from './ViewCount'
 import Video from './Video'
 import LanguageToggle from '../LanguageToggle'
 import { postComponents } from './posts'
+import { blogPostPath } from '../../lib/paths'
 import type { BlogPostMeta, PostLocale, TocHeading } from '../../lib/blog'
 import { STRINGS } from '../../lib/i18n'
 
@@ -55,10 +56,10 @@ export default function BlogPostView({
     ...(postComponents[slug] ?? {}),
   }
 
-  const path = locale === 'ko' ? `/blog/ko/${slug}` : `/blog/${slug}`
+  const path = blogPostPath(slug, locale)
   const alternateLocales = availableLocales.map(loc => ({
     locale: loc,
-    path: loc === 'ko' ? `/blog/ko/${slug}` : `/blog/${slug}`,
+    path: blogPostPath(slug, loc),
   }))
   const ogImage = locale === 'ko' ? `/og/${slug}.ko.png` : `/og/${slug}.png`
 

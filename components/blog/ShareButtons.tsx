@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { absoluteUrl } from '../../lib/site'
 import { track } from '../../lib/analytics'
-import type { PostLocale } from '../../lib/blog'
+import { blogPostPath } from '../../lib/paths'
+import type { PostLocale } from '../../lib/blog-types'
 
 interface ShareButtonsProps {
   slug: string
@@ -16,8 +17,7 @@ export default function ShareButtons({
 }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false)
   const timeoutRef = useRef<number | null>(null)
-  const path = locale === 'ko' ? `/blog/ko/${slug}/` : `/blog/${slug}/`
-  const url = absoluteUrl(path)
+  const url = absoluteUrl(blogPostPath(slug, locale, { trailingSlash: true }))
 
   const xUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`
   const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`

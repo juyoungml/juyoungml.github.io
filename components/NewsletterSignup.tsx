@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import { track } from '../lib/analytics'
 import type { SiteLocale } from '../lib/site'
 
@@ -5,7 +6,6 @@ const BUTTONDOWN_USERNAME = process.env.NEXT_PUBLIC_BUTTONDOWN_USERNAME
 
 interface NewsletterSignupProps {
   locale?: SiteLocale
-  variant?: 'inline' | 'block'
 }
 
 const STRINGS = {
@@ -26,19 +26,18 @@ const STRINGS = {
 
 export default function NewsletterSignup({
   locale = 'en',
-  variant = 'inline',
 }: NewsletterSignupProps) {
+  const emailId = useId()
   if (!BUTTONDOWN_USERNAME) return null
   const s = STRINGS[locale]
   const action = `https://buttondown.email/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`
   const popup = `https://buttondown.email/${BUTTONDOWN_USERNAME}`
-  const containerClass =
-    variant === 'inline'
-      ? 'mt-12 rounded-md border border-border bg-muted/40 px-6 py-5'
-      : 'rounded-md border border-border bg-muted/40 px-6 py-5'
 
   return (
-    <section aria-label={s.heading} className={containerClass}>
+    <section
+      aria-label={s.heading}
+      className="mt-12 rounded-md border border-border bg-muted/40 px-6 py-5"
+    >
       <h3 className="mb-1 text-base text-foreground">{s.heading}</h3>
       <p className="mb-3 text-sm text-muted-foreground">{s.blurb}</p>
       <form
@@ -51,13 +50,13 @@ export default function NewsletterSignup({
         }}
         className="flex flex-wrap gap-2"
       >
-        <label htmlFor="bd-email" className="sr-only">
+        <label htmlFor={emailId} className="sr-only">
           {s.placeholder}
         </label>
         <input
           type="email"
           name="email"
-          id="bd-email"
+          id={emailId}
           required
           placeholder={s.placeholder}
           className="min-w-0 flex-1 rounded-sm border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-accent"

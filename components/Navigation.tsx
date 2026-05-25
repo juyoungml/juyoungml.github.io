@@ -27,7 +27,13 @@ export default function Navigation({ name, locale = 'en' }: NavigationProps) {
   const homeHref = locale === 'ko' ? '/ko' : '/'
   const blogHref = locale === 'ko' ? '/blog/ko' : '/blog'
   const otherHref = locale === 'ko' ? '/' : '/ko'
+  const otherLocale: SiteLocale = locale === 'ko' ? 'en' : 'ko'
   const otherLabel = locale === 'ko' ? 'EN' : 'KO'
+
+  const handleLocaleToggle = () => {
+    persistSiteLocale(otherLocale)
+    track('site-locale-toggle', { to: otherLocale })
+  }
   const navItems = [
     { href: homeHref, label: s.navHome, exact: true },
     { href: blogHref, label: s.navBlog, exact: false },
@@ -71,12 +77,7 @@ export default function Navigation({ name, locale = 'en' }: NavigationProps) {
               ))}
               <Link
                 href={otherHref}
-                onClick={() => {
-                  persistSiteLocale(locale === 'ko' ? 'en' : 'ko')
-                  track('site-locale-toggle', {
-                    to: locale === 'ko' ? 'en' : 'ko',
-                  })
-                }}
+                onClick={handleLocaleToggle}
                 className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 aria-label={`Switch to ${otherLabel}`}
               >
@@ -145,7 +146,7 @@ export default function Navigation({ name, locale = 'en' }: NavigationProps) {
               <Link
                 href={otherHref}
                 onClick={() => {
-                  persistSiteLocale(locale === 'ko' ? 'en' : 'ko')
+                  handleLocaleToggle()
                   setMobileMenuOpen(false)
                 }}
                 className="block rounded-md px-3 py-2 text-muted-foreground transition-colors hover:text-foreground"

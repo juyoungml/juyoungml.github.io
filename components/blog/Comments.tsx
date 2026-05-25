@@ -10,6 +10,10 @@ interface CommentsProps {
   locale: PostLocale
 }
 
+function currentTheme(): 'light' | 'dark' {
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+}
+
 export default function Comments({ locale }: CommentsProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const heading = locale === 'ko' ? '댓글' : 'Comments'
@@ -32,12 +36,27 @@ export default function Comments({ locale }: CommentsProps) {
       'data-reactions-enabled': '1',
       'data-emit-metadata': '0',
       'data-input-position': 'bottom',
-      'data-theme': 'light',
+      'data-theme': currentTheme(),
       'data-lang': locale,
       'data-loading': 'lazy',
     }
     for (const [k, v] of Object.entries(attrs)) script.setAttribute(k, v)
     host.appendChild(script)
+
+    const observer = new MutationObserver(() => {
+      const iframe = host.querySelector<HTMLIFrameElement>(
+        'iframe.giscus-frame'
+      )
+      iframe?.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme: currentTheme() } } },
+        'https://giscus.app'
+      )
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
+    return () => observer.disconnect()
   }, [locale])
 
   return (

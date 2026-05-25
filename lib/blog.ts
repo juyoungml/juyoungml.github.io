@@ -3,10 +3,11 @@ import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { tagSlug as tagSlugShared } from './tags'
+import type { PostLocale } from './blog-types'
+
+export type { PostLocale }
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog')
-
-export type PostLocale = 'en' | 'ko'
 
 export interface BlogPostMeta {
   slug: string

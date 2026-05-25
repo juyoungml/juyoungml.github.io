@@ -104,11 +104,7 @@ export default function SEO({
 
   const jsonLdGraph = {
     '@context': 'https://schema.org',
-    '@graph': [
-      personSchema,
-      articleSchema,
-      ...extraJsonLd.map(node => ({ ...(node as object) })),
-    ].filter(Boolean),
+    '@graph': [personSchema, articleSchema, ...extraJsonLd].filter(Boolean),
   }
 
   return (

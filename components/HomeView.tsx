@@ -44,12 +44,8 @@ export default function HomeView({ locale, posts, papers }: HomeViewProps) {
   const s = STRINGS[locale]
   const { personal } = portfolioData
   const obfuscatedEmail = `${personal.emailUser} [at] ${personal.emailDomain}`
+  const emailHref = `mailto:${personal.emailUser}@${personal.emailDomain}`
   const blogBase = locale === 'ko' ? '/blog/ko' : '/blog'
-
-  const handleEmailClick = () => {
-    track('click-email')
-    window.location.href = `mailto:${personal.emailUser}@${personal.emailDomain}`
-  }
 
   return (
     <>
@@ -114,13 +110,13 @@ export default function HomeView({ locale, posts, papers }: HomeViewProps) {
                 {s.bioP3}
               </p>
               <p className="text-sm text-muted-foreground">
-                <button
+                <a
                   className="quiet-link"
-                  type="button"
-                  onClick={handleEmailClick}
+                  href={emailHref}
+                  onClick={() => track('click-email')}
                 >
                   {s.linkEmail}
-                </button>
+                </a>
                 {' / '}
                 <a
                   className="quiet-link"

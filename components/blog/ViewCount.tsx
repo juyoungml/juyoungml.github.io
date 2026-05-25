@@ -13,10 +13,12 @@ export default function ViewCount({ slug, locale }: ViewCountProps) {
     let cancelled = false
     fetch('/views.json')
       .then(r => (r.ok ? r.json() : {}))
-      .then((data: Record<string, number>) => {
+      .then((data: unknown) => {
         if (cancelled) return
+        if (!data || typeof data !== 'object' || Array.isArray(data)) return
         const key = locale === 'ko' ? `ko:${slug}` : slug
-        if (data[key] && data[key] > 0) setCount(data[key])
+        const value = (data as Record<string, unknown>)[key]
+        if (typeof value === 'number' && value > 0) setCount(value)
       })
       .catch(() => {})
     return () => {

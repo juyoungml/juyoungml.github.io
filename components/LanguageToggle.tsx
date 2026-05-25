@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { track } from '../lib/analytics'
-import type { PostLocale } from '../lib/blog'
+import { blogPostPath } from '../lib/paths'
+import type { PostLocale } from '../lib/blog-types'
 
 const LABEL: Record<PostLocale, string> = { en: 'EN', ko: 'KO' }
 
@@ -8,10 +9,6 @@ interface Props {
   slug: string
   currentLocale: PostLocale
   availableLocales: PostLocale[]
-}
-
-function hrefFor(slug: string, locale: PostLocale) {
-  return locale === 'ko' ? `/blog/ko/${slug}` : `/blog/${slug}`
 }
 
 function persist(locale: PostLocale) {
@@ -39,7 +36,7 @@ export default function LanguageToggle({
         <span key={l} className="contents">
           {i > 0 && <span className="text-border">/</span>}
           <Link
-            href={hrefFor(slug, l)}
+            href={blogPostPath(slug, l)}
             onClick={() => {
               persist(l)
               if (l !== currentLocale) track('language-toggle', { to: l })
