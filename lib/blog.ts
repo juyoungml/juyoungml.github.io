@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
+import { tagSlug as tagSlugShared } from './tags'
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog')
 
@@ -35,14 +36,6 @@ export interface TocHeading {
   level: number
 }
 
-function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .replace(/[^a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-}
-
 export function extractHeadings(content: string): TocHeading[] {
   const lines = content.split('\n')
   const headings: TocHeading[] = []
@@ -67,7 +60,7 @@ export function extractHeadings(content: string): TocHeading[] {
       .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
       .trim()
 
-    const base = slugify(text)
+    const base = tagSlugShared(text)
     const count = seen.get(base) ?? 0
     seen.set(base, count + 1)
     const id = count === 0 ? base : `${base}-${count}`
@@ -170,19 +163,26 @@ function listSlugs(): string[] {
   return Array.from(slugs)
 }
 
+function postFileExists(slug: string, locale: PostLocale): boolean {
+  const suffix = locale === 'ko' ? '.ko' : ''
+  return ['mdx', 'md'].some(ext =>
+    fs.existsSync(path.join(BLOG_DIR, `${slug}${suffix}.${ext}`))
+  )
+}
+
 function availableLocalesFor(slug: string): PostLocale[] {
   const locales: PostLocale[] = []
-  if (readPostFile(slug, 'en')) locales.push('en')
-  if (readPostFile(slug, 'ko')) locales.push('ko')
+  if (postFileExists(slug, 'en')) locales.push('en')
+  if (postFileExists(slug, 'ko')) locales.push('ko')
   return locales
 }
 
-export function getAllBlogPosts({
-  includeDrafts = false,
-} = {}): BlogPostMeta[] {
-  ensureBlogDir()
+let postsCache: BlogPostMeta[] | null = null
 
-  return listSlugs()
+function loadAllPosts(): BlogPostMeta[] {
+  if (postsCache) return postsCache
+  ensureBlogDir()
+  postsCache = listSlugs()
     .map(slug => {
       const parsed = readPostFile(slug, 'en')
       if (!parsed) {
@@ -195,8 +195,48 @@ export function getAllBlogPosts({
         availableLocalesFor(slug)
       )
     })
-    .filter(post => includeDrafts || !post.draft)
     .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
+  return postsCache
+}
+
+export function getAllBlogPosts({
+  includeDrafts = false,
+} = {}): BlogPostMeta[] {
+  const all = loadAllPosts()
+  return includeDrafts ? all : all.filter(p => !p.draft)
+}
+
+export interface TagEntry {
+  slug: string
+  label: string
+  count: number
+}
+
+export function getTagIndex(locale: PostLocale = 'en'): TagEntry[] {
+  const labels = new Map<string, string>()
+  const counts = new Map<string, number>()
+  for (const post of getAllBlogPosts()) {
+    if (!post.availableLocales.includes(locale)) continue
+    for (const tag of post.tags) {
+      const slug = tagSlugShared(tag)
+      if (!labels.has(slug)) labels.set(slug, tag)
+      counts.set(slug, (counts.get(slug) ?? 0) + 1)
+    }
+  }
+  return Array.from(labels.entries())
+    .map(([slug, label]) => ({ slug, label, count: counts.get(slug) ?? 0 }))
+    .sort((a, b) => a.slug.localeCompare(b.slug))
+}
+
+export function getPostsByTag(
+  tag: string,
+  locale: PostLocale = 'en'
+): BlogPostMeta[] {
+  const target = tagSlugShared(tag)
+  return getAllBlogPosts().filter(post => {
+    if (!post.availableLocales.includes(locale)) return false
+    return post.tags.some(t => tagSlugShared(t) === target)
+  })
 }
 
 export function getBlogPost(slug: string): BlogPost {

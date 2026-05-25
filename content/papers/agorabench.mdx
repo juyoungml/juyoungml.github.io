@@ -1,0 +1,52 @@
+---
+title: 'Evaluating Language Models as Synthetic Data Generators'
+date: 2024-12-04
+year: 2025
+venue: ACL 2025
+description: AgoraBench compares language models as synthetic data generators across instance generation, response generation, and quality enhancement.
+authors:
+  - Seungone Kim
+  - Juyoung Suk
+  - Xiang Yue
+  - Vijay Viswanathan
+  - Seongyun Lee
+  - Yizhong Wang
+  - Kiril Gashteovski
+  - Carolin Lawrence
+  - Sean Welleck
+  - Graham Neubig
+arxiv: '2412.03679'
+pdf: https://arxiv.org/pdf/2412.03679
+links:
+  arxiv: https://arxiv.org/abs/2412.03679
+  code: https://github.com/neulab/data-agora
+tags:
+  - synthetic-data
+  - evaluation
+bibtex: |
+  @inproceedings{kim2025agorabench,
+    title     = {Evaluating Language Models as Synthetic Data Generators},
+    author    = {Kim, Seungone and Suk, Juyoung and Yue, Xiang and Viswanathan, Vijay and Lee, Seongyun and Wang, Yizhong and Gashteovski, Kiril and Lawrence, Carolin and Welleck, Sean and Neubig, Graham},
+    booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},
+    year      = {2025},
+    url       = {https://arxiv.org/abs/2412.03679}
+  }
+---
+
+## Abstract
+
+Given the increasing use of synthetic data in language model (LM)
+post-training, an LM's ability to generate high-quality data has become
+nearly as crucial as its ability to solve problems directly. While prior works
+have focused on developing effective data generation methods, they lack
+systematic comparison of different LMs as data generators in a unified
+setting.
+
+To address this gap, we propose AgoraBench, a benchmark that provides
+standardized settings and metrics to evaluate LMs' data generation abilities.
+Through synthesizing 1.26 million training instances using 6 LMs and
+training 99 student models, we uncover key insights about LMs' data
+generation capabilities. We find that LMs exhibit distinct strengths
+(e.g., GPT-4o excels at generating new problems, while Claude 3.5 Sonnet
+performs better at enhancing existing ones) and that an LM's data generation
+ability does not necessarily correlate with its problem-solving ability.

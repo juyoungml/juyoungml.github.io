@@ -1,0 +1,54 @@
+---
+title: 'Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models'
+date: 2024-05-02
+year: 2024
+venue: EMNLP 2024
+description: An open evaluator LM trained by merging direct-assessment and pairwise-ranking experts, narrowing the gap to GPT-4 on judge benchmarks.
+authors:
+  - Seungone Kim
+  - Juyoung Suk
+  - Shayne Longpre
+  - Bill Yuchen Lin
+  - Jamin Shin
+  - Sean Welleck
+  - Graham Neubig
+  - Moontae Lee
+  - Kyungjae Lee
+  - Minjoon Seo
+arxiv: '2405.01535'
+pdf: https://arxiv.org/pdf/2405.01535
+links:
+  arxiv: https://arxiv.org/abs/2405.01535
+  code: https://github.com/prometheus-eval/prometheus-eval
+  hf: https://huggingface.co/prometheus-eval
+tags:
+  - evaluation
+  - open-models
+bibtex: |
+  @inproceedings{kim2024prometheus2,
+    title     = {Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models},
+    author    = {Kim, Seungone and Suk, Juyoung and Longpre, Shayne and Lin, Bill Yuchen and Shin, Jamin and Welleck, Sean and Neubig, Graham and Lee, Moontae and Lee, Kyungjae and Seo, Minjoon},
+    booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+    year      = {2024},
+    url       = {https://arxiv.org/abs/2405.01535}
+  }
+---
+
+## Abstract
+
+Proprietary LMs such as GPT-4 are often employed to assess the quality of
+responses from various LMs. However, concerns including transparency,
+controllability, and affordability strongly motivate the development of
+open-source LMs specialized in evaluations. On the other hand, existing open
+evaluator LMs exhibit critical shortcomings: 1) they issue scores that
+significantly diverge from those assigned by humans, and 2) they lack the
+flexibility to perform both direct assessment and pairwise ranking, the two
+most prevalent forms of assessment.
+
+Additionally, they do not possess the ability to evaluate based on custom
+evaluation criteria, focusing instead on general attributes like helpfulness
+and harmlessness. To address these issues, we introduce Prometheus 2, a more
+powerful evaluator LM than its predecessor that closely mirrors human and
+GPT-4 judgements. Moreover, it is capable of processing both direct
+assessment and pair-wise ranking formats grouped with a user-defined
+evaluation criteria.

@@ -71,14 +71,12 @@ export default function Citation(props: CitationProps) {
       className="citation mt-16 border-t border-border pt-6 text-sm"
       aria-label={heading}
     >
-      <div className="mb-2 flex items-center justify-between">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-          {heading}
-        </h2>
+      <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
+        <h2>{heading}</h2>
         <button
           type="button"
           onClick={handleCopy}
-          className="quiet-link font-mono text-[11px] uppercase tracking-[0.12em]"
+          className="quiet-link"
           aria-live="polite"
         >
           {copied ? copiedLabel : copyLabel}

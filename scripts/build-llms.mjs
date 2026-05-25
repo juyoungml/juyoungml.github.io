@@ -11,6 +11,7 @@ import matter from 'gray-matter'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://juyoung.site'
 const ROOT = process.cwd()
 const BLOG_DIR = path.join(ROOT, 'content/blog')
+const PAPERS_DIR = path.join(ROOT, 'content/papers')
 const OUT_DIR = path.join(ROOT, 'out')
 
 const OVERVIEW = `# Juyoung Suk
@@ -49,6 +50,55 @@ in one shot. The structured index lives at ${SITE_URL}/llms.txt.
 
 Email: juyoung.suk [at] trillionlabs.co
 `
+
+function collectPapers() {
+  if (!fs.existsSync(PAPERS_DIR)) return []
+  const papers = []
+  for (const file of fs.readdirSync(PAPERS_DIR)) {
+    if (!/\.mdx?$/.test(file)) continue
+    const source = fs.readFileSync(path.join(PAPERS_DIR, file), 'utf8')
+    const { data, content } = matter(source)
+    if (data.draft === true) continue
+    if (!data.title || !data.date) continue
+    const slug = file.replace(/\.mdx?$/, '')
+    const authors = Array.isArray(data.authors)
+      ? data.authors.map(a => (typeof a === 'string' ? a : a.name)).join(', ')
+      : ''
+    papers.push({
+      slug,
+      title: data.title,
+      date: new Date(data.date).toISOString().slice(0, 10),
+      year: data.year ?? new Date(data.date).getUTCFullYear(),
+      venue: data.venue ?? 'Preprint',
+      award: data.award ?? '',
+      description: data.description ?? '',
+      authors,
+      arxiv: data.arxiv ?? '',
+      content: content.trim(),
+    })
+  }
+  return papers.sort((a, b) => (a.date < b.date ? 1 : -1))
+}
+
+function renderPaper(paper) {
+  const url = `${SITE_URL}/papers/${paper.slug}/`
+  const arxivLine = paper.arxiv
+    ? `arXiv: https://arxiv.org/abs/${paper.arxiv}`
+    : null
+  const header = [
+    `# ${paper.title}`,
+    '',
+    `Source: ${url}`,
+    `Venue: ${paper.venue}${paper.award ? ` (${paper.award})` : ''}`,
+    `Date: ${paper.date}`,
+    paper.authors ? `Authors: ${paper.authors}` : null,
+    arxivLine,
+    paper.description ? `Summary: ${paper.description}` : null,
+  ]
+    .filter(Boolean)
+    .join('\n')
+  return `${header}\n\n${paper.content}\n`
+}
 
 function collectPosts() {
   if (!fs.existsSync(BLOG_DIR)) return []
@@ -89,22 +139,35 @@ function renderPost(post) {
   return `${header}\n\n${post.content}\n`
 }
 
-function buildDocument(posts) {
+function buildDocument(posts, papers) {
   const generatedAt = new Date().toISOString()
   const parts = [
     OVERVIEW.trim(),
     '',
     `Generated: ${generatedAt}`,
     `Posts included: ${posts.length}`,
+    `Papers included: ${papers.length}`,
     '',
+    '---',
+    '',
+    '# Papers',
+    '',
+    'Reverse chronological. Each entry below corresponds to a canonical URL',
+    `under ${SITE_URL}/papers/.`,
+    '',
+  ]
+  for (const paper of papers) {
+    parts.push('---', '', renderPaper(paper))
+  }
+  parts.push(
     '---',
     '',
     '# Blog posts',
     '',
     'Reverse chronological. Each post below corresponds to a canonical URL',
     `under ${SITE_URL}/blog/.`,
-    '',
-  ]
+    ''
+  )
   for (const post of posts) {
     parts.push('---', '', renderPost(post))
   }
@@ -119,9 +182,12 @@ function main() {
     process.exit(1)
   }
   const posts = collectPosts()
-  const doc = buildDocument(posts)
+  const papers = collectPapers()
+  const doc = buildDocument(posts, papers)
   fs.writeFileSync(path.join(OUT_DIR, 'llms-full.txt'), doc)
-  console.log(`build-llms: wrote llms-full.txt (${posts.length} posts)`)
+  console.log(
+    `build-llms: wrote llms-full.txt (${posts.length} posts, ${papers.length} papers)`
+  )
 }
 
 main()

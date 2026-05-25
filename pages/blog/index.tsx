@@ -1,14 +1,27 @@
 import type { GetStaticProps, NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Navigation from '../../components/Navigation'
 import SEO from '../../components/SEO'
-import { getAllBlogPosts, type BlogPostMeta } from '../../lib/blog'
+import {
+  getAllBlogPosts,
+  getTagIndex,
+  type BlogPostMeta,
+  type TagEntry,
+} from '../../lib/blog'
+import { tagSlug as toTagSlug } from '../../lib/tags'
+
+const PagefindSearch = dynamic(
+  () => import('../../components/blog/PagefindSearch'),
+  { ssr: false }
+)
 
 interface BlogIndexProps {
   posts: BlogPostMeta[]
+  tags: TagEntry[]
 }
 
-const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
+const BlogIndex: NextPage<BlogIndexProps> = ({ posts, tags }) => {
   return (
     <>
       <SEO
@@ -35,10 +48,33 @@ const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
             </p>
           </header>
 
+          <section className="mb-10">
+            <h2 className="research-heading sr-only">search</h2>
+            <PagefindSearch locale="en" />
+          </section>
+
+          {tags.length > 0 && (
+            <section className="mb-10">
+              <h2 className="research-heading">tags</h2>
+              <ul className="flex flex-wrap gap-2 text-xs">
+                {tags.map(tag => (
+                  <li key={tag.slug}>
+                    <Link
+                      href={`/blog/tag/${tag.slug}`}
+                      className="inline-flex items-center rounded-full border border-border/70 px-2.5 py-1 text-muted-foreground transition-colors hover:border-accent/60 hover:text-accent"
+                    >
+                      #{tag.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
           <section>
             <h2 className="research-heading">recent posts</h2>
             {posts.length > 0 ? (
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {posts.map(post => (
                   <article
                     key={post.slug}
@@ -67,6 +103,19 @@ const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
                           : {post.description}
                         </span>
                       )}
+                      {post.tags.length > 0 && (
+                        <div className="mt-1.5 flex flex-wrap gap-1.5 text-xs">
+                          {post.tags.map(tag => (
+                            <Link
+                              key={tag}
+                              href={`/blog/tag/${toTagSlug(tag)}`}
+                              className="text-muted-foreground/80 transition-colors hover:text-accent"
+                            >
+                              #{tag}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </article>
                 ))}
@@ -84,12 +133,11 @@ const BlogIndex: NextPage<BlogIndexProps> = ({ posts }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<BlogIndexProps> = async () => {
-  return {
-    props: {
-      posts: getAllBlogPosts(),
-    },
-  }
-}
+export const getStaticProps: GetStaticProps<BlogIndexProps> = async () => ({
+  props: {
+    posts: getAllBlogPosts(),
+    tags: getTagIndex('en'),
+  },
+})
 
 export default BlogIndex

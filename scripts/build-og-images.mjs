@@ -14,6 +14,7 @@ import satori from 'satori'
 import { Resvg } from '@resvg/resvg-js'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://juyoung.site'
+const SITE_HOST = SITE_URL.replace(/^https?:\/\//, '').replace(/\/$/, '')
 const ROOT = process.cwd()
 const BLOG_DIR = path.join(ROOT, 'content/blog')
 const OUT_DIR = path.join(ROOT, 'out')
@@ -276,7 +277,7 @@ function ogTree({ title, description, date, readingTimeText, tags, locale }) {
                 type: 'div',
                 props: {
                   style: { color: '#6366f1', fontWeight: 600 },
-                  children: 'juyoung.site',
+                  children: SITE_HOST,
                 },
               },
             ],

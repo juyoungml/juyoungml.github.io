@@ -4,10 +4,12 @@ import Navigation from '../components/Navigation'
 import SEO from '../components/SEO'
 import { portfolioData } from '../data/portfolio'
 import { getAllBlogPosts, type BlogPostMeta } from '../lib/blog'
-import { SITE_DESCRIPTION, SITE_NAME } from '../lib/site'
+import { getAllPapers, type PaperMeta } from '../lib/papers'
+import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME } from '../lib/site'
 
 interface HomeProps {
   posts: BlogPostMeta[]
+  papers: PaperMeta[]
 }
 
 const selectedWork = [
@@ -26,12 +28,12 @@ const selectedWork = [
   {
     title: 'BiGGen Bench',
     description:
-      'Fine-grained benchmark for evaluating language model generations.',
-    href: 'https://arxiv.org/abs/2406.05761',
+      'Fine-grained benchmark for evaluating language model generations. NAACL 2025 Best Paper Award.',
+    href: '/papers/biggen-bench',
   },
 ]
 
-const Home: NextPage<HomeProps> = ({ posts }) => {
+const Home: NextPage<HomeProps> = ({ posts, papers }) => {
   const { personal } = portfolioData
   const obfuscatedEmail = `${personal.emailUser} [at] ${personal.emailDomain}`
 
@@ -128,6 +130,10 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
                   scholar
                 </a>
                 {' / '}
+                <a className="quiet-link" href={SITE_AUTHOR.semanticScholar}>
+                  semantic scholar
+                </a>
+                {' / '}
                 <a className="quiet-link" href={personal.linkedin}>
                   linkedin
                 </a>
@@ -171,6 +177,34 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
             )}
           </section>
 
+          <section className="mb-12">
+            <h2 className="research-heading">
+              <Link className="work-link" href="/papers">
+                papers
+              </Link>
+            </h2>
+            {papers.length > 0 ? (
+              <div className="space-y-2">
+                {papers.slice(0, 6).map(paper => (
+                  <div
+                    key={paper.slug}
+                    className="grid gap-1 text-sm sm:grid-cols-[70px_1fr]"
+                  >
+                    <span
+                      className="text-muted-foreground"
+                      aria-label={`Year ${paper.year}`}
+                    >
+                      {paper.year}
+                    </span>
+                    <Link className="work-link" href={`/papers/${paper.slug}`}>
+                      {paper.title}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </section>
+
           <section id="work" className="mb-12">
             <h2 className="research-heading">selected work</h2>
             <ol className="space-y-4">
@@ -207,6 +241,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   return {
     props: {
       posts: getAllBlogPosts(),
+      papers: getAllPapers(),
     },
   }
 }

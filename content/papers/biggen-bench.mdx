@@ -1,0 +1,76 @@
+---
+title: 'The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models'
+date: 2024-06-09
+year: 2024
+venue: NAACL 2025
+award: Best Paper Award
+description: A 765-instance benchmark covering nine capabilities with instance-specific rubrics, evaluated by language model judges.
+authors:
+  - Seungone Kim
+  - Juyoung Suk
+  - Ji Yong Cho
+  - Shayne Longpre
+  - Chaeeun Kim
+  - Dongkeun Yoon
+  - Guijin Son
+  - Yejin Cho
+  - Sheikh Shafayat
+  - Jinheon Baek
+  - Sue Hyun Park
+  - Hyeonbin Hwang
+  - Jinkyung Jo
+  - Hyowon Cho
+  - Haebin Shin
+  - Seongyun Lee
+  - Hanseok Oh
+  - Noah Lee
+  - Namgyu Ho
+  - Se June Joo
+  - Miyoung Ko
+  - Yoonjoo Lee
+  - Hyungjoo Chae
+  - Jamin Shin
+  - Joel Jang
+  - Seonghyeon Ye
+  - Bill Yuchen Lin
+  - Sean Welleck
+  - Graham Neubig
+  - Moontae Lee
+  - Kyungjae Lee
+  - Minjoon Seo
+arxiv: '2406.05761'
+pdf: https://arxiv.org/pdf/2406.05761
+links:
+  arxiv: https://arxiv.org/abs/2406.05761
+  code: https://github.com/prometheus-eval/prometheus-eval/tree/main/BiGGen-Bench
+  hf: https://huggingface.co/datasets/prometheus-eval/BiGGen-Bench
+tags:
+  - evaluation
+  - benchmark
+bibtex: |
+  @inproceedings{kim2025biggen,
+    title     = {The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models},
+    author    = {Kim, Seungone and Suk, Juyoung and Cho, Ji Yong and Longpre, Shayne and Kim, Chaeeun and Yoon, Dongkeun and Son, Guijin and Cho, Yejin and Shafayat, Sheikh and Baek, Jinheon and others},
+    booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+    year      = {2025},
+    note      = {Best Paper Award},
+    url       = {https://arxiv.org/abs/2406.05761}
+  }
+---
+
+## Abstract
+
+As language models (LMs) become capable of handling a wide range of tasks,
+their evaluation is becoming as challenging as their development. Most
+generation benchmarks currently assess LMs using abstract evaluation criteria
+like helpfulness and harmlessness, which often lack the flexibility and
+granularity of human assessment. Additionally, these benchmarks tend to focus
+disproportionately on specific capabilities such as instruction following,
+leading to coverage bias.
+
+To overcome these limitations, we introduce the BiGGen Bench, a principled
+generation benchmark designed to thoroughly evaluate nine distinct
+capabilities of LMs across 77 diverse tasks. A key feature of the BiGGen Bench
+is its use of instance-specific evaluation criteria, closely mirroring the
+nuanced discernment of human evaluation. We apply this benchmark to assess 103
+frontier LMs using five evaluator LMs.

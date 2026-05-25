@@ -241,7 +241,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T21 · Share buttons on posts
 
-- [ ] **Effort:** XS · **Deps:** T02
+- [x] **Effort:** XS · **Deps:** T02
 - **Do:**
   - Plain `<a>` links (no SDK): X intent URL, LinkedIn share URL, copy-link button.
   - Inline below citation block.
@@ -251,7 +251,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T22 · Tags / categories pages
 
-- [ ] **Effort:** S · **Deps:** T03
+- [x] **Effort:** S · **Deps:** T03
 - **Do:**
   - Generate `/blog/tag/[tag]/` and `/blog/ko/tag/[tag]/` from frontmatter `tags`.
   - Add tag chips on `/blog/` index linking to those pages.
@@ -262,7 +262,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T23 · Paper landing pages
 
-- [ ] **Effort:** L · **Deps:** T09
+- [x] **Effort:** L · **Deps:** T09
 - **Do:**
   - Schema: `content/papers/<slug>.mdx` with frontmatter (authors, venue, year, links to PDF/arXiv/HF/code, BibTeX).
   - Build `pages/papers/[slug].tsx` rendering them with `ScholarlyArticle` JSON-LD.
@@ -285,7 +285,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T25 · Academic profile links
 
-- [ ] **Effort:** XS · **Deps:** T09
+- [x] **Effort:** XS · **Deps:** T09 _(Semantic Scholar wired in; ORCID intentionally null until registered — see `lib/site.ts`)_
 - **Do:**
   - Add ORCID + Semantic Scholar URLs to `Person` JSON-LD `sameAs` and to the visible contact section.
   - Add `citation_*` meta tags on paper landing pages (T23).
@@ -318,7 +318,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T28 · Blog search (Pagefind)
 
-- [ ] **Effort:** S · **Deps:** T03
+- [x] **Effort:** S · **Deps:** T03
 - **Do:**
   - Add Pagefind as a postbuild step; emit `out/pagefind/`.
   - Search UI on `/blog/` page.
@@ -328,7 +328,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T29 · TOC + reading progress
 
-- [ ] **Effort:** S · **Deps:** —
+- [x] **Effort:** S · **Deps:** —
 - **Do:**
   - Use `extractHeadings` (already in `lib/blog.ts`) to render sticky TOC on desktop blog posts.
   - Top-of-page progress bar based on scroll.
@@ -338,7 +338,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T30 · `/now`, reading list, talks pages
 
-- [ ] **Effort:** M · **Deps:** —
+- [x] **Effort:** M · **Deps:** —
 - **Do:**
   - Three small content-driven pages: `/now/`, `/reading/`, `/talks/`.
   - Each is MDX-backed for fast updates.

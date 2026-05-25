@@ -51,9 +51,7 @@ export default function TableOfContents({ headings }: TocProps) {
 
   return (
     <nav aria-label="Table of contents" className="font-sans text-sm">
-      <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-        contents
-      </p>
+      <p className="mb-3 text-xs text-muted-foreground">contents</p>
       <ul className="space-y-1 border-l border-border">
         {headings.map(h => {
           const isActive = activeId === h.id
