@@ -5,9 +5,9 @@
 #let body-color = rgb("#1a1a1a")
 #let gray-color = rgb("#555555")
 #let muted = rgb("#8a8a8a")
-#let rule-color = rgb("#1a1a1a")
-// Restrained accent reserved for links only.
-#let accent = rgb("#1a1a1a")
+// 남색 — deep navy reserved for links and section rules.
+#let accent = rgb("#1f3a68")
+#let rule-color = accent
 
 #let body-fonts = (
   "Charter",
