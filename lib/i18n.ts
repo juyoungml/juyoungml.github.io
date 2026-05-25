@@ -19,6 +19,7 @@ export interface ChromeStrings {
   noPosts: string
   dateLocale: string
   homeAriaSuffix: string
+  backToBlog: string
 }
 
 export const STRINGS: Record<SiteLocale, ChromeStrings> = {
@@ -44,6 +45,7 @@ export const STRINGS: Record<SiteLocale, ChromeStrings> = {
     noPosts: 'No public notes yet.',
     dateLocale: 'en',
     homeAriaSuffix: '— home',
+    backToBlog: 'back to blog',
   },
   ko: {
     navHome: '홈',
@@ -67,5 +69,6 @@ export const STRINGS: Record<SiteLocale, ChromeStrings> = {
     noPosts: '아직 공개된 글이 없습니다.',
     dateLocale: 'ko-KR',
     homeAriaSuffix: '— 홈',
+    backToBlog: '블로그로 돌아가기',
   },
 }
