@@ -23,7 +23,7 @@ const ENABLE_ANALYTICS = process.env.NODE_ENV === 'production'
 class MyDocument extends Document<MyDocumentProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
     const initialProps = await Document.getInitialProps(ctx)
-    const koSlugs = getAllBlogPosts({ includeDrafts: true })
+    const koSlugs = getAllBlogPosts()
       .filter(p => p.availableLocales.includes('ko'))
       .map(p => p.slug)
     // Pretendard is only needed where Korean glyphs render. Today that's

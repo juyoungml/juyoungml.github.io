@@ -17,6 +17,7 @@ import Video from './Video'
 import LanguageToggle from '../LanguageToggle'
 import { postComponents } from './posts'
 import type { BlogPostMeta, PostLocale, TocHeading } from '../../lib/blog'
+import { STRINGS } from '../../lib/i18n'
 
 const sharedComponents = {
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
@@ -84,7 +85,7 @@ export default function BlogPostView({
 
       <div className="min-h-screen bg-background">
         <ReadingProgress />
-        <Navigation name="Juyoung Suk" />
+        <Navigation name="Juyoung Suk" locale={locale} />
 
         <main
           id="main-content"
@@ -92,8 +93,11 @@ export default function BlogPostView({
           className="research-container section-padding relative py-12"
           lang={locale}
         >
-          <Link href="/blog" className="quiet-link mb-10 inline-flex text-sm">
-            back to blog
+          <Link
+            href={locale === 'ko' ? '/blog/ko' : '/blog'}
+            className="quiet-link mb-10 inline-flex text-sm"
+          >
+            {STRINGS[locale].backToBlog}
           </Link>
 
           <aside

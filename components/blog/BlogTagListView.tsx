@@ -2,10 +2,10 @@ import Link from 'next/link'
 import Navigation from '../Navigation'
 import SEO from '../SEO'
 import type { BlogPostMeta, PostLocale } from '../../lib/blog'
+import { STRINGS as CHROME_STRINGS } from '../../lib/i18n'
 
 const STRINGS = {
   en: {
-    backLabel: 'back to blog',
     tagLabel: 'tag',
     countLine: (n: number, label: string) => (
       <>
@@ -18,7 +18,6 @@ const STRINGS = {
     dateLocale: 'en' as const,
   },
   ko: {
-    backLabel: '블로그로 돌아가기',
     tagLabel: '태그',
     countLine: (n: number, label: string) => (
       <>
@@ -59,7 +58,7 @@ export default function BlogTagListView({
       />
 
       <div className="min-h-screen bg-background">
-        <Navigation name="Juyoung Suk" />
+        <Navigation name="Juyoung Suk" locale={locale} />
 
         <main
           id="main-content"
@@ -67,8 +66,11 @@ export default function BlogTagListView({
           className="research-container section-padding py-12"
           lang={locale}
         >
-          <Link href="/blog" className="quiet-link mb-10 inline-flex text-sm">
-            {s.backLabel}
+          <Link
+            href={basePath}
+            className="quiet-link mb-10 inline-flex text-sm"
+          >
+            {CHROME_STRINGS[locale].backToBlog}
           </Link>
 
           <header className="mb-14">
