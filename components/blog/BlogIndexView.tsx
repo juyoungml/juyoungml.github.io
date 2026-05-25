@@ -67,6 +67,13 @@ export default function BlogIndexView({
           { locale: 'en', path: '/blog/' },
           { locale: 'ko', path: '/blog/ko/' },
         ]}
+        breadcrumbs={[
+          {
+            name: locale === 'ko' ? '홈' : 'Home',
+            path: locale === 'ko' ? '/ko/' : '/',
+          },
+          { name: locale === 'ko' ? '블로그' : 'Blog', path: `${base}/` },
+        ]}
       />
 
       <div className="min-h-screen bg-background">

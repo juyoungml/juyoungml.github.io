@@ -55,6 +55,17 @@ export default function BlogTagListView({
         path={`${basePath}/tag/${tagSlug}`}
         ogType="website"
         locale={locale}
+        breadcrumbs={[
+          {
+            name: locale === 'ko' ? '홈' : 'Home',
+            path: locale === 'ko' ? '/ko/' : '/',
+          },
+          {
+            name: locale === 'ko' ? '블로그' : 'Blog',
+            path: `${basePath}/`,
+          },
+          { name: tagLabel, path: `${basePath}/tag/${tagSlug}/` },
+        ]}
       />
 
       <div className="min-h-screen bg-background">

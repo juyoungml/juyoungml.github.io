@@ -75,6 +75,17 @@ export default function BlogPostView({
         alternateLocales={availableLocales.length > 1 ? alternateLocales : []}
         publishedTime={meta.date}
         tags={meta.tags}
+        breadcrumbs={[
+          {
+            name: locale === 'ko' ? '홈' : 'Home',
+            path: locale === 'ko' ? '/ko/' : '/',
+          },
+          {
+            name: locale === 'ko' ? '블로그' : 'Blog',
+            path: locale === 'ko' ? '/blog/ko/' : '/blog/',
+          },
+          { name: meta.title, path },
+        ]}
       />
       <Head>
         <link

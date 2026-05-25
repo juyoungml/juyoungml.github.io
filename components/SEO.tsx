@@ -13,6 +13,11 @@ export interface AlternateLocale {
   path: string
 }
 
+export interface BreadcrumbCrumb {
+  name: string
+  path: string
+}
+
 export interface SEOProps {
   title: string
   description: string
@@ -26,11 +31,7 @@ export interface SEOProps {
   author?: string
   tags?: string[]
   noindex?: boolean
-  /**
-   * Optional schema.org JSON-LD blocks. The SEO component always emits a
-   * sensible default (Person on websites, BlogPosting on articles); pass
-   * additional graph nodes here to extend rather than replace.
-   */
+  breadcrumbs?: BreadcrumbCrumb[]
   extraJsonLd?: object[]
 }
 
@@ -67,6 +68,7 @@ export default function SEO({
   author = SITE_AUTHOR.name,
   tags = [],
   noindex = false,
+  breadcrumbs,
   extraJsonLd = [],
 }: SEOProps) {
   const fullTitle = title === SITE_NAME ? SITE_NAME : `${title} · ${SITE_NAME}`
@@ -102,9 +104,40 @@ export default function SEO({
         }
       : null
 
+  const isHome = path === '/' || path === '/ko/'
+  const websiteSchema = isHome
+    ? {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        inLanguage: locale,
+        publisher: { '@id': `${SITE_URL}/#person` },
+      }
+    : null
+
+  const breadcrumbSchema =
+    breadcrumbs && breadcrumbs.length > 0
+      ? {
+          '@type': 'BreadcrumbList',
+          itemListElement: breadcrumbs.map((c, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: c.name,
+            item: absoluteUrl(c.path),
+          })),
+        }
+      : null
+
   const jsonLdGraph = {
     '@context': 'https://schema.org',
-    '@graph': [personSchema, articleSchema, ...extraJsonLd].filter(Boolean),
+    '@graph': [
+      personSchema,
+      articleSchema,
+      websiteSchema,
+      breadcrumbSchema,
+      ...extraJsonLd,
+    ].filter(Boolean),
   }
 
   return (

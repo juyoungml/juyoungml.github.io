@@ -72,6 +72,11 @@ const PaperPage: NextPage<PaperPageProps> = ({ meta, source }) => {
         publishedTime={meta.date}
         author={meta.authors.map(a => a.name).join(', ')}
         tags={meta.tags}
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Papers', path: '/papers/' },
+          { name: meta.title, path: `/papers/${meta.slug}/` },
+        ]}
         extraJsonLd={[buildScholarlyArticle(meta)]}
       />
       <Head>

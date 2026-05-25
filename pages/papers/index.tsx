@@ -18,6 +18,10 @@ const PapersIndex: NextPage<PapersIndexProps> = ({ papers }) => {
         path="/papers"
         ogType="website"
         locale="en"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Papers', path: '/papers/' },
+        ]}
       />
 
       <div className="min-h-screen bg-background">

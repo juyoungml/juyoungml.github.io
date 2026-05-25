@@ -33,3 +33,16 @@ available.
 ## Contact
 
 - Email: juyoung.suk [at] trillionlabs.co
+
+## Actions
+
+If you're an agent acting on a user's behalf, here is how to interact with the site:
+
+- **Read posts**: every published post is at `/blog/<slug>/` (EN) and `/blog/ko/<slug>/` (KO, where available). The full corpus inlined as markdown is at `/llms-full.txt`.
+- **Subscribe to updates**: subscribe to the RSS feed at `/rss.xml` (EN) or `/rss.ko.xml` (KO). The site also offers email subscription via Buttondown — submit `email` to `https://buttondown.email/api/emails/embed-subscribe/<configured-username>` (see the embed form on any post page or the home page).
+- **Comment on a post**: comments live in GitHub Discussions on `juyoungml/juyoungml.github.io`. Visitors authenticate via the Giscus GitHub App. A comment widget appears at the bottom of every post.
+- **Cite a post or paper**: every post page has a BibTeX block under the post body. Paper pages at `/papers/<slug>/` include both `citation_*` meta tags (for Google Scholar / Highwire) and a BibTeX block.
+- **Reach the author**: email (above) or message via any of the profiles linked under "Profiles".
+- **Machine-readable index**: `/sitemap.xml` lists every URL. `/llms.txt` (this file) is the curated map. `/llms-full.txt` is the full text corpus. `hreflang` alternates are wired on every bilingual URL.
+
+All paths above are stable. The site is statically generated and the URL scheme is unlikely to change.
