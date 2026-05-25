@@ -8,6 +8,7 @@ import TableOfContents from './TableOfContents'
 import Figure from './Figure'
 import Callout from './Callout'
 import Citation from './Citation'
+import Comments from './Comments'
 import ShareButtons from './ShareButtons'
 import ReadingProgress from './ReadingProgress'
 import Video from './Video'
@@ -148,6 +149,8 @@ export default function BlogPostView({
                 locale={locale}
               />
             </div>
+
+            <Comments locale={locale} />
           </article>
         </main>
       </div>
