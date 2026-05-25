@@ -39,6 +39,21 @@ const LOCALE_OG: Record<SiteLocale, string> = {
   ko: 'ko_KR',
 }
 
+const VERIFICATIONS: Array<{ name: string; value: string | undefined }> = [
+  {
+    name: 'google-site-verification',
+    value: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+  {
+    name: 'msvalidate.01',
+    value: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+  },
+  {
+    name: 'naver-site-verification',
+    value: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+  },
+]
+
 export default function SEO({
   title,
   description,
@@ -105,6 +120,10 @@ export default function SEO({
       {noindex && <meta name="robots" content="noindex,nofollow" />}
 
       <link rel="canonical" href={canonical} />
+
+      {VERIFICATIONS.filter(v => v.value).map(v => (
+        <meta key={v.name} name={v.name} content={v.value} />
+      ))}
 
       {alternateLocales.map(alt => (
         <link
