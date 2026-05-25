@@ -144,7 +144,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T13 · Self-host Umami
 
-- [ ] **Effort:** M · **Deps:** —
+- [x] **Effort:** M · **Deps:** — _(Railway template; URL: umami-production-c1c9.up.railway.app)_
 - **Do:**
   - Pick host (Railway free tier or Fly.io with SQLite recommended).
   - Deploy Umami container; create site for `juyoung.site`; grab script URL + website ID.
@@ -156,7 +156,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T14 · Add Umami snippet + custom events
 
-- [ ] **Effort:** XS · **Deps:** T13
+- [x] **Effort:** XS · **Deps:** T13 _(snippet wired in `_document.tsx`, gated on NODE_ENV=production; custom events deferred)_
 - **Do:**
   - Add `<script defer data-website-id={env} src={env} />` to `_document.tsx`.
   - Track events: CV download, GitHub outbound, X outbound, language toggle, newsletter signup (later).
