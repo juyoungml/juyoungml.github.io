@@ -8,9 +8,15 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 - **Status:** `[ ]` todo · `[~]` in progress · `[x]` done
 - **Deps:** task IDs that must finish first. `—` = no deps.
 
+**Status snapshot (2026-05-25):** 23/31 complete.
+
+- **Phase 0** — 16/16, launch-ready
+- **Phase 1** — 4/10 — open: T17, T18, **T19 (next)**, T20, T24, T26
+- **Phase 2** — 3/5 — open: T27, T31 _(T31 unblocked now that Umami is live)_
+
 ---
 
-## Phase 0 — Pre-launch must-haves
+## Phase 0 — Pre-launch must-haves (complete)
 
 ### T01 · Commit CNAME + bump site URL to custom domain
 
@@ -166,7 +172,7 @@ Actionable breakdown of `ROADMAP.md` with dependencies and verification steps.
 
 ### T15 · Lighthouse + Core Web Vitals baseline
 
-- [x] **Effort:** XS · **Deps:** T02, T06, T09, T10, T12, T14 _(ran without T14 — Umami not yet self-hosted)_
+- [x] **Effort:** XS · **Deps:** T02, T06, T09, T10, T12, T14 _(baseline below predates T14; re-run with Umami snippet in place is optional — small JS payload, expect ≤2pt delta on Perf)_
 
 **Baseline (2026-05-14, `next build` + `npx serve out`, lighthouse 12.x):**
 
