@@ -51,7 +51,7 @@ export const STRINGS: Record<SiteLocale, ChromeStrings> = {
     jobTitle: 'Trillion Labs · ML 엔지니어',
     aboutHeading: '소개',
     bioP1:
-      '안녕하세요. 서울에 있는 Trillion Labs에서 ML 엔지니어로 일하는 석주영입니다. 롱컨텍스트 학습, 사전학습 인프라, 평가, 그리고 그날그날 마주치는 문제들을 다룹니다.',
+      '안녕하세요. 서울에 있는 Trillion Labs에서 ML 엔지니어로 일하는 석주영입니다. Long context, Pretraining, 평가, 그리고 그날그날 마주치는 문제들을 다룹니다.',
     bioP2:
       '가장 좋아하는 건 깊이 파고드는 일입니다. 시스템을 밑바닥부터 이해하고, 추상화 아래에 깔린 메커니즘을 찾아내고, 굳이 사람 손이 닿지 않아도 될 부분은 자동화해 두는 걸 좋아합니다. 어떤 추상화가 너무 매끄럽게 느껴질 때, 그 호기심을 따라가는 편입니다.',
     bioP3:
