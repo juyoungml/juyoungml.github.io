@@ -14,9 +14,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "typecheck": "tsc --noEmit",
-    "cv:build": "cd cv && ./build.sh",
-    "cv:extract": "cd cv && uv run extract-data.py",
-    "cv:sync": "npm run cv:extract && npm run cv:build"
+    "cv:build": "typst compile cv/cv.typ cv/juyoung-cv.pdf && cp cv/juyoung-cv.pdf public/juyoung-cv.pdf",
+    "cv:watch": "typst watch cv/cv.typ cv/juyoung-cv.pdf"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

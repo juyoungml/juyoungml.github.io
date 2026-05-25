@@ -3,46 +3,52 @@ name: Build CV
 on:
   push:
     paths:
-      - 'cv/**'
+      - 'cv/cv.typ'
+      - 'cv/lib.typ'
+      - '.github/workflows/build-cv.yml'
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-cv
+  cancel-in-progress: false
 
 jobs:
   build-cv:
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 5
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Install Typst
-      run: |
-        wget https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz
-        tar -xf typst-x86_64-unknown-linux-musl.tar.xz
-        sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Install fonts (Charter + Noto CJK KR)
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y fonts-noto-cjk fonts-charter fontconfig
-        fc-cache -fv
-        
-    - name: Build CV
-      run: |
-        cd cv
-        typst compile cv.typ juyoung-cv.pdf
-        mkdir -p ../public
-        cp juyoung-cv.pdf ../public/juyoung-cv.pdf
-        
-    - name: Commit CV if changed
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add public/juyoung-cv.pdf
-        git diff --staged --quiet || git commit -m "🤖 Update CV PDF
+      - name: Install fonts (Charter + Noto CJK KR)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            fonts-charter fonts-noto-cjk fontconfig
+          fc-cache -fv
 
-Generated from cv/cv.typ
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: '0.14.2'
 
-🤖 Generated with [Claude Code](https://claude.ai/code)
+      - name: Compile CV
+        run: |
+          typst compile cv/cv.typ cv/juyoung-cv.pdf
+          mkdir -p public
+          cp cv/juyoung-cv.pdf public/juyoung-cv.pdf
 
-Co-Authored-By: Claude <noreply@anthropic.com>"
-        git push || echo "No changes to commit"
+      - name: Commit CV if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/juyoung-cv.pdf
+          if git diff --staged --quiet; then
+            echo "No changes to CV"
+          else
+            git commit -m "Rebuild CV PDF from cv/cv.typ"
+            git push
+          fi

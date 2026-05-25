@@ -1,71 +1,49 @@
-# CV Management with Typst
+# CV (Typst)
 
-This directory contains the CV management system using Typst for better maintainability and web integration.
+Source for `public/juyoung-cv.pdf`. Edited in [Typst](https://typst.app/) — fast compile, modern syntax, no LaTeX.
 
-## Quick Start
+## Files
 
-### Prerequisites
+- `cv.typ` — content + layout. Edit this.
+- `lib.typ` — styles and components (section headers, rows, publication renderer). Imported by `cv.typ`. Touch this only when you want a visual change.
+- `juyoung-cv.pdf` — compiled output. Regenerated on every CI build.
+- `_archive/overleaf/` — original LaTeX CV, kept for reference. Not built.
 
-Install Typst:
-
-```bash
-# Using Cargo (Rust)
-cargo install --git https://github.com/typst/typst --locked typst-cli
-
-# Or download from: https://github.com/typst/typst
-```
-
-### Local Development
+## Local build
 
 ```bash
-# Build CV and copy to website
-./build.sh
+# Install Typst (one-time)
+brew install typst
 
-# Extract data for website sync
-python3 extract-data.py
-
-# Or use npm scripts from project root
+# Compile and copy to public/
 npm run cv:build
-npm run cv:extract
-npm run cv:sync  # Both extract and build
+
+# Or hot-reload while editing
+npm run cv:watch
 ```
 
-## File Structure
+## Fonts
 
-- `cv.typ` - Main CV source file in Typst format
-- `build.sh` - Build script for local development
-- `extract-data.py` - Data extraction for website sync
-- `overleaf/` - Original LaTeX CV from Overleaf (reference)
+The CV uses **Charter** for body text and a sans-serif (Inter / SF Pro / Helvetica Neue) for section headers. Korean glyphs fall back through **Apple SD Gothic Neo** → **Noto Sans CJK KR** → **Nanum Gothic**, so the Honors line `과학기술정보통신부 장관상` renders correctly on both macOS (Apple SD Gothic Neo) and CI (Noto Sans CJK KR, installed in `build-cv.yml`).
 
-## Workflow
+If you compile locally and Korean glyphs render as `□`, install Noto CJK:
 
-1. **Edit CV**: Update content in `cv.typ`
-2. **Build locally**: Run `./build.sh` to generate PDF
-3. **Extract data**: Run `python3 extract-data.py` for website sync
-4. **Commit changes**: Git will trigger automatic CV build via GitHub Actions
+```bash
+brew install --cask font-noto-sans-cjk-kr
+```
 
-## Typst vs LaTeX Benefits
+## CI
 
-- ✅ Faster compilation (near-instant)
-- ✅ Modern, readable syntax
-- ✅ Better error messages
-- ✅ Easier data extraction for web
-- ✅ Version control friendly
-- ✅ Built-in web compilation support
+`.github/workflows/build-cv.yml` rebuilds the PDF on every push that touches `cv/cv.typ`, `cv/lib.typ`, or the workflow itself. Steps:
 
-## Automatic Deployment
+1. Install Charter + Noto CJK KR via apt
+2. Install Typst via `typst-community/setup-typst@v4` (pinned to `0.14.2`)
+3. Compile and copy to `public/`
+4. Commit the PDF back to `main` if it changed
 
-GitHub Actions automatically:
+## Editing tips
 
-- Builds CV PDF when `cv/` files change
-- Commits updated PDF to `public/juyoung-suk-cv.pdf`
-- Deploys to GitHub Pages with website
-
-## Data Sync
-
-The CV and website stay in sync through:
-
-- Structured data extraction from `cv.typ`
-- Automatic PDF generation
-- Download link in website hero section
-- Consistent contact information and content
+- **Adding a publication**: append a dict to the `publications` array in `cv.typ`. Numbering and rendering happen automatically via `publication-list`.
+- **Adding a talk / award / role**: scroll to the relevant section in `cv.typ` and add another `#row(...)` block.
+- **Changing visual style**: edit `lib.typ` (accent color, fonts, section header treatment).
+- **Versioning**: the footer pulls `"Last updated: ..."` from a literal in `cv.typ`. Bump it when you make non-trivial content changes.
