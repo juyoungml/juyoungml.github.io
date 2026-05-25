@@ -2,41 +2,55 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
-        env:
-          CI: true
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
 
       - name: Build
         run: |
           npm run build
           touch out/.nojekyll
-          ls -la out/
         env:
-          CI: true
           NODE_ENV: production
+          UMAMI_USERNAME: ${{ secrets.UMAMI_USERNAME }}
+          UMAMI_PASSWORD: ${{ secrets.UMAMI_PASSWORD }}
+          NEXT_PUBLIC_BUTTONDOWN_USERNAME: ${{ secrets.NEXT_PUBLIC_BUTTONDOWN_USERNAME }}
+          NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ secrets.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+          NEXT_PUBLIC_BING_SITE_VERIFICATION: ${{ secrets.NEXT_PUBLIC_BING_SITE_VERIFICATION }}
+          NEXT_PUBLIC_NAVER_SITE_VERIFICATION: ${{ secrets.NEXT_PUBLIC_NAVER_SITE_VERIFICATION }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: out
           branch: gh-pages
-          clean: true 
+          clean: true
