@@ -26,25 +26,39 @@
 // Apply page-wide setup. Call once at the top of cv.typ.
 #let setup(doc) = {
   set document(title: "Juyoung Suk CV", author: "Juyoung Suk", date: auto)
-  set page(paper: "us-letter", margin: (x: 2cm, y: 1.8cm))
-  set text(font: body-fonts, size: 10pt, lang: "en", fill: body-color)
-  set par(justify: true, leading: 0.52em)
+  set page(paper: "us-letter", margin: (x: 1.5cm, y: 1cm))
+  set text(font: body-fonts, size: 9.5pt, lang: "en", fill: body-color)
+  set par(justify: true, leading: 0.48em)
   show link: it => underline(stroke: 0.4pt + accent, offset: 1.5pt)[#text(fill: accent)[#it]]
   doc
 }
 
+// Render the section title block (header + rule). Used inside `section`,
+// which keeps it stuck to its content via a non-breakable block.
 #let section-header(title) = {
-  v(0.35cm)
+  v(0.2cm)
   text(
-    size: 10pt,
+    size: 9.5pt,
     weight: "bold",
     tracking: 1.6pt,
     font: sans-fonts,
     fill: accent,
   )[#upper(title)]
-  v(2pt)
+  v(1pt)
   line(length: 100%, stroke: 0.6pt + accent)
-  v(0.15cm)
+  v(0.08cm)
+}
+
+// Section helper. Wraps the title and the first chunk of body content in a
+// non-breakable block so the header never lands alone at the foot of a page.
+// Subsequent content (passed via `rest`) can flow naturally onto the next
+// page.
+#let section(title, head, rest: none) = {
+  block(breakable: false)[
+    #section-header(title)
+    #head
+  ]
+  if rest != none { rest }
 }
 
 // Header (name + tagline + link row).
@@ -67,9 +81,9 @@
     column-gutter: 1em,
     align: (left, right),
     body,
-    text(size: 10pt, style: "italic", fill: gray-color)[#date],
+    text(size: 9.5pt, style: "italic", fill: gray-color)[#date],
   )
-  v(0.1cm)
+  v(0.04cm)
 }
 
 // Bulleted block.
@@ -81,14 +95,16 @@
 }
 
 // Render one publication. Tight spacing — entries stack densely.
+// Wrapped in a non-breakable block so title/authors/venue never split
+// across a page boundary.
 #let publication(num, title, authors, venue) = {
-  [
+  block(breakable: false)[
     *[#num] #title*
-    #v(0.04cm)
-    #text(size: 9pt)[#authors]
+    #v(0.02cm)
+    #text(size: 8.5pt)[#authors]
     #v(0.01cm)
-    #text(size: 9pt, style: "italic", fill: gray-color)[#venue]
-    #v(0.1cm)
+    #text(size: 8.5pt, style: "italic", fill: gray-color)[#venue]
+    #v(0.07cm)
   ]
 }
 

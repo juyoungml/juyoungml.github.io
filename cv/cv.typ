@@ -25,32 +25,32 @@
   (
     title: "Evaluating Language Models as Synthetic Data Generators",
     authors: [Seungone Kim, *Juyoung Suk*, Xiang Yue, Vijay Viswanathan, Seongyun Lee, Yizhong Wang, Kiril Gashteovski, Carolin Lawrence, Sean Welleck, Graham Neubig],
-    venue: "ACL 2025 · 41 citations",
+    venue: "ACL 2025",
   ),
   (
     title: "LLM-as-an-Interviewer: Beyond Static Testing Through Dynamic LLM Evaluation",
     authors: [Eunsu Kim, *Juyoung Suk*, Seungone Kim, Niklas Muennighoff, Dongkeun Kim, Alice Oh],
-    venue: "Findings of ACL 2025 · 24 citations",
+    venue: "Findings of ACL 2025",
   ),
   (
     title: "MM-Eval: A Multilingual Meta-Evaluation Benchmark for LLM-as-a-Judge and Reward Models",
     authors: [Guijin Son, Dongkeun Yoon, *Juyoung Suk*, Javier Aula-Blasco, Mano Aslan, Vu Trong Kim, Shayekh Bin Islam, Jaume Prats-Cristià, Lucía Tormo-Bañuelos, Seungone Kim],
-    venue: "arXiv preprint, October 2024 · 8 citations",
+    venue: "arXiv preprint, October 2024",
   ),
   (
     title: "The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models",
     authors: [Seungone Kim, *Juyoung Suk*, Ji Yong Cho, Shayne Longpre, Chaeeun Kim, Dongkeun Yoon, Guijin Son, Yejin Cho, Sheikh Shafayat, et al.],
-    venue: "NAACL 2025 (Best Paper Award) · 27 citations",
+    venue: "NAACL 2025 (Best Paper Award)",
   ),
   (
     title: "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models",
     authors: [Seungone Kim\*, *Juyoung Suk*\*, Shayne Longpre, Bill Yuchen Lin, Jamin Shin, Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, Minjoon Seo],
-    venue: "EMNLP 2024 · 468 citations",
+    venue: "EMNLP 2024",
   ),
   (
     title: "CLIcK: A Benchmark Dataset of Cultural and Linguistic Intelligence in Korean",
     authors: [Eunsu Kim, *Juyoung Suk*, Philhoon Oh, Haneul Yoo, James Thorne, Alice Oh],
-    venue: "LREC-COLING 2024 · 73 citations",
+    venue: "LREC-COLING 2024",
   ),
 )
 
@@ -69,26 +69,37 @@
 
 #v(0.35cm)
 
+// Highlights
+#section-header("Highlights")
+
+#text(size: 9.5pt)[
+  • *Best Paper Award* at NAACL 2025 for _The BiGGen Bench_ #linebreak()
+  • *Minister of Science and ICT Award* (과학기술정보통신부 장관상), Republic of Korea — Aug. 2025 #linebreak()
+  • Co-developer on Trillion Labs' #link("https://huggingface.co/trillionlabs")[foundation model lineup] — the *Gravity* (MoE) and *Tri* (0.5B–70B) series #linebreak()
+  • Built and maintained *#link("https://github.com/prometheus-eval/prometheus-eval")[Prometheus-Eval]*, an open-source LM evaluation toolkit (1.1k+ GitHub stars)
+]
+
 // Education
 #section-header("Education")
 
 #row(
-  [*Korea Advanced Institute of Science and Technology (KAIST)*],
+  [
+    *Korea Advanced Institute of Science and Technology (KAIST)* #linebreak()
+    M.S. in Artificial Intelligence · Advisor: Minjoon Seo #linebreak()
+    #text(size: 9pt, style: "italic", fill: gray-color)[Thesis: Building Reliable Open-Source Language Model Evaluators through Weight Merging and Continual Training]
+  ],
   [Mar. 2024 - Feb. 2026],
 )
-#bullets((
-  "M.S. in Artificial Intelligence",
-  "Advisor: Minjoon Seo",
-  [Thesis: _Building Reliable Open-Source Language Model Evaluators through Weight Merging and Continual Training_],
-))
 
-#v(0.15cm)
+#v(0.1cm)
 
 #row(
-  [*Korea Advanced Institute of Science and Technology (KAIST)*],
+  [
+    *Korea Advanced Institute of Science and Technology (KAIST)* #linebreak()
+    B.S. in Computer Science
+  ],
   [Mar. 2019 - Feb. 2024],
 )
-#bullets(("B.S. in Computer Science",))
 
 // Work Experience
 #section-header("Work Experience")
@@ -98,7 +109,7 @@
   [Nov. 2024 - Present],
 )
 #bullets((
-  [Core developer of Trillion-7B (#link("https://huggingface.co/trillionlabs/Trillion-7B-preview")[HuggingFace]), a 7.76B-parameter compute-efficient multilingual frontier model.],
+  [Core developer on Trillion's foundation model lineup — the *Gravity* (MoE) and *Tri* (0.5B–70B, including Tri-21B-Think) series. Models on #link("https://huggingface.co/trillionlabs")[HuggingFace].],
   "Work across pre-training and post-training: data, infrastructure, long-context training, and evaluation.",
 ))
 
@@ -135,27 +146,18 @@
   [2025],
 )
 
-// Publications
-#section-header("Publications")
-
-#text(size: 9pt, style: "italic", fill: muted)[
-  Reverse chronological. \* denotes equal contribution. Full list on
-  #link("https://scholar.google.com/citations?user=mENsLCkAAAAJ")[Google Scholar].
-]
-#v(0.25cm)
-
-#publication-list(publications)
+#pagebreak()
 
 // Selected Talks
 #section-header("Selected Talks")
 
 #row(
-  [*Prometheus 2 Reward Model*, Meta (RAM Talk series, hosted by Ilia Kulikov) --- joint with Seungone Kim],
+  [*Prometheus 2 Reward Model*, Meta (RAM Talk series, hosted by Ilia Kulikov)],
   [May 2024],
 )
 #v(0.1cm)
 #row(
-  [*LLMs as Evaluators*, Microsoft Research India (SNLP reading group, hosted by Sanchit Ahuja and Varun Gumma) --- joint with Seungone Kim],
+  [*LLMs as Evaluators*, Microsoft Research India (SNLP reading group, hosted by Sanchit Ahuja and Varun Gumma)],
   [Jun. 2024],
 )
 
@@ -178,17 +180,21 @@
   [*Teaching Assistant*, Introduction to Programming with Python, KAIST MOOC Platform --- Online],
   [Jan. 2022 - Jun. 2024],
 )
-#v(0.15cm)
+#v(0.1cm)
 #row(
   [*Teaching Assistant*, Introduction to Programming (CS101), KAIST --- Daejeon, South Korea],
   [Aug. 2021 - Jun. 2022],
 )
 
-// Languages
-#section-header("Languages")
+// Publications
+#section-header("Publications")
 
-*Korean:* Native proficiency
-#v(0.15cm)
-*English:* Professional proficiency
+#text(size: 9pt, style: "italic", fill: muted)[
+  Reverse chronological. \* denotes equal contribution. Full list on
+  #link("https://scholar.google.com/citations?user=mENsLCkAAAAJ")[Google Scholar].
+]
+#v(0.25cm)
 
-#footer("Last updated: May 2026")
+#publication-list(publications)
+
+#footer("Last updated: May 2026 · Korean (native) · English (professional)")
