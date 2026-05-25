@@ -9,6 +9,7 @@ import Figure from './Figure'
 import Callout from './Callout'
 import Citation from './Citation'
 import Comments from './Comments'
+import NewsletterSignup from '../NewsletterSignup'
 import ShareButtons from './ShareButtons'
 import ReadingProgress from './ReadingProgress'
 import ViewCount from './ViewCount'
@@ -150,6 +151,10 @@ export default function BlogPostView({
                 date={meta.date}
                 locale={locale}
               />
+            </div>
+
+            <div data-pagefind-ignore>
+              <NewsletterSignup locale={locale} />
             </div>
 
             <Comments locale={locale} />
